@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from objects.forms import addObjectForm
-from objects.models import Object
+from objects.models import Object, Reservation
 
 
 def all_objects(request):
@@ -38,3 +39,11 @@ def object_detail(request, slug):
         'object': Object.objects.get(slug=slug),
     }
     return render(request, template, context)
+
+
+#RESERVATIONS
+@login_required
+def reservation_list(request):
+    reservations = Reservation.objects.all()
+    context = {'reservations': reservations}
+    return render(request, 'objects/reservation_list.html', context)

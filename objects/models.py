@@ -83,6 +83,16 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    RESERVATION_ORDER = 'RO'
+    RESERVATION_CONSULTATION = 'RC'
+
+    RESERVATION_TYPE = [
+        (RESERVATION_ORDER, 'Бронирование'),
+        (RESERVATION_CONSULTATION, 'Консультирование')
+    ]
+
+    type = models.CharField(choices=RESERVATION_TYPE, default='', max_length=255)
+
     PAID = 'PD'
     PAID_IN_PART = 'PP'
     NOT_PAID = 'NP'

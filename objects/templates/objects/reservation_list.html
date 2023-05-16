@@ -1,0 +1,697 @@
+{%extends 'dash.html'%}
+{%block content%}
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header" style="padding: 12px 0px 0px 0px;">
+                                            <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs"
+                                                role="tablist"
+                                                style="justify-content:center;background: #FFFFFF;padding: 12px 0px 0px 0px;">
+                                                <li class="nav-item" role="presentation">
+                                                    <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab"
+                                                        aria-selected="true" role="tab">
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2"
+                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                                        </svg>
+                                                        Консультирование 0
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a href="#tabs-profile-9" class="nav-link" data-bs-toggle="tab"
+                                                        aria-selected="false" role="tab" tabindex="-1">
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2"
+                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                                                        </svg>
+
+                                                        Бронирование 1
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body" style="padding: 0px 0px 0px 0px;">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active show" id="tabs-home-9" role="tabpanel">
+
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h3 class="card-title">Активные заявки 2</h3>
+                                                            </div>
+                                                            <div class="table-responsive">
+                                                                <table
+                                                                    class="table card-table table-vcenter text-nowrap datatable style_table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="w-1"><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select all invoices">
+                                                                            </th>
+                                                                            <th class="w-1">No.
+                                                                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="icon icon-sm icon-thick"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" stroke-width="2"
+                                                                                    stroke="currentColor" fill="none"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round">
+                                                                                    <path stroke="none"
+                                                                                        d="M0 0h24v24H0z" fill="none">
+                                                                                    </path>
+                                                                                    <path d="M6 15l6 -6l6 6"></path>
+                                                                                </svg>
+                                                                            </th>
+                                                                            <th>Имя</th>
+                                                                            <th>Телефон</th>
+                                                                            <th>Электронная почта</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {%for reservation in reservations%}
+
+                                                                    <tr>
+                                                                        <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">{{reservation.id}}</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">{{reservation.guest_last_name}} {{reservation.guest_first_name}} {{reservation.guest_patronymic}}</a></td>
+                                                                            <td>
+                                                {{reservation.guest_phone}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{reservation.guest_email}}
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    {%endfor%}
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001401</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Design Works</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-us"></span>
+                                                                                Carlson Limited
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001402</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">UX
+                                                                                    Wireframes</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-gb"></span>
+                                                                                Adobe
+                                                                            </td>
+                                                                            <td>
+                                                                                87956421
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001403</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">New
+                                                                                    Dashboard</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-de"></span>
+                                                                                Bluewolf
+                                                                            </td>
+                                                                            <td>
+                                                                                87952621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001404</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Landing Page</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-br"></span>
+                                                                                Salesforce
+                                                                            </td>
+                                                                            <td>
+                                                                                87953421
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001405</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Marketing
+                                                                                    Templates</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-pl"></span>
+                                                                                Printic
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001406</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Sales Presentation</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-br"></span>
+                                                                                Tabdaq
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="card-footer d-flex align-items-center">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tabs-profile-9" role="tabpanel">
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h3 class="card-title">Активные заявки 2</h3>
+                                                            </div>
+                                                            <div class="table-responsive">
+                                                                <table
+                                                                    class="table card-table table-vcenter text-nowrap datatable style_table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="w-1"><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select all invoices">
+                                                                            </th>
+                                                                            <th class="w-1">No.
+                                                                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="icon icon-sm icon-thick"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" stroke-width="2"
+                                                                                    stroke="currentColor" fill="none"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round">
+                                                                                    <path stroke="none"
+                                                                                        d="M0 0h24v24H0z" fill="none">
+                                                                                    </path>
+                                                                                    <path d="M6 15l6 -6l6 6"></path>
+                                                                                </svg>
+                                                                            </th>
+                                                                            <th>Имя</th>
+                                                                            <th>Телефон</th>
+                                                                            <th>Электронная почта</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001401</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Design Works</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-us"></span>
+                                                                                Carlson Limited
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001402</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">UX
+                                                                                    Wireframes</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-gb"></span>
+                                                                                Adobe
+                                                                            </td>
+                                                                            <td>
+                                                                                87956421
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001403</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">New
+                                                                                    Dashboard</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-de"></span>
+                                                                                Bluewolf
+                                                                            </td>
+                                                                            <td>
+                                                                                87952621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001404</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Landing Page</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-br"></span>
+                                                                                Salesforce
+                                                                            </td>
+                                                                            <td>
+                                                                                87953421
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001405</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Marketing
+                                                                                    Templates</a></td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-pl"></span>
+                                                                                Printic
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><input
+                                                                                    class="form-check-input m-0 align-middle"
+                                                                                    type="checkbox"
+                                                                                    aria-label="Select invoice"></td>
+                                                                            <td><span class="text-muted">001406</span>
+                                                                            </td>
+                                                                            <td><a href="./applications.html"
+                                                                                    class="text-reset"
+                                                                                    tabindex="-1"><img
+                                                                                        src="assets/img/select-image.png"
+                                                                                        alt="">Sales Presentation</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span
+                                                                                    class="flag flag-country-br"></span>
+                                                                                Tabdaq
+                                                                            </td>
+                                                                            <td>
+                                                                                87956621
+                                                                            </td>
+
+                                                                            <td class="text-end">
+                                                                                <span class="dropdown">
+                                                                                    <button
+                                                                                        class="btn dropdown-toggle align-text-top"
+                                                                                        data-bs-boundary="viewport"
+                                                                                        data-bs-toggle="dropdown">Actions</button>
+                                                                                    <div
+                                                                                        class="dropdown-menu dropdown-menu-end">
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Action
+                                                                                        </a>
+                                                                                        <a class="dropdown-item"
+                                                                                            href="#">
+                                                                                            Another action
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="card-footer d-flex align-items-center">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+{%endblock%}
