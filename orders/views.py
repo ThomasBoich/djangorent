@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from orders.models import Order
+
+
 # Create your views here.
 
 def orders(request):
