@@ -1,0 +1,105 @@
+<!DOCTYPE html>{%load static%}
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link href="{%static './assets/css/tabler.min.css'%}" rel="stylesheet" />
+  <link href="{%static './assets/css/tabler-flags.min.css'%}" rel="stylesheet" />
+  <link href="{%static './assets/css/tabler-payments.min.css'%}" rel="stylesheet" />
+  <link href="{%static './assets/css/tabler-vendors.min.css'%}" rel="stylesheet" />
+  <link href="{%static './assets/css/demo.min.css'%}" rel="stylesheet" />
+</head>
+
+<body class=" border-top-wide border-primary d-flex flex-column">
+
+
+
+
+  <div class="page page-center">
+    <div class="container-tight py-4">
+      <div class="text-center mb-4">
+        <a href="." class="navbar-brand navbar-brand-autodark"><img
+            src="{%static 'assets/img/logo.png'%}"></a>
+
+
+      </div>
+      <form action="" method="post" class="card card-md">
+        {%csrf_token%}
+        <!--    {{form.as_p}}-->
+
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">АВТОРИЗАЦИЯ</h2>
+          <div class="mb-3">
+            <label class="form-label">Электронная почта</label>
+            <!--              <input type="text" class="form-control" placeholder="Введите логин">-->
+            {{form.username}}
+          </div>
+          <div class="mb-2">
+            <label class="form-label">
+              Пароль
+              <!--                <span class="form-label-description">-->
+              <!--                  <a href="./forgot-password.html">Забыли пароль?</a>-->
+              <!--                </span>-->
+            </label>
+            <div class="input-group input-group-flat">
+              <!--                <input type="password" class="form-control"  placeholder="Пароль"  autocomplete="off">-->
+              {{form.password}}
+
+              <span class="input-group-text" onclick='show_hide_password()'>
+                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                  <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="12" cy="12" r="2" />
+                    <path
+                      d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                  </svg>
+                </a>
+              </span>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label class="form-check">
+              <input type="checkbox" class="form-check-input" />
+              <span class="form-check-label">Запомнить меня на этом устройстве</span>
+            </label>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
+          </div>
+          <div class='mt-3' style="color:red">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+          </div>
+        </div>
+
+      </form>
+      <div class="text-center text-muted mt-3">
+        Не зарегистрированы? <a href="{%url 'registration'%}" tabindex="-1">Регистрация</a>
+      </div>
+    </div>
+  </div>
+  <!-- Libs JS -->
+  <!-- Tabler Core -->
+  <script src="{%static './assets/js/tabler.min.js'%}"></script>
+  <script src="{%static './assets/js/demo.min.js'%}"></script>
+
+  <script>
+    function show_hide_password() {
+      pass_field = document.getElementById('id_password')
+
+      if (pass_field.type == 'password') {
+        pass_field.type = 'text'
+      } else {
+        pass_field.type = 'password'
+      }
+    }
+  </script>
+
+</body>
+
+</html>

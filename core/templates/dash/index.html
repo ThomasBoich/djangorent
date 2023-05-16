@@ -1,0 +1,818 @@
+{%extends 'dash.html'%}
+{%block content%}
+
+
+
+            <div class="row row-deck row-cards">
+              <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="subheader">Заявок</div>
+                      <div class="ms-auto lh-1">
+                        <div class="dropdown">
+<!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
+<!--                            aria-expanded="false">Last 7 days</a>-->
+<!--                          <div class="dropdown-menu dropdown-menu-end">-->
+<!--                            <a class="dropdown-item active" href="#">Last 7 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 30 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 3 months</a>-->
+<!--                          </div>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="h1 mb-3">{{all_orders}}</div>
+                    <div class="d-flex mb-2">
+                      <div>Конверсия</div>
+                      <div class="ms-auto">
+                        <span class="text-green d-inline-flex align-items-center lh-1">
+                          7%
+                          <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M3 17l6 -6l4 4l8 -8" />
+                            <path d="M14 7l7 0l0 7" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
+                        <span class="visually-hidden">75% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="subheader">Всего задач \ Активных</div>
+                      <div class="ms-auto lh-1">
+                        <div class="dropdown">
+<!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
+<!--                            aria-expanded="false">Last 7 days</a>-->
+<!--                          <div class="dropdown-menu dropdown-menu-end">-->
+<!--                            <a class="dropdown-item active" href="#">Last 7 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 30 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 3 months</a>-->
+<!--                          </div>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <div class="h1 mb-0 me-2">{{all_tasks}} \ {{tasks_in_progress}}</div>
+                      <div class="me-auto">
+                        <span class="text-green d-inline-flex align-items-center lh-1">
+                          8%
+                          <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M3 17l6 -6l4 4l8 -8" />
+                            <path d="M14 7l7 0l0 7" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="chart-revenue-bg" class="chart-sm"></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="subheader">Всего клиентов \ Новых</div>
+                      <div class="ms-auto lh-1">
+                        <div class="dropdown">
+<!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
+<!--                            aria-expanded="false">Last 7 days</a>-->
+<!--                          <div class="dropdown-menu dropdown-menu-end">-->
+<!--                            <a class="dropdown-item active" href="#">Last 7 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 30 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 3 months</a>-->
+<!--                          </div>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <div class="h1 mb-3 me-2">{{all_clients}} \ {{new_clients_today}}</div>
+                      <div class="me-auto">
+                        <span class="text-yellow d-inline-flex align-items-center lh-1">
+                          0%
+                          <!-- Download SVG icon from http://tabler-icons.io/i/minus -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l14 0" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div id="chart-new-clients" class="chart-sm"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="subheader">Всего объектов</div>
+                      <div class="ms-auto lh-1">
+                        <div class="dropdown">
+<!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
+<!--                            aria-expanded="false">Last 7 days</a>-->
+<!--                          <div class="dropdown-menu dropdown-menu-end">-->
+<!--                            <a class="dropdown-item active" href="#">Last 7 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 30 days</a>-->
+<!--                            <a class="dropdown-item" href="#">Last 3 months</a>-->
+<!--                          </div>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-baseline">
+                      <div class="h1 mb-3 me-2">{{count_objects}}</div>
+                      <div class="me-auto">
+                        <span class="text-green d-inline-flex align-items-center lh-1">
+                          4%
+                          <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M3 17l6 -6l4 4l8 -8" />
+                            <path d="M14 7l7 0l0 7" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div id="chart-active-users" class="chart-sm"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row row-cards">
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <span class="bg-primary text-white avatar">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                  d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
+                                <path d="M12 3v3m0 12v3" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              {{orders_in_progress}}
+                            </div>
+                            <div class="text-muted">
+                              Заявок в работе
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <span class="bg-green text-white avatar">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M17 17h-11v-14h-2" />
+                                <path d="M6 5l14 1l-1 7h-13" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              {{raw_orders}}
+                            </div>
+                            <div class="text-muted">
+                              Необработанные заявки
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <span class="bg-twitter text-white avatar">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                  d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              {{finish_orders}}
+                            </div>
+                            <div class="text-muted">
+                              Успешно закрытие заявки
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                    <div class="card card-sm">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <span class="bg-facebook text-white avatar">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="col">
+                            <div class="font-weight-medium">
+                              99
+                            </div>
+                            <div class="text-muted">
+                              21 today
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-12 col-lg-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Активные задачи 2</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table card-table table-vcenter">
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task"
+                            checked>
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Extend the data model.</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          August 04, 2021
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            2/7
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            3
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm"
+                            style="background-image: url(./static/avatars/000m.jpg)"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task">
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Verify the event flow.</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          January 03, 2019
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            3/10
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            6
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm">JL</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task">
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Database backup and maintenance</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          December 28, 2018
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            0/6
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            1
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm"
+                            style="background-image: url(./static/avatars/002m.jpg)"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task"
+                            checked>
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Identify the implementation team.</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          November 07, 2020
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            6/10
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            12
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm"
+                            style="background-image: url(./static/avatars/003m.jpg)"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task">
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Define users and workflow</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          November 23, 2021
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            3/7
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            5
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm"
+                            style="background-image: url(./static/avatars/000f.jpg)"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="w-1 pe-0">
+                          <input type="checkbox" class="form-check-input m-0 align-middle" aria-label="Select task"
+                            checked>
+                        </td>
+                        <td class="w-100">
+                          <a href="#" class="text-reset">Check Pull Requests</a>
+                        </td>
+                        <td class="text-nowrap text-muted">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M16 3l0 4" />
+                            <path d="M8 3l0 4" />
+                            <path d="M4 11l16 0" />
+                            <path d="M11 15l1 0" />
+                            <path d="M12 15l0 3" />
+                          </svg>
+                          January 14, 2021
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M5 12l5 5l10 -10" />
+                            </svg>
+                            2/9
+                          </a>
+                        </td>
+                        <td class="text-nowrap">
+                          <a href="#" class="text-muted">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+                              <path d="M8 9l8 0" />
+                              <path d="M8 13l6 0" />
+                            </svg>
+                            3
+                          </a>
+                        </td>
+                        <td>
+                          <span class="avatar avatar-sm"
+                            style="background-image: url(./static/avatars/001f.jpg)"></span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Активные заявки 2</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap datatable">
+                      <thead>
+                        <tr>
+                          <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select all invoices"></th>
+                          <th class="w-1">No.
+                            <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick" width="24"
+                              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M6 15l6 -6l6 6" />
+                            </svg>
+                          </th>
+                          <th>Имя</th>
+                          <th>Телефон</th>
+                          <th>Электронная почта</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001401</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">Design Works</a></td>
+                          <td>
+                            <span class="flag flag-country-us"></span>
+                            Carlson Limited
+                          </td>
+                          <td>
+                            87956621
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001402</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">UX Wireframes</a></td>
+                          <td>
+                            <span class="flag flag-country-gb"></span>
+                            Adobe
+                          </td>
+                          <td>
+                            87956421
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001403</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">New Dashboard</a></td>
+                          <td>
+                            <span class="flag flag-country-de"></span>
+                            Bluewolf
+                          </td>
+                          <td>
+                            87952621
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001404</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">Landing Page</a></td>
+                          <td>
+                            <span class="flag flag-country-br"></span>
+                            Salesforce
+                          </td>
+                          <td>
+                            87953421
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001405</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">Marketing Templates</a></td>
+                          <td>
+                            <span class="flag flag-country-pl"></span>
+                            Printic
+                          </td>
+                          <td>
+                            87956621
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                              aria-label="Select invoice"></td>
+                          <td><span class="text-muted">001406</span></td>
+                          <td><a href="invoice.html" class="text-reset" tabindex="-1">Sales Presentation</a></td>
+                          <td>
+                            <span class="flag flag-country-br"></span>
+                            Tabdaq
+                          </td>
+                          <td>
+                            87956621
+                          </td>
+
+                          <td class="text-end">
+                            <span class="dropdown">
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                data-bs-toggle="dropdown">Actions</button>
+                              <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">
+                                  Action
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                  Another action
+                                </a>
+                              </div>
+                            </span>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer d-flex align-items-center">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+{%endblock%}

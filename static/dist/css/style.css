@@ -1,0 +1,9 @@
+.container-xl {
+    max-width: 95%;
+    width: 95%;
+}
+
+.page_style {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,33 @@
+{%extends 'dash.html'%}
+
+{%block page_title%}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Навигация
+            </div>
+            <h2 class="page-title">
+                Добавить объект
+                <a href="{%url 'objects'%}" class="btn btn-success w-20">
+                    Назад
+                </a>
+            </h2>
+        </div>
+    </div>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="add_objects_page">
+    <h1>Загрузка объекта</h1>
+    <form id="object-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+
+{%endblock%}

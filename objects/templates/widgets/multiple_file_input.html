@@ -1,0 +1,12 @@
+<div>
+    <span>{{ widget.input_text }}</span>
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value %} value="{{ widget.value }}"{% endif %} multiple>
+    {% if not widget.is_required %}
+        <div class="checkbox">
+            <label>
+                {{ widget.clear_checkbox_label }}
+                {{ widget.clear_checkbox_tag }}
+            </label>
+        </div>
+    {% endif %}
+</div>
