@@ -18,10 +18,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'objects',
-    'orders',
     'tasks',
     'core',
     'index',
+    'chats',
 ]
 
 MIDDLEWARE = [

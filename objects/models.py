@@ -2,6 +2,9 @@ from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
 
+from users.models import CustomUser
+
+
 # Create your models here.
 class Object(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -43,25 +46,6 @@ class Features(models.Model):
         verbose_name_plural = 'Опции'
         ordering = ['title']
 
-class Reservation(models.Model):
-    object = models.ForeignKey(Object, on_delete=models.CASCADE, related_name='reservations')
-    check_in = models.DateField()
-    check_out = models.DateField()
-    guest_last_name = models.CharField(max_length=255)
-    guest_first_name = models.CharField(max_length=255)
-    guest_patronymic = models.CharField(max_length=255)
-    guest_email = models.EmailField()
-    guest_phone = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"
-
-    class Meta:
-        verbose_name = 'Бронирование'
-        verbose_name_plural = 'Бронирования'
-
 
 class Country(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название страны')
@@ -84,3 +68,46 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Reservation(models.Model):
+    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations')
+    manager = models.ForeignKey(CustomUser, related_name='order_manager', verbose_name='Ответственный', on_delete=models.PROTECT, default='')
+    check_in = models.DateField()
+    check_out = models.DateField()
+    guest_last_name = models.CharField(max_length=255)
+    guest_first_name = models.CharField(max_length=255)
+    guest_patronymic = models.CharField(max_length=255)
+    guest_email = models.EmailField()
+    guest_phone = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    PAID = 'PD'
+    PAID_IN_PART = 'PP'
+    NOT_PAID = 'NP'
+
+    TYPE_STATUS_PAY = [
+        (PAID, 'Оплачен'),
+        (PAID_IN_PART, 'Оплачен частично'),
+        (NOT_PAID, 'Не оплачен')
+    ]
+
+    SENT = 'ST'
+    NOT_SENT = 'NS'
+
+    TYPE_STATUS_DOCUMENTS = [
+        (SENT, 'Отправлены'),
+        (NOT_SENT, 'Не отправлены')
+    ]
+
+    status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Статус оплаты')
+    status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Статус документов')
+    status_order = models.BooleanField(default=False, verbose_name='Закрыта')
+
+    def __str__(self):
+        return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"
+
+    class Meta:
+        verbose_name = 'Бронирование'
+        verbose_name_plural = 'Бронирования'
