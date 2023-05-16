@@ -27,6 +27,7 @@ urlpatterns = [
     path('registration/', AppRegistration.as_view(), name='registration'),
     path('', include('index.urls')),
     path('tasks/', include('tasks.urls')),
+    path('orders/', include('orders.urls')),
 
 ]
 if settings.DEBUG:

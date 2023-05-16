@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'index',
     'objects',
     'tasks',
+    'orders',
 ]
 
 MIDDLEWARE = [
