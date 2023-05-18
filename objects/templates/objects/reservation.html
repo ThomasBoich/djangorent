@@ -1,55 +1,34 @@
 {%extends 'dash.html'%}{%load static%}
 {%block content%}
-
-
                         <div class="row">
                             <div class="col-lg-6">
-
                                 <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
                                     <div class="task-header">
                                         <h2>Ответственный:</h2>
-                                        <select class="selected" required id="my-select">
-                                            {%for manager in managers%}
-                                                {%if reservation.manager%}
+                                        <select class="selected" required id="select_manager">
+                                            <option value="">Не выбран</option>
+                                             {%if reservation.manager%}
                                                 <option value="{{reservation.manager.id}}" selected>
                                                     {{reservation.manager.first_name}} {{reservation.manager.last_name}}
                                                 </option>
-                                                {%else%}
-                                                <option value="" selected>Не выбран</option>
+                                            {%endif%}
+                                            {%for manager in managers%}
+                                                {%if manager != reservation.manager%}
+                                                    <option value="{{manager.id}}">
+                                                        <img src="{{manager.photo.url}}" alt="select-image">{{manager.first_name}} {{manager.last_name}}
+                                                    </option>
                                                 {%endif%}
-
-                                            <option value="{{manager.id}}">
-                                                <img src="{{manager.photo.url}}" alt="select-image">{{manager.first_name}} {{manager.last_name}}
-                                            </option>
-                                            <option value="">Не выбран</option>
                                             {%endfor%}
-<!--                                            <option value="Серафима Игнатьева">-->
-<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
-<!--                                                Серафима Игнатьева-->
-<!--                                            </option>-->
-<!--                                            <option value="Серафима Игнатьева">-->
-<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
-<!--                                                Серафима Игнатьева-->
-<!--                                            </option>-->
-<!--                                            <option value="Серафима Игнатьева">-->
-<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
-<!--                                                Серафима Игнатьева-->
-<!--                                            </option>-->
-<!--                                            <option value="Серафима Игнатьева">-->
-<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
-<!--                                                Серафима Игнатьева-->
-<!--                                            </option>-->
                                         </select>
-
                                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                         <script>
                                           $(document).ready(function() {
-                                            $('#my-select').change(function() {
+                                            $('#select_manager').change(function() {
                                               var selectValue = $(this).val();
                                               $.ajax({
                                                 type: 'POST',
-                                                url: '{% url 'save-select' reservation.id %}',
-                                                data: {'select_value': selectValue},
+                                                url: '{% url 'select_manager' reservation.id %}',
+                                                data: {'select_manager': selectValue},
                                                 success: function(response) {
                                                   console.log('Success!');
                                                 },

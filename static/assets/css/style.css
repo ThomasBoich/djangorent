@@ -2171,3 +2171,15 @@ clear:both;
 }
 .message p{padding: 2px 0px 0px 0px;margin: 0px;}
 .message h2{margin: 0px;font-weight: 500;}
+.blink {
+  animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: #ffff99;
+  }
+}

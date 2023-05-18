@@ -110,18 +110,17 @@ def reservation(request, reservation_id):
     return render(request, 'objects/reservation.html', context)
 
 @csrf_exempt
-def save_select(request, reservation_id):
+def select_manager(request, reservation_id):
     reservation = Reservation.objects.get(id=reservation_id)
     managers = CustomUser.objects.all()
 
     if request.method == 'POST':
-        value = request.POST.get('select_value')
+        value = request.POST.get('select_manager')
         # сохраняем значение в базу данных или как-то иначе обрабатываем
         manager = CustomUser.objects.get(id=value)
         if value is None:
             # удаление менеджера из бронирования
-            reservation.manager = None
-            reservation.save()
+            reservation.manager.clear()
         else:
             # сохранение выбранного менеджера в бронирование
             manager = CustomUser.objects.get(id=value)

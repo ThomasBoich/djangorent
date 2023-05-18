@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from objects.views import save_select
+from objects.views import select_manager
 from users.views import AppLoginView, AppRegistration
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path('registration/', AppRegistration.as_view(), name='registration'),
     path('', include('index.urls')),
     path('tasks/', include('tasks.urls')),
-    path('save-select/<int:reservation_id>', save_select, name='save-select'),
+    path('select_manager/<int:reservation_id>', select_manager, name='select_manager'),
 
 ]
 if settings.DEBUG:
