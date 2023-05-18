@@ -1,0 +1,281 @@
+{%extends 'dash.html'%}{%load static%}
+{%block content%}
+
+
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
+                                    <div class="task-header">
+                                        <h2>Ответственный:</h2>
+                                        <select class="selected">
+                                            <option value="Серафима Игнатьева">
+                                                <img src="./assets/img/select-image.png" alt="select-image">
+                                                Серафима Игнатьева
+                                            </option>
+                                            <option value="Серафима Игнатьева">
+                                                <img src="./assets/img/select-image.png" alt="select-image">
+                                                Серафима Игнатьева
+                                            </option>
+                                            <option value="Серафима Игнатьева">
+                                                <img src="./assets/img/select-image.png" alt="select-image">
+                                                Серафима Игнатьева
+                                            </option>
+                                            <option value="Серафима Игнатьева">
+                                                <img src="./assets/img/select-image.png" alt="select-image">
+                                                Серафима Игнатьева
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="task-menu-wrapper"style="overflow: hidden;">
+                                        <ul class="task-menu">
+                                            <li class="menu-active">Чат</li>
+                                            <li>Задачи 1</li>
+                                        </ul>
+<!--                                        <p>22.03.2022 в 20:35</p>-->
+<!--                                        <h4>Серафима Игнатьева <span class="task-text-span">создала задачу</span>-->
+<!--                                            “Заказать пиццу”</h4>-->
+                                        <div class="chat" id="block">
+                                            {% for message in messages %}
+                                            {%if message.user == request.user%}
+                                                <div class="message"style="float: right;">
+                                                <h2>{{ message.user.first_name }}</h2>
+                                                <p>{{ message.message }} \ {{ message.created_at }}</p>
+                                            </div>
+                                            {%else%}
+                                                <div class="message">
+                                                <h2>{{ message.user.first_name }}</h2>
+                                                <p>{{ message.message }} \ {{ message.created_at }}</p>
+                                            </div>
+                                            {%endif%}
+
+                                           {% empty %}
+                                            <p>Нет сообщений в чате.</p>
+                                            {% endfor %}
+<!--                                            <ul>-->
+
+<!--                                            <li></li>-->
+
+<!--                                            </ul>-->
+                                        </div>
+
+
+                                    </div>
+                                    <div class="task-footer-btn">
+                                        <div class="task-footer-flex">
+                                            <form method="post"style="width:100%;display:flex;">
+                                    {% csrf_token %}
+<!--                                    <textarea name="message" required></textarea>-->
+<!--                                    <button type="submit">Отправить сообщение</button>-->
+                                            <input type="text" name="message" required placeholder="Сообщение..">
+                                            <button>
+                                                <img src="{%static './assets/img/send-btn.png'%}" alt="send">
+                                            </button>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
+                                    <div class="task-header-wrapper">
+                                        <h2>Заявка <span class="text-header-span">№{{reservation.id}}</span></h2>
+                                        <h4>дата создания: 20.03.2023</h4>
+                                    </div>
+                                    <div class="task-menu-wrapper">
+                                        <div class="task-border"></div>
+                                        <div class="task-btn-wrappers">
+                                            <h4>Статус заказа</h4>
+                                            <div class="task-btn-flex">
+                                                <button class="task-btns">
+                                                    <span>СТАТУС ОПЛАТЫ</span>
+                                                    <span class="btn-flexes">
+                                                        <span>Частично оплачен</span>
+                                                        <img src="./assets/img/down-icon.png" alt="down-icon">
+                                                    </span>
+                                                </button>
+                                                <button class="task-btns white-btn">
+                                                    <span>СТАТУС ОПЛАТЫ</span>
+                                                    <span class="btn-flexes">
+                                                        <span>Частично оплачен</span>
+                                                    </span>
+                                                </button>
+                                                <button class="task-btns white-btn">
+                                                    <span>СТАТУС ОПЛАТЫ</span>
+                                                    <span class="btn-flexes">
+                                                        <span>Частично оплачен</span>
+                                                    </span>
+                                                </button>
+                                                <button class="task-btns green-btn">
+                                                    <span>СТАТУС ОПЛАТЫ</span>
+                                                    <span class="btn-flexes">
+                                                        <span>Частично оплачен</span>
+                                                        <img src="./assets/img/down-icon.png" alt="down-icon">
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="main-task">
+                                            <h4>Детали заказа</h4>
+                                            <div class="task-bar"></div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <table class="table card-table table-vcenter text-nowrap datatable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="w-1"><input
+                                                                        class="form-check-input m-0 align-middle"
+                                                                        type="checkbox"
+                                                                        aria-label="Select all invoices"></th>
+                                                                <th class="w-1">No.
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        class="icon icon-sm icon-thick" width="24"
+                                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                        stroke="currentColor" fill="none"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                                            fill="none"></path>
+                                                                        <path d="M6 15l6 -6l6 6"></path>
+                                                                    </svg>
+                                                                </th>
+                                                                <th>Нуменклатура</th>
+                                                                <th>Даты</th>
+                                                                <th>Цена руб.</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        {%for object in order%}
+
+                                                                                                                    <tr>
+                                                                <td><input class="form-check-input m-0 align-middle"
+                                                                        type="checkbox" aria-label="Select invoice">
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-muted">{{object.id}}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="hotel-flex">
+                                                                        <img src="{{object.object.photo.url}}" alt="hotel">
+                                                                        <h4>{{object.object.name}}</h4>
+<!--                                                                        <img src="./assets/img/down-icon.png"-->
+<!--                                                                            alt="down-icon">-->
+                                                                    </div>
+                                                                <td>
+                                                                    <div class="hotel-flex">
+                                                                        <h4>{{object.check_in}} - {{object.check_out}}</h4>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    {{object.object.price}}
+                                                                </td>
+
+<!--                                                                <td class="text-end">-->
+<!--                                                                    <span class="dropdown">-->
+<!--                                                                        <button-->
+<!--                                                                            class="btn dropdown-toggle align-text-top"-->
+<!--                                                                            data-bs-boundary="viewport"-->
+<!--                                                                            data-bs-toggle="dropdown">Actions</button>-->
+<!--                                                                        <div class="dropdown-menu dropdown-menu-end">-->
+<!--                                                                            <a class="dropdown-item" href="#">-->
+<!--                                                                                Action-->
+<!--                                                                            </a>-->
+<!--                                                                            <a class="dropdown-item" href="#">-->
+<!--                                                                                Another action-->
+<!--                                                                            </a>-->
+<!--                                                                        </div>-->
+<!--                                                                    </span>-->
+<!--                                                                </td>-->
+                                                            </tr>
+
+                                                        {%endfor%}
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                              var block = document.getElementById("block");
+                                              block.scrollTop = block.scrollHeight;
+                                            </script>
+                                            <!-- <ul class="task-bar-menu">
+                                                <li class="small-width">№</li>
+                                                <li>Нуменклатура</li>
+                                                <li>Даты</li>
+                                                <li>Цена, руб.</li>
+                                                <li class="small-width"> </li>
+                                            </ul>
+                                            <div class="task-bar-menu">
+                                                <div class="width-small box"></div>
+                                                <div class="hotel box">
+                                                    <div class="hotel-flex">
+                                                        <img src="./assets/img/hotel.png" alt="hotel">
+                                                        <h4>Отель “Зараза”</h4>
+                                                    </div>
+                                                    <img src="./assets/img/down-icon.png" alt="down-icon">
+                                                </div>
+                                                <div class="hotel box">
+                                                    <div class="hotel-flex">
+                                                        <h4>20.03.2023 - 22.03.2023</h4>
+                                                    </div>
+                                                    <img src="./assets/img/edit.png" alt="edit-icon">
+                                                </div>
+                                                <div class="hotel box">
+                                                    <div class="hotel-flex">
+                                                        <h4>999 999</h4>
+                                                    </div>
+                                                    <img src="./assets/img/edit.png" alt="edit-icon">
+                                                </div>
+                                                <div class="width-small box">
+                                                    <img src="./assets/img/deletes.png" alt="deletes-icon">
+                                                </div>
+                                            </div> -->
+                                            <div class="task-form">
+                                                <h4>Информация о клиенте</h4>
+                                                <div class="forms-group">
+                                                    <input type="text" placeholder="ИМЯ" data-aos="fade-right"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="ФАМИЛИЯ" data-aos="fade-down"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="ОТЧЕСТВО" data-aos="fade-left"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="ТЕЛЕФОН" data-aos="fade-right"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="ЕМЕЙЛ" data-aos="fade-down"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="ОТЧЕСТВО" data-aos="fade-left"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="СЕРИЯ ПАСПОРТА"
+                                                        data-aos="fade-right" data-aos-duration="1000">
+                                                    <input type="text" data-aos="fade-down" placeholder="НОМЕР ПАСПОРТА"
+                                                        data-aos-duration="1000">
+                                                    <input type="text" placeholder="КОД ПОДРАЗДЕЛЕНИЯ"
+                                                        data-aos="fade-right" data-aos-duration="1000">
+                                                </div>
+                                            </div>
+<!--                                            <div class="form-box" data-aos="flip-up" data-aos-duration="1000">-->
+<!--                                                <h4>Комментарий</h4>-->
+<!--                                                <h2>Предпочитает латинок</h2>-->
+<!--                                                &lt;!&ndash; <form action="">-->
+<!--                                                        <botton>Забронировать</botton>-->
+<!--                                                    </form> &ndash;&gt;-->
+<!--                                            </div>-->
+
+                                        </div>
+                                    </div>
+<!--                                    <div class="task-footer-btn">-->
+<!--                                        <div class="task-footer-flex">-->
+<!--                                            <input type="text" placeholder="Комментарий">-->
+<!--                                            <button>-->
+<!--                                                <img src="./assets/img/send-btn.png" alt="send">-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+
+{%endblock%}

@@ -1601,7 +1601,7 @@ label[dir="rtl"] .range-slider {
   overflow-y: auto;
   padding: 0px 12px 0px 0px;
   overflow-y: auto;
-  height: 79%;
+  height: 90%;
 }
 
 .task-menu-wrapper p {
@@ -1649,6 +1649,7 @@ label[dir="rtl"] .range-slider {
   right: 0;
   transform: translateY(-16px);
   padding: 10px 20px 0;
+  background-color:#FFFFFF;
 }
 
 .task-footer-flex button {
@@ -1800,7 +1801,7 @@ label[dir="rtl"] .range-slider {
   display: flex;
   align-items: center;
 }
-
+.hotel-flex img{width:auto;height:60px;margin: 0px 20px 0px 0px;}
 .hotel-flex h4 {
   font-weight: 700;
   font-size: 11px;
@@ -2146,3 +2147,27 @@ label[dir="rtl"] .range-slider {
     flex-direction: column;
   }
 }
+
+.chat{
+width: 100%;
+height: 79%;
+overflow:hidden;
+overflow-y: auto;
+
+
+}
+.message{
+float: left;
+display: flex;
+flex-direction: column;
+width: fit-content;
+text-align: left;
+background-color: #f8f8f8;
+padding: 12px;
+border-radius: 6px;
+margin: auto auto 12px;
+width: fit-content;
+clear:both;
+}
+.message p{padding: 2px 0px 0px 0px;margin: 0px;}
+.message h2{margin: 0px;font-weight: 500;}

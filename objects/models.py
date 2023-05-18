@@ -121,3 +121,6 @@ class Reservation(models.Model):
     class Meta:
         verbose_name = 'Бронирование'
         verbose_name_plural = 'Бронирования'
+
+    def get_absolute_url(self):
+        return reverse('reservation', args={self.id})
