@@ -8,12 +8,20 @@
                                 <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
                                     <div class="task-header">
                                         <h2>Ответственный:</h2>
-                                        <select class="selected" required>
-                                            <option value="" selected>Не выбран</option>
+                                        <select class="selected" required id="my-select">
                                             {%for manager in managers%}
-                                                <option value="{{manager.first_name}} {{manager.last_name}}">
+                                                {%if reservation.manager%}
+                                                <option value="{{reservation.manager.id}}" selected>
+                                                    {{reservation.manager.first_name}} {{reservation.manager.last_name}}
+                                                </option>
+                                                {%else%}
+                                                <option value="" selected>Не выбран</option>
+                                                {%endif%}
+
+                                            <option value="{{manager.id}}">
                                                 <img src="{{manager.photo.url}}" alt="select-image">{{manager.first_name}} {{manager.last_name}}
                                             </option>
+                                            <option value="">Не выбран</option>
                                             {%endfor%}
 <!--                                            <option value="Серафима Игнатьева">-->
 <!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
@@ -32,6 +40,26 @@
 <!--                                                Серафима Игнатьева-->
 <!--                                            </option>-->
                                         </select>
+
+                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                        <script>
+                                          $(document).ready(function() {
+                                            $('#my-select').change(function() {
+                                              var selectValue = $(this).val();
+                                              $.ajax({
+                                                type: 'POST',
+                                                url: '{% url 'save-select' reservation.id %}',
+                                                data: {'select_value': selectValue},
+                                                success: function(response) {
+                                                  console.log('Success!');
+                                                },
+                                                error: function(response) {
+                                                  console.log('Error!');
+                                                }
+                                              });
+                                            });
+                                          });
+                                        </script>
                                     </div>
                                     <div class="task-menu-wrapper"style="overflow: hidden;">
                                         <ul class="task-menu">

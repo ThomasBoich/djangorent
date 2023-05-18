@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+
 from chats.models import Chat
 from objects.forms import addObjectForm
 from objects.models import Object, Reservation
@@ -50,7 +53,7 @@ def object_detail(request, slug):
 #RESERVATIONS
 @login_required
 def reservation_list(request):
-    reservations = Reservation.objects.all()
+    reservations = Reservation.objects.filter(deleted=False)
     context = {
         'title_page': f'Бронирования {reservations.count()}',
         'reservations': reservations,
@@ -61,11 +64,12 @@ def reservation_list(request):
 
     }
     return render(request, 'objects/reservation_list.html', context)
-@login_required
+@csrf_exempt
 def reservation(request, reservation_id):
     # reservation = Reservation.objects.get(id=reservation_id)
     reservation = get_object_or_404(Reservation, id=reservation_id)
     messages = reservation.chat.all()
+    managers = CustomUser.objects.all()
     if request.method == 'POST':
         message_text = request.POST.get('message')
         if message_text:
@@ -89,7 +93,11 @@ def reservation(request, reservation_id):
     #     user_form = UserUpdateForm(instance=request.user)
     #     password_form = PasswordChangeForm(request.user)
     # return render(request, 'update_profile.html', {'user_form': user_form, 'password_form': password_form})
-
+    if request.method == 'POST':
+        manager_id = request.POST.get('manager')
+        manager = CustomUser.objects.get(pk=manager_id)
+        reservation.manager = manager
+        reservation.save()
 
     context = {
         'title_page': f'Заявка №{reservation_id}',
@@ -100,3 +108,22 @@ def reservation(request, reservation_id):
         #'chat': Chat.objects.get(id=reservation_id)
     }
     return render(request, 'objects/reservation.html', context)
+
+@csrf_exempt
+def save_select(request, reservation_id):
+    reservation = Reservation.objects.get(id=reservation_id)
+    managers = CustomUser.objects.all()
+
+    if request.method == 'POST':
+        value = request.POST.get('select_value')
+        # сохраняем значение в базу данных или как-то иначе обрабатываем
+        manager = CustomUser.objects.get(id=value)
+        if value is None:
+            # удаление менеджера из бронирования
+            reservation.manager = None
+            reservation.save()
+        else:
+            # сохранение выбранного менеджера в бронирование
+            manager = CustomUser.objects.get(id=value)
+            reservation.manager = manager
+            reservation.save()
