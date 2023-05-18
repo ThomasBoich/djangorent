@@ -73,15 +73,17 @@ class City(models.Model):
 class Reservation(models.Model):
     object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations')
     manager = models.ForeignKey(CustomUser, related_name='order_manager', verbose_name='Ответственный', on_delete=models.PROTECT, default='')
-    check_in = models.DateField()
-    check_out = models.DateField()
-    guest_last_name = models.CharField(max_length=255)
-    guest_first_name = models.CharField(max_length=255)
-    guest_patronymic = models.CharField(max_length=255)
-    guest_email = models.EmailField()
-    guest_phone = models.CharField(max_length=20)
+    check_in = models.DateField(default='', verbose_name='Дата заселения')
+    check_out = models.DateField(default='', verbose_name='Дата выезда')
+    guest_last_name = models.CharField(default='', max_length=255, verbose_name='Фамилия')
+    guest_first_name = models.CharField(default='', max_length=255, verbose_name='Имя')
+    guest_patronymic = models.CharField(default='', max_length=255, verbose_name='Отчество')
+    guest_email = models.EmailField(default='', verbose_name='Емейл')
+    guest_phone = models.CharField(default='', max_length=20, verbose_name='Телефон')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    document = models.FileField(upload_to='Reservation/Documents/%Y/%m/%d/', verbose_name='Договор', blank=True, null=True)
+    deleted = models.BooleanField(default=False)
 
     RESERVATION_ORDER = 'RO'
     RESERVATION_CONSULTATION = 'RC'

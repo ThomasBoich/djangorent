@@ -8,23 +8,29 @@
                                 <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
                                     <div class="task-header">
                                         <h2>Ответственный:</h2>
-                                        <select class="selected">
-                                            <option value="Серафима Игнатьева">
-                                                <img src="./assets/img/select-image.png" alt="select-image">
-                                                Серафима Игнатьева
+                                        <select class="selected" required>
+                                            <option value="" selected>Не выбран</option>
+                                            {%for manager in managers%}
+                                                <option value="{{manager.first_name}} {{manager.last_name}}">
+                                                <img src="{{manager.photo.url}}" alt="select-image">{{manager.first_name}} {{manager.last_name}}
                                             </option>
-                                            <option value="Серафима Игнатьева">
-                                                <img src="./assets/img/select-image.png" alt="select-image">
-                                                Серафима Игнатьева
-                                            </option>
-                                            <option value="Серафима Игнатьева">
-                                                <img src="./assets/img/select-image.png" alt="select-image">
-                                                Серафима Игнатьева
-                                            </option>
-                                            <option value="Серафима Игнатьева">
-                                                <img src="./assets/img/select-image.png" alt="select-image">
-                                                Серафима Игнатьева
-                                            </option>
+                                            {%endfor%}
+<!--                                            <option value="Серафима Игнатьева">-->
+<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
+<!--                                                Серафима Игнатьева-->
+<!--                                            </option>-->
+<!--                                            <option value="Серафима Игнатьева">-->
+<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
+<!--                                                Серафима Игнатьева-->
+<!--                                            </option>-->
+<!--                                            <option value="Серафима Игнатьева">-->
+<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
+<!--                                                Серафима Игнатьева-->
+<!--                                            </option>-->
+<!--                                            <option value="Серафима Игнатьева">-->
+<!--                                                <img src="./assets/img/select-image.png" alt="select-image">-->
+<!--                                                Серафима Игнатьева-->
+<!--                                            </option>-->
                                         </select>
                                     </div>
                                     <div class="task-menu-wrapper"style="overflow: hidden;">
@@ -39,8 +45,8 @@
                                             {% for message in messages %}
                                             {%if message.user == request.user%}
                                                 <div class="message"style="float: right;">
-                                                <h2>{{ message.user.first_name }}</h2>
-                                                <p>{{ message.message }} \ {{ message.created_at }}</p>
+                                                <h2>{{ message.message }}</h2>
+                                                <p>{{ message.user.first_name }} \ {{ message.created_at }}</p>
                                             </div>
                                             {%else%}
                                                 <div class="message">
@@ -67,7 +73,7 @@
                                     {% csrf_token %}
 <!--                                    <textarea name="message" required></textarea>-->
 <!--                                    <button type="submit">Отправить сообщение</button>-->
-                                            <input type="text" name="message" required placeholder="Сообщение..">
+                                            <input type="text" name="message" required placeholder="Сообщение.." novalidate autocomplete="off">
                                             <button>
                                                 <img src="{%static './assets/img/send-btn.png'%}" alt="send">
                                             </button>

@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from chats.models import Chat
 from objects.forms import addObjectForm
 from objects.models import Object, Reservation
 from users.forms import UserUpdateForm
+from users.models import CustomUser
 
 
 def all_objects(request):
@@ -94,6 +96,7 @@ def reservation(request, reservation_id):
         'reservation': reservation,
         'order': Reservation.objects.filter(id=reservation_id),
         'messages': messages,
+        'managers': CustomUser.objects.all(),
         #'chat': Chat.objects.get(id=reservation_id)
     }
     return render(request, 'objects/reservation.html', context)
