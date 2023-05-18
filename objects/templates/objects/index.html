@@ -16,8 +16,6 @@
 </div>
 {% endblock %}
 {%block content%}
-
-
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="hotel_search">
@@ -106,16 +104,11 @@
                                                         <td><a href="#" class="text-reset" tabindex="-1">
                                                                 <img src="{{object.photo.url}}" alt="">{{object.name}}</a></td>
                                                         <td>
-
                                                            {{object.description}}
-
                                                         </td>
                                                         <td>
                                                             {{object.price}}
-
                                                         </td>
-
-
                                                         <td class="text-end">
                                                             <span class="dropdown">
                                                                 <button class="btn dropdown-toggle align-text-top"
@@ -133,206 +126,6 @@
                                                         </td>
                                                     </tr>
                                                 {%endfor%}
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001401</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">Design-->
-<!--                                                                Works</a></td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-us"></span>-->
-<!--                                                            Carlson Limited-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87956621-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001402</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">UX-->
-<!--                                                                Wireframes</a></td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-gb"></span>-->
-<!--                                                            Adobe-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87956421-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001403</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">New-->
-<!--                                                                Dashboard</a></td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-de"></span>-->
-<!--                                                            Bluewolf-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87952621-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001404</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">Landing-->
-<!--                                                                Page</a></td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-br"></span>-->
-<!--                                                            Salesforce-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87953421-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001405</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">Marketing-->
-<!--                                                                Templates</a></td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-pl"></span>-->
-<!--                                                            Printic-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87956621-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr>-->
-<!--                                                        <td><input class="form-check-input m-0 align-middle"-->
-<!--                                                                type="checkbox" aria-label="Select invoice"></td>-->
-<!--                                                        <td><span class="text-muted">001406</span>-->
-<!--                                                        </td>-->
-<!--                                                        <td><a href="#" class="text-reset" tabindex="-1">-->
-<!--                                                                <img src="assets/img/hotel.png" alt="">Sales-->
-<!--                                                                Presentation</a>-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            <span class="flag flag-country-br"></span>-->
-<!--                                                            Tabdaq-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            87956621-->
-<!--                                                        </td>-->
-
-
-<!--                                                        <td class="text-end">-->
-<!--                                                            <span class="dropdown">-->
-<!--                                                                <button class="btn dropdown-toggle align-text-top"-->
-<!--                                                                    data-bs-boundary="viewport"-->
-<!--                                                                    data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Action-->
-<!--                                                                    </a>-->
-<!--                                                                    <a class="dropdown-item" href="#">-->
-<!--                                                                        Another action-->
-<!--                                                                    </a>-->
-<!--                                                                </div>-->
-<!--                                                            </span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -343,10 +136,4 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
 {%endblock%}

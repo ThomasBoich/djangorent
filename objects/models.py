@@ -72,7 +72,7 @@ class City(models.Model):
 
 class Reservation(models.Model):
     object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations')
-    manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Ответственный', on_delete=models.PROTECT, default='')
+    manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Ответственный', on_delete=models.CASCADE, default='')
     check_in = models.DateField(default='', verbose_name='Дата заселения')
     check_out = models.DateField(default='', verbose_name='Дата выезда')
     guest_last_name = models.CharField(default='', max_length=255, verbose_name='Фамилия')

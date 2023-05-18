@@ -28,7 +28,7 @@ urlpatterns = [
     path('registration/', AppRegistration.as_view(), name='registration'),
     path('', include('index.urls')),
     path('tasks/', include('tasks.urls')),
-    path('select_manager/<int:reservation_id>', select_manager, name='select_manager'),
+    path('select_manager/<reservation_id>', select_manager, name='select_manager'),
 
 ]
 if settings.DEBUG:

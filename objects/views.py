@@ -100,7 +100,7 @@ def reservation(request, reservation_id):
         reservation.save()
 
     context = {
-        'title_page': f'Заявка №{reservation_id}',
+        'title_page': f'Заявка №{reservation_id} | {reservation.guest_first_name} {reservation.guest_last_name} {reservation.guest_patronymic}',
         'reservation': reservation,
         'order': Reservation.objects.filter(id=reservation_id),
         'messages': messages,
@@ -112,17 +112,23 @@ def reservation(request, reservation_id):
 @csrf_exempt
 def select_manager(request, reservation_id):
     reservation = Reservation.objects.get(id=reservation_id)
-    managers = CustomUser.objects.all()
 
     if request.method == 'POST':
         value = request.POST.get('select_manager')
+        print(value)
         # сохраняем значение в базу данных или как-то иначе обрабатываем
-        manager = CustomUser.objects.get(id=value)
         if value is None:
             # удаление менеджера из бронирования
-            reservation.manager.clear()
+            print(value)
+            reservation.manager == None
+            reservation.save()
+
         else:
             # сохранение выбранного менеджера в бронирование
             manager = CustomUser.objects.get(id=value)
             reservation.manager = manager
             reservation.save()
+
+        return JsonResponse({'Менеджер успешно изменен': True})
+    else:
+        return JsonResponse({'success': False, 'message': 'Метод должен быть POST'})

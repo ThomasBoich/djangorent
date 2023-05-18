@@ -1,0 +1,7 @@
+{% for message in messages %}
+  <div>
+    <strong>{{ message.user.first_name }}:</strong> {{ message.message }}
+  </div>
+{% empty %}
+  <p>Нет сообщений.</p>
+{% endfor %}

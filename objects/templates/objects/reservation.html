@@ -21,33 +21,36 @@
                                             {%endfor%}
                                         </select>
                                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                        <script>
-                                          $(document).ready(function() {
-                                            $('#select_manager').change(function() {
-                                              var selectValue = $(this).val();
-                                              $.ajax({
-                                                type: 'POST',
-                                                url: '{% url 'select_manager' reservation.id %}',
-                                                data: {'select_manager': selectValue},
-                                                success: function(response) {
-                                                  console.log('Success!');
-                                                },
-                                                error: function(response) {
-                                                  console.log('Error!');
-                                                }
-                                              });
-                                            });
-                                          });
-                                        </script>
+
+
+
+<script>
+  $(document).ready(function() {
+    $('#select_manager').change(function() {
+      var selectValue = $(this).val();
+      if (selectValue === '') {
+        selectValue = null;
+      }
+      $.ajax({
+        type: 'POST',
+        url: '{% url 'select_manager' reservation.id %}',
+        data: {'select_manager': selectValue},
+        success: function(response) {
+          console.log('Менеджер обновлен!');
+        },
+        error: function(response) {
+          console.log('Error!');
+        }
+      });
+    });
+  });
+</script>
                                     </div>
                                     <div class="task-menu-wrapper"style="overflow: hidden;">
                                         <ul class="task-menu">
                                             <li class="menu-active">Чат</li>
                                             <li>Задачи 1</li>
                                         </ul>
-<!--                                        <p>22.03.2022 в 20:35</p>-->
-<!--                                        <h4>Серафима Игнатьева <span class="task-text-span">создала задачу</span>-->
-<!--                                            “Заказать пиццу”</h4>-->
                                         <div class="chat" id="block">
                                             {% for message in messages %}
                                             {%if message.user == request.user%}
@@ -65,21 +68,13 @@
                                            {% empty %}
                                             <p>Нет сообщений в чате.</p>
                                             {% endfor %}
-<!--                                            <ul>-->
-
-<!--                                            <li></li>-->
-
-<!--                                            </ul>-->
                                         </div>
-
 
                                     </div>
                                     <div class="task-footer-btn">
                                         <div class="task-footer-flex">
                                             <form method="post"style="width:100%;display:flex;">
                                     {% csrf_token %}
-<!--                                    <textarea name="message" required></textarea>-->
-<!--                                    <button type="submit">Отправить сообщение</button>-->
                                             <input type="text" name="message" required placeholder="Сообщение.." novalidate autocomplete="off">
                                             <button>
                                                 <img src="{%static './assets/img/send-btn.png'%}" alt="send">
@@ -93,7 +88,7 @@
                                 <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
                                     <div class="task-header-wrapper">
                                         <h2>Заявка <span class="text-header-span">№{{reservation.id}}</span></h2>
-                                        <h4>дата создания: 20.03.2023</h4>
+                                        <h4>дата создания: {{reservation.created_at}}</h4>
                                     </div>
                                     <div class="task-menu-wrapper">
                                         <div class="task-border"></div>
@@ -173,8 +168,6 @@
                                                                     <div class="hotel-flex">
                                                                         <img src="{{object.object.photo.url}}" alt="hotel">
                                                                         <h4>{{object.object.name}}</h4>
-<!--                                                                        <img src="./assets/img/down-icon.png"-->
-<!--                                                                            alt="down-icon">-->
                                                                     </div>
                                                                 <td>
                                                                     <div class="hotel-flex">
@@ -184,27 +177,8 @@
                                                                 <td>
                                                                     {{object.object.price}}
                                                                 </td>
-
-<!--                                                                <td class="text-end">-->
-<!--                                                                    <span class="dropdown">-->
-<!--                                                                        <button-->
-<!--                                                                            class="btn dropdown-toggle align-text-top"-->
-<!--                                                                            data-bs-boundary="viewport"-->
-<!--                                                                            data-bs-toggle="dropdown">Actions</button>-->
-<!--                                                                        <div class="dropdown-menu dropdown-menu-end">-->
-<!--                                                                            <a class="dropdown-item" href="#">-->
-<!--                                                                                Action-->
-<!--                                                                            </a>-->
-<!--                                                                            <a class="dropdown-item" href="#">-->
-<!--                                                                                Another action-->
-<!--                                                                            </a>-->
-<!--                                                                        </div>-->
-<!--                                                                    </span>-->
-<!--                                                                </td>-->
                                                             </tr>
-
                                                         {%endfor%}
-
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -214,38 +188,7 @@
                                               var block = document.getElementById("block");
                                               block.scrollTop = block.scrollHeight;
                                             </script>
-                                            <!-- <ul class="task-bar-menu">
-                                                <li class="small-width">№</li>
-                                                <li>Нуменклатура</li>
-                                                <li>Даты</li>
-                                                <li>Цена, руб.</li>
-                                                <li class="small-width"> </li>
-                                            </ul>
-                                            <div class="task-bar-menu">
-                                                <div class="width-small box"></div>
-                                                <div class="hotel box">
-                                                    <div class="hotel-flex">
-                                                        <img src="./assets/img/hotel.png" alt="hotel">
-                                                        <h4>Отель “Зараза”</h4>
-                                                    </div>
-                                                    <img src="./assets/img/down-icon.png" alt="down-icon">
-                                                </div>
-                                                <div class="hotel box">
-                                                    <div class="hotel-flex">
-                                                        <h4>20.03.2023 - 22.03.2023</h4>
-                                                    </div>
-                                                    <img src="./assets/img/edit.png" alt="edit-icon">
-                                                </div>
-                                                <div class="hotel box">
-                                                    <div class="hotel-flex">
-                                                        <h4>999 999</h4>
-                                                    </div>
-                                                    <img src="./assets/img/edit.png" alt="edit-icon">
-                                                </div>
-                                                <div class="width-small box">
-                                                    <img src="./assets/img/deletes.png" alt="deletes-icon">
-                                                </div>
-                                            </div> -->
+
                                             <div class="task-form">
                                                 <h4>Информация о клиенте</h4>
                                                 <div class="forms-group">
@@ -269,26 +212,9 @@
                                                         data-aos="fade-right" data-aos-duration="1000">
                                                 </div>
                                             </div>
-<!--                                            <div class="form-box" data-aos="flip-up" data-aos-duration="1000">-->
-<!--                                                <h4>Комментарий</h4>-->
-<!--                                                <h2>Предпочитает латинок</h2>-->
-<!--                                                &lt;!&ndash; <form action="">-->
-<!--                                                        <botton>Забронировать</botton>-->
-<!--                                                    </form> &ndash;&gt;-->
-<!--                                            </div>-->
-
                                         </div>
                                     </div>
-<!--                                    <div class="task-footer-btn">-->
-<!--                                        <div class="task-footer-flex">-->
-<!--                                            <input type="text" placeholder="Комментарий">-->
-<!--                                            <button>-->
-<!--                                                <img src="./assets/img/send-btn.png" alt="send">-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
-
 {%endblock%}
