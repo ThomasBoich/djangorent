@@ -16,3 +16,8 @@ def all_tasks(request):
         'my_tasks_count': tasks.filter(executor=request.user).count(),
     }
     return render(request, 'tasks/all_tasks.html', context)
+
+def task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    context = {'task': task,}
+    return render(request, 'tasks/task.html', context)

@@ -1,208 +1,227 @@
 {%extends 'dash.html'%}
 {%block content%}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header" style="padding: 12px 0px 0px 0px;">
-                                            <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs"
-                                                role="tablist"
-                                                style="justify-content:center;background: #FFFFFF;padding: 12px 0px 0px 0px;">
-                                                <li class="nav-item" role="presentation">
-                                                    <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab"
-                                                        aria-selected="true" role="tab">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding: 12px 0px 0px 0px;">
+                    <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs"
+                        role="tablist"
+                        style="justify-content:center;background: #FFFFFF;padding: 12px 0px 0px 0px;">
+                        <li class="nav-item" role="presentation">
+                            <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab"
+                                aria-selected="true" role="tab">
 
-                                                        Мои задачи {{my_tasks_count}}
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a href="#tabs-profile-9" class="nav-link" data-bs-toggle="tab"
-                                                        aria-selected="false" role="tab" tabindex="-1">
+                                Мои задачи {{my_tasks_count}}
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a href="#tabs-profile-9" class="nav-link" data-bs-toggle="tab"
+                                aria-selected="false" role="tab" tabindex="-1">
 
 
-                                                        Все задачи {{count_tasks}}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-body" style="padding: 0px 0px 0px 0px;">
-                                            <div class="tab-content">
-                                                <div class="tab-pane active show" id="tabs-home-9" role="tabpanel">
+                                Все задачи {{count_tasks}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body" style="padding: 0px 0px 0px 0px;">
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="tabs-home-9" role="tabpanel">
 
-                                                    <div class="col-md-12 col-lg-12">
-                                                        <div class="card">
-                                                            <div class="card-header">
-                                                                <h3 class="card-title">Активные задачи 2</h3>
+                            <div class="col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Активные задачи {{my_tasks_count}}</h3>
+                                    </div>
+                                    <div class="table-responsive"style="height:70vh;">
+                                        <table
+                                            class="table card-table table-vcenter text-nowrap datatable style_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="w-1"><input
+                                                            class="form-check-input m-0 align-middle"
+                                                            type="checkbox"
+                                                            aria-label="Select all invoices">
+                                                    </th>
+                                                    <th class="w-1">No.
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="icon icon-sm icon-thick"
+                                                            width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none"
+                                                                d="M0 0h24v24H0z" fill="none">
+                                                            </path>
+                                                            <path d="M6 15l6 -6l6 6"></path>
+                                                        </svg>
+                                                    </th>
+                                                    <th>Исполнитель</th>
+                                                    <th>Название задачи</th>
+                                                    <th>Текст задачи</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {%for task in my_tasks %}
+                                                <tr>
+                                                    <td><input
+                                                            class="form-check-input m-0 align-middle"
+                                                            type="checkbox"
+                                                            aria-label="Select invoice"></td>
+                                                    <td><span class="text-muted">{{task.id}}</span>
+                                                    </td>
+                                                    <td><a href="{{task.executor.get_absolute_url}}"
+                                                            class="text-reset" tabindex="-1">
+                                                            {{task.executor.first_name}}</a></td>
+                                                    <td>
+                                                        <a href="{{task.get_absolute_url}}">{{task.title}}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{task.get_absolute_url}}">{{task.text}}</a>
+                                                    </td>
+
+                                                    <td class="text-end">
+                                                        <span class="dropdown">
+                                                            <button
+                                                                class="btn dropdown-toggle align-text-top"
+                                                                data-bs-boundary="viewport"
+                                                                data-bs-toggle="dropdown">Действия</button>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item"
+                                                                    href="{{task.get_absolute_url}}">
+                                                                    Открыть
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                    href="#">
+                                                                    Выполнено
+                                                                </a>
+                                                                {%if request.user.type == 'AD'%}
+                                                                <a class="dropdown-item"
+                                                                    href="#">
+                                                                    Удалить
+                                                                </a>
+                                                                {%endif%}
                                                             </div>
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table card-table table-vcenter text-nowrap datatable style_table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="w-1"><input
-                                                                                    class="form-check-input m-0 align-middle"
-                                                                                    type="checkbox"
-                                                                                    aria-label="Select all invoices">
-                                                                            </th>
-                                                                            <th class="w-1">No.
-                                                                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    class="icon icon-sm icon-thick"
-                                                                                    width="24" height="24"
-                                                                                    viewBox="0 0 24 24" stroke-width="2"
-                                                                                    stroke="currentColor" fill="none"
-                                                                                    stroke-linecap="round"
-                                                                                    stroke-linejoin="round">
-                                                                                    <path stroke="none"
-                                                                                        d="M0 0h24v24H0z" fill="none">
-                                                                                    </path>
-                                                                                    <path d="M6 15l6 -6l6 6"></path>
-                                                                                </svg>
-                                                                            </th>
-                                                                            <th>Исполнитель</th>
-                                                                            <th>Название задачи</th>
-                                                                            <th>Текст задачи</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    {%for task in my_tasks %}
-                                                                        <tr>
-                                                                            <td><input
-                                                                                    class="form-check-input m-0 align-middle"
-                                                                                    type="checkbox"
-                                                                                    aria-label="Select invoice"></td>
-                                                                            <td><span class="text-muted">{{task.id}}</span>
-                                                                            </td>
-                                                                            <td><a href="./applications.html"
-                                                                                    class="text-reset" tabindex="-1">
-                                                                                    {{task.executor.first_name}}</a></td>
-                                                                            <td>
-                                                                              {{task.title}}
-                                                                            </td>
-                                                                            <td>
-                                                                                {{task.text}}
-                                                                            </td>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center">
 
-                                                                            <td class="text-end">
-                                                                                <span class="dropdown">
-                                                                                    <button
-                                                                                        class="btn dropdown-toggle align-text-top"
-                                                                                        data-bs-boundary="viewport"
-                                                                                        data-bs-toggle="dropdown">Действия</button>
-                                                                                    <div
-                                                                                        class="dropdown-menu dropdown-menu-end">
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Action
-                                                                                        </a>
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Another action
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </span>
-                                                                            </td>
-                                                                        </tr>
-                                                                    {% endfor %}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="card-footer d-flex align-items-center">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="tabs-profile-9" role="tabpanel">
-                                                    <div class="col-md-12 col-lg-12">
-                                                        <div class="card">
-                                                            <div class="card-header">
-                                                                <h3 class="card-title">Активные задачи 2</h3>
-                                                            </div>
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table card-table table-vcenter text-nowrap datatable style_table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="w-1"><input
-                                                                                    class="form-check-input m-0 align-middle"
-                                                                                    type="checkbox"
-                                                                                    aria-label="Select all invoices">
-                                                                            </th>
-                                                                            <th class="w-1">No.
-                                                                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    class="icon icon-sm icon-thick"
-                                                                                    width="24" height="24"
-                                                                                    viewBox="0 0 24 24" stroke-width="2"
-                                                                                    stroke="currentColor" fill="none"
-                                                                                    stroke-linecap="round"
-                                                                                    stroke-linejoin="round">
-                                                                                    <path stroke="none"
-                                                                                        d="M0 0h24v24H0z" fill="none">
-                                                                                    </path>
-                                                                                    <path d="M6 15l6 -6l6 6"></path>
-                                                                                </svg>
-                                                                            </th>
-                                                                            <th>Исполнитель</th>
-                                                                            <th>Название задачи</th>
-                                                                            <th>Текст задачи</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    {%for task in all_tasks %}
-
-                                                                                                                                                                                                                        <tr>
-                                                                            <td><input
-                                                                                    class="form-check-input m-0 align-middle"
-                                                                                    type="checkbox"
-                                                                                    aria-label="Select invoice"></td>
-                                                                            <td><span class="text-muted">{{task.id}}</span>
-                                                                            </td>
-                                                                            <td><a href="./applications.html"
-                                                                                    class="text-reset" tabindex="-1"><td>
-                                                                                {{task.executor.first_name}}
-                                                                            </td>
-                                                                            <td>
-                                                                                {{tesk.text}}
-                                                                            </td>
-
-                                                                            <td class="text-end">
-                                                                                <span class="dropdown">
-                                                                                    <button
-                                                                                        class="btn dropdown-toggle align-text-top"
-                                                                                        data-bs-boundary="viewport"
-                                                                                        data-bs-toggle="dropdown">Действия</button>
-                                                                                    <div
-                                                                                        class="dropdown-menu dropdown-menu-end">
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Action
-                                                                                        </a>
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Another action
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </span>
-                                                                            </td>
-                                                                        </tr>
-                                                                    {%endfor%}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="card-footer d-flex align-items-center">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="tabs-profile-9" role="tabpanel">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Активные задачи {{count_tasks}}</h3>
+                                    </div>
+                                    <div class="table-responsive"style="height:70vh;">
+                                        <table
+                                            class="table card-table table-vcenter text-nowrap datatable style_table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="w-1"><input
+                                                            class="form-check-input m-0 align-middle"
+                                                            type="checkbox"
+                                                            aria-label="Select all invoices">
+                                                    </th>
+                                                    <th class="w-1">No.
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="icon icon-sm icon-thick"
+                                                            width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none"
+                                                                d="M0 0h24v24H0z" fill="none">
+                                                            </path>
+                                                            <path d="M6 15l6 -6l6 6"></path>
+                                                        </svg>
+                                                    </th>
+                                                    <th>Исполнитель</th>
+                                                    <th>Название задачи</th>
+                                                    <th>Текст задачи</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {%for task in all_tasks %}
+
+                                                                                                                                                                                                <tr>
+                                                    <td>
+                                                        <input
+                                                            class="form-check-input m-0 align-middle"
+                                                            type="checkbox"
+                                                            aria-label="Select invoice">
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-muted">{{task.id}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="./applications.html"
+                                                            class="text-reset" tabindex="-1">{{task.executor.first_name}}
+                                                    </td><td>
+
+                                                        {{task.title}}
+
+                                                    </td>
+                                                    <td>
+                                                        {{task.text}}
+                                                    </td>
+
+                                                    <td class="text-end">
+                                                        <span class="dropdown">
+                                                            <button
+                                                                class="btn dropdown-toggle align-text-top"
+                                                                data-bs-boundary="viewport"
+                                                                data-bs-toggle="dropdown">Действия</button>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item"
+                                                                    href="#">
+                                                                    Открыть
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                    href="#">
+                                                                    Выполнено
+                                                                </a>
+                                                                {%if request.user.type == 'AD'%}
+                                                                <a class="dropdown-item"
+                                                                    href="#">
+                                                                    Удалить
+                                                                </a>
+                                                                {%endif%}
+                                                            </div>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            {%endfor%}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}

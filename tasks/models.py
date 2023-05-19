@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from objects.models import Object
 from users.models import CustomUser
@@ -22,3 +23,6 @@ class Task(models.Model):
     class Meta:
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
+
+    def get_absolute_url(self):
+        return reverse('task', kwargs={'task_id': self.id},)

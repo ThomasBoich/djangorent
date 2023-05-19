@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.urls import path
 
-from tasks.views import all_tasks
+from tasks.views import all_tasks, task
 from users.views import user_info, user_profile
 from .views import dash_info, LogoutView
 from objects.views import all_objects, add_object, reservation_list, reservation
@@ -12,9 +12,10 @@ urlpatterns = [
     path('add_object/', add_object, name='add_object'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', dash_info, name='dash'),
-    path('user/', user_info, name='user_info'),
+    path('user/<user_id>', user_info, name='user_info'),
     path('profile/', user_profile, name='user_profile'),
     path('tasks/', all_tasks, name='tasks'),
+    path('task/<task_id>/', task, name='task'),
     path('reservations/', reservation_list, name='reservations'),
     path('reservation/<int:reservation_id>/', reservation, name='reservation'),
 ]

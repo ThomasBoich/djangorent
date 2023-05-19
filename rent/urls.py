@@ -27,7 +27,6 @@ urlpatterns = [
     path('login/', AppLoginView.as_view(), name='login'),
     path('registration/', AppRegistration.as_view(), name='registration'),
     path('', include('index.urls')),
-    path('tasks/', include('tasks.urls')),
     path('select_manager/<reservation_id>', select_manager, name='select_manager'),
 
 ]

@@ -55,7 +55,7 @@ def object_detail(request, slug):
 def reservation_list(request):
     reservations = Reservation.objects.filter(deleted=False)
     context = {
-        'title_page': f'Бронирования {reservations.count()}',
+        'title_page': f'Заявки {reservations.count()}',
         'reservations': reservations,
         'reservation_consultation_count': reservations.filter(type='RC').count(),
         'reservation_consultation': reservations.filter(type='RC'),

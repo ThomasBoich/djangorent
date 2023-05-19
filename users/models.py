@@ -53,7 +53,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'Пользователи'
 
     def get_absolute_url(self):
-        return reverse('user', kwargs={'pk': self.pk})
+        return reverse('user_info', kwargs={'user_id': self.id})
 
 
 # ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ С ДОПОЛНИТЕЛЬНОЙ ИНФОРМАЦИЕЙ #

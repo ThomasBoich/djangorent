@@ -1,0 +1,79 @@
+{%extends 'dash.html'%}
+{%block content%}
+
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div class="col d-flex flex-column"
+                                    style="background-color: #FFFFFF;padding:35px 35px 35px 35px;border-radius: 6px;">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {%csrf_token%}
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto"><span class="avatar avatar-xl"
+                                                    style="background-image: url({{user.photo.url}})"></span>
+                                            </div>
+                                              <div class="form-group">
+                                                {{ form.photo.label_tag }}
+                                                {{ form.photo }}
+                                              </div>
+<!--                                            <div class="col-auto"><a href="#" class="btn">-->
+<!--                                                    Изменить аватар-->
+<!--                                                </a></div>-->
+<!--                                            <div class="col-auto"><a href="#" class="btn btn-ghost-danger">-->
+<!--                                                    Удалить аватар-->
+<!--                                                </a></div>-->
+                                        </div>
+                                        <h3 class="card-title mt-4">Основная информация</h3>
+                                        <div class="row g-3">
+                                            <div class="col-md">
+                                                <div class="form-label">Имя</div>
+                                                {{form.first_name}}
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-label">Фамилия</div>
+                                                {{form.last_name}}
+                                            </div>
+                                            <div class="col-md">
+
+                                                <div class="form-label">Отчество</div>
+                                                  {{form.patronymic}}
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-label">Телефон</div>
+                                                {{form.phone}}
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-label">Емейл</div>
+                                                {{form.email}}
+                                            </div>
+
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <h3 class="card-title mt-4">Заблокировать</h3>
+                                        <p class="card-subtitle">Вы можете заблокировать пользователя если не хотите,
+                                            чтобы он имел доступ к сайту.</p>
+                                        <div>
+                                            <label class="form-check form-switch form-switch-lg">
+                                                <input class="form-check-input" type="checkbox">
+                                                <span class="form-check-label form-check-label-on">Заблокирован</span>
+                                                <span class="form-check-label form-check-label-off">Не
+                                                    заблокирован</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent mt-auto">
+                                        <div class="btn-list justify-content-end">
+                                            <a href="{%url 'dash'%}" class="btn">
+                                                Отмена
+                                            </a>
+                                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                                        </div>
+                                    </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+
+{%endblock%}

@@ -181,10 +181,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
               <!-- <a href="#" class="dropdown-item">Status</a> -->
-              <a href="{%url 'user_info'%}" class="dropdown-item">Профиль</a>
+              <a href="{%url 'user_info' request.user.id%}" class="dropdown-item">Профиль</a>
               <!-- <a href="#" class="dropdown-item">Feedback</a> -->
               <div class="dropdown-divider"></div>
-              <a href="{%url 'user_info'%}" class="dropdown-item">Настройки</a>
+              <a href="{%url 'user_info' request.user.id%}" class="dropdown-item">Настройки</a>
               <a href="{%url 'logout'%}" class="dropdown-item">Выйти</a>
             </div>
           </div>
@@ -231,6 +231,7 @@
         <!-- Page header -->
         <div class="page-header d-print-none">
           <div class="container-xl">
+            <button onclick="history.go(-1)">Назад</button>
             {% block page_title %}
             <div class="row g-2 align-items-center">
               <div class="col">

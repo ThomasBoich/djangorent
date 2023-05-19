@@ -31,7 +31,7 @@ class AppRegistration(CreateView):
     success_url = reverse_lazy('dash')
 
 
-def user_info(request):
+def user_info(request, user_id):
     user = request.user
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
