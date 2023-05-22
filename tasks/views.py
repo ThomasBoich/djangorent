@@ -34,5 +34,5 @@ def task(request, task_id):
     else:
         form = TaskCommentForm()
 
-    context = {'task': task,'back_button': True, 'form': form,}
+    context = {'task': task,'back_button': True, 'form': form, 'title_page': f'{task.title}'}
     return render(request, 'tasks/task.html', context)

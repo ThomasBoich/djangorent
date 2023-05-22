@@ -1,725 +1,725 @@
-<!DOCTYPE html>{%load static%}
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{%static 'assets/css/style.css'%}" />
-  </head>
+<!--<!DOCTYPE html>{%load static%}-->
+<!--<html lang="ru">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Document</title>-->
+<!--    <link rel="stylesheet" href="{%static 'assets/css/style.css'%}" />-->
+<!--  </head>-->
 
-  <body>
-    <header>
-      <div class="nav_layer">
-        <div class="nav">
-          <div class="nav_items">
-            <div class="logotype">
-              <a href=""><img src="{%static 'assets/img/logotype.png'%}" alt="" /></a>
-            </div>
-            <div class="navigation">
-              <ul class="navigation_navigation">
-                <li><a href="">Главная</a></li>
-                <li><a href="">Контакты</a></li>
-                <li><a href="">Парнерам</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="nav_item">
-            <div class="navigation">
-              <ul>
-                <li>
-                  <a href=""
-                    >Рус <img src="{%static 'assets/img/Expand Arrow.png'%}" alt=""
-                  /></a>
-                </li>
-                <li>
-                  <a href=""
-                    ><img src="{%static 'assets/img/Favorite.png'%}" alt="" /> Избранное</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+<!--  <body>-->
+<!--    <header>-->
+<!--      <div class="nav_layer">-->
+<!--        <div class="nav">-->
+<!--          <div class="nav_items">-->
+<!--            <div class="logotype">-->
+<!--              <a href=""><img src="{%static 'assets/img/logotype.png'%}" alt="" /></a>-->
+<!--            </div>-->
+<!--            <div class="navigation">-->
+<!--              <ul class="navigation_navigation">-->
+<!--                <li><a href="">Главная</a></li>-->
+<!--                <li><a href="">Контакты</a></li>-->
+<!--                <li><a href="">Парнерам</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="nav_item">-->
+<!--            <div class="navigation">-->
+<!--              <ul>-->
+<!--                <li>-->
+<!--                  <a href=""-->
+<!--                    >Рус <img src="{%static 'assets/img/Expand Arrow.png'%}" alt=""-->
+<!--                  /></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a href=""-->
+<!--                    ><img src="{%static 'assets/img/Favorite.png'%}" alt="" /> Избранное</a-->
+<!--                  >-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </header>-->
 
-    <div class="top_image_layer">
-      <img src="{%static 'assets/img/topimg.png'%}" alt="" />
-      <div class="top_image"></div>
-      <div class="top_img_filter">
-        <form action="">
-          <div class="top_filter_params">
-            <label class="top_filter_param" for="addressInput">
-              <img src="{%static 'assets/img/Bed.png'%}" alt="" />
-              <input
-                id="addressInput"
-                type="text"
-                placeholder="Город, адрес....."
-              />
-            </label>
-            <div class="spacer"></div>
-            <label class="top_filter_param" for="dateInput">
-              <img src="{%static 'assets/img/Calendar.png'%}" alt="" />
-              <input value="2023-04-28" id="dateInput" type="date" />
-            </label>
-            <div class="spacer"></div>
-            <span class="top_filter_param">
-              <img src="{%static 'assets/img/User Account.png'%}" alt="" />
-              <span>Гостей</span>
-              <div class="top_filter_counter">
-                <button
-                  type="button"
-                  data-action="decrement"
-                  data-counter="guests"
-                >
-                  -
-                </button>
-                <span data-counter="guests">1</span>
-                <button
-                  type="button"
-                  data-action="increment"
-                  data-counter="guests"
-                >
-                  +
-                </button>
-              </div>
-            </span>
-          </div>
-          <button class="top_filter_search">Найти</button>
-          <button class="top_filter_more" type="button">
-            <span>Расширенный фильтр</span>
-            <img src="/assets/img/Expand Arrow.png" alt="" />
-          </button>
-          <div class="top_filter_expand">
-            <div class="row">
-              <div class="col">
-                <h3 class="col_title">Диапазон поиска</h3>
-                <label class="col_select_wrapper" for="select1">
-                  <select id="select1" class="col_select">
-                    <option value="test">Тест</option>
-                    <option value="test_2">Тест 2</option>
-                    <option value="test_3">Тест 3</option>
-                  </select>
-                </label>
-                <label class="col_select_wrapper" for="select2">
-                  <select id="select2" class="col_select">
-                    <option value="test">Тест</option>
-                    <option value="test_2">Тест 2</option>
-                    <option value="test_3">Тест 3</option>
-                  </select>
-                </label>
-                <label class="col_select_wrapper" for="select3">
-                  <select id="select3" class="col_select">
-                    <option value="test">Тест</option>
-                    <option value="test_2">Тест 2</option>
-                    <option value="test_3">Тест 3</option>
-                  </select>
-                </label>
-                <label class="col_select_wrapper" for="select4">
-                  <select id="select4" class="col_select">
-                    <option value="test">Тест</option>
-                    <option value="test_2">Тест 2</option>
-                    <option value="test_3">Тест 3</option>
-                  </select>
-                </label>
-              </div>
-              <div class="col col_budget">
-                <h3 class="col_title" style="margin-bottom: 30px">Бюджет</h3>
-                <div
-                  class="range-slider flat"
-                  data-ticks-position="top"
-                  style="
-                    width: 100%;
-                    --min: 0;
-                    --max: 999;
-                    --value-a: 200;
-                    --value-b: 800;
-                    --suffix: '';
-                    --prefix: '$';
-                    --text-value-a: '200';
-                    --text-value-b: '800';
-                  "
-                >
-                  <input
-                    type="range"
-                    min="0"
-                    max="999"
-                    value="200"
-                    oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value >= 999 ? 'No' : this.value))"
-                  />
-                  <output></output>
-                  <input
-                    type="range"
-                    min="0"
-                    max="999"
-                    value="800"
-                    oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value >= 999 ? 'No' : this.value))"
-                  />
-                  <output></output>
-                  <div class="range-slider__progress"></div>
-                </div>
+<!--    <div class="top_image_layer">-->
+<!--      <img src="{%static 'assets/img/topimg.png'%}" alt="" />-->
+<!--      <div class="top_image"></div>-->
+<!--      <div class="top_img_filter">-->
+<!--        <form action="">-->
+<!--          <div class="top_filter_params">-->
+<!--            <label class="top_filter_param" for="addressInput">-->
+<!--              <img src="{%static 'assets/img/Bed.png'%}" alt="" />-->
+<!--              <input-->
+<!--                id="addressInput"-->
+<!--                type="text"-->
+<!--                placeholder="Город, адрес....."-->
+<!--              />-->
+<!--            </label>-->
+<!--            <div class="spacer"></div>-->
+<!--            <label class="top_filter_param" for="dateInput">-->
+<!--              <img src="{%static 'assets/img/Calendar.png'%}" alt="" />-->
+<!--              <input value="2023-04-28" id="dateInput" type="date" />-->
+<!--            </label>-->
+<!--            <div class="spacer"></div>-->
+<!--            <span class="top_filter_param">-->
+<!--              <img src="{%static 'assets/img/User Account.png'%}" alt="" />-->
+<!--              <span>Гостей</span>-->
+<!--              <div class="top_filter_counter">-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  data-action="decrement"-->
+<!--                  data-counter="guests"-->
+<!--                >-->
+<!--                  - -->
+<!--                </button>-->
+<!--                <span data-counter="guests">1</span>-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  data-action="increment"-->
+<!--                  data-counter="guests"-->
+<!--                >-->
+<!--                  +-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <button class="top_filter_search">Найти</button>-->
+<!--          <button class="top_filter_more" type="button">-->
+<!--            <span>Расширенный фильтр</span>-->
+<!--            <img src="/assets/img/Expand Arrow.png" alt="" />-->
+<!--          </button>-->
+<!--          <div class="top_filter_expand">-->
+<!--            <div class="row">-->
+<!--              <div class="col">-->
+<!--                <h3 class="col_title">Диапазон поиска</h3>-->
+<!--                <label class="col_select_wrapper" for="select1">-->
+<!--                  <select id="select1" class="col_select">-->
+<!--                    <option value="test">Тест</option>-->
+<!--                    <option value="test_2">Тест 2</option>-->
+<!--                    <option value="test_3">Тест 3</option>-->
+<!--                  </select>-->
+<!--                </label>-->
+<!--                <label class="col_select_wrapper" for="select2">-->
+<!--                  <select id="select2" class="col_select">-->
+<!--                    <option value="test">Тест</option>-->
+<!--                    <option value="test_2">Тест 2</option>-->
+<!--                    <option value="test_3">Тест 3</option>-->
+<!--                  </select>-->
+<!--                </label>-->
+<!--                <label class="col_select_wrapper" for="select3">-->
+<!--                  <select id="select3" class="col_select">-->
+<!--                    <option value="test">Тест</option>-->
+<!--                    <option value="test_2">Тест 2</option>-->
+<!--                    <option value="test_3">Тест 3</option>-->
+<!--                  </select>-->
+<!--                </label>-->
+<!--                <label class="col_select_wrapper" for="select4">-->
+<!--                  <select id="select4" class="col_select">-->
+<!--                    <option value="test">Тест</option>-->
+<!--                    <option value="test_2">Тест 2</option>-->
+<!--                    <option value="test_3">Тест 3</option>-->
+<!--                  </select>-->
+<!--                </label>-->
+<!--              </div>-->
+<!--              <div class="col col_budget">-->
+<!--                <h3 class="col_title" style="margin-bottom: 30px">Бюджет</h3>-->
+<!--                <div-->
+<!--                  class="range-slider flat"-->
+<!--                  data-ticks-position="top"-->
+<!--                  style="-->
+<!--                    width: 100%;-->
+<!--                    &#45;&#45;min: 0;-->
+<!--                    &#45;&#45;max: 999;-->
+<!--                    &#45;&#45;value-a: 200;-->
+<!--                    &#45;&#45;value-b: 800;-->
+<!--                    &#45;&#45;suffix: '';-->
+<!--                    &#45;&#45;prefix: '$';-->
+<!--                    &#45;&#45;text-value-a: '200';-->
+<!--                    &#45;&#45;text-value-b: '800';-->
+<!--                  "-->
+<!--                >-->
+<!--                  <input-->
+<!--                    type="range"-->
+<!--                    min="0"-->
+<!--                    max="999"-->
+<!--                    value="200"-->
+<!--                    oninput="this.parentNode.style.setProperty('&#45;&#45;value-a',this.value); this.parentNode.style.setProperty('&#45;&#45;text-value-a', JSON.stringify(this.value >= 999 ? 'No' : this.value))"-->
+<!--                  />-->
+<!--                  <output></output>-->
+<!--                  <input-->
+<!--                    type="range"-->
+<!--                    min="0"-->
+<!--                    max="999"-->
+<!--                    value="800"-->
+<!--                    oninput="this.parentNode.style.setProperty('&#45;&#45;value-b',this.value); this.parentNode.style.setProperty('&#45;&#45;text-value-b', JSON.stringify(this.value >= 999 ? 'No' : this.value))"-->
+<!--                  />-->
+<!--                  <output></output>-->
+<!--                  <div class="range-slider__progress"></div>-->
+<!--                </div>-->
 
-                <div class="row">
-                  <div class="col">
-                    <h3 class="col_title">
-                      <img src="assets/img/User Account.png" alt="" />
-                      Гостей
-                    </h3>
-                    <div class="counter">
-                      <div class="counter_count" data-counter="guests">1</div>
-                      <div class="counter_btns">
-                        <button
-                          class="counter_btn"
-                          type="button"
-                          data-action="decrement"
-                          data-counter="guests"
-                        >
-                          -
-                        </button>
-                        <button
-                          class="counter_btn"
-                          type="button"
-                          data-action="increment"
-                          data-counter="guests"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <h3 class="col_title">
-                      <img src="assets/img/Bed.png" alt="" />
-                      Комнат
-                    </h3>
-                    <div class="counter">
-                      <div class="counter_count" data-counter="rooms">2</div>
-                      <div class="counter_btns">
-                        <button
-                          class="counter_btn"
-                          type="button"
-                          data-action="decrement"
-                          data-counter="rooms"
-                        >
-                          -
-                        </button>
-                        <button
-                          class="counter_btn"
-                          type="button"
-                          data-action="increment"
-                          data-counter="rooms"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <h3 class="col_title">Особенности</h3>
-                <ul class="checklist">
-                  <li class="checklist_item">
-                    <label for="check1">
-                      <input id="check1" type="checkbox" />
-                      <img src="{%static ''%}assets/img/Bathtub.png" alt="" />
-                      <span>Ванна</span>
-                    </label>
-                  </li>
-                  <li class="checklist_item">
-                    <label for="check2">
-                      <input id="check2" type="checkbox" />
-                      <img src="{%static 'assets/img/List Of Parts.png'%}" alt="" />
-                      <span>Океан</span>
-                    </label>
-                  </li>
-                  <li class="checklist_item">
-                    <label for="check3">
-                      <input id="check3" type="checkbox" />
-                      <img src="{%static 'assets/img/Bed.png'%}" alt="" />
-                      <span>Бассейн</span>
-                    </label>
-                  </li>
-                  <li class="checklist_item">
-                    <label for="check4">
-                      <input id="check4" type="checkbox" />
-                      <img src="{%static 'assets/img/Gear.png'%}" alt="" />
-                      <span>Доп. активности</span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="col_title">-->
+<!--                      <img src="assets/img/User Account.png" alt="" />-->
+<!--                      Гостей-->
+<!--                    </h3>-->
+<!--                    <div class="counter">-->
+<!--                      <div class="counter_count" data-counter="guests">1</div>-->
+<!--                      <div class="counter_btns">-->
+<!--                        <button-->
+<!--                          class="counter_btn"-->
+<!--                          type="button"-->
+<!--                          data-action="decrement"-->
+<!--                          data-counter="guests"-->
+<!--                        >-->
+<!--                          - -->
+<!--                        </button>-->
+<!--                        <button-->
+<!--                          class="counter_btn"-->
+<!--                          type="button"-->
+<!--                          data-action="increment"-->
+<!--                          data-counter="guests"-->
+<!--                        >-->
+<!--                          +-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="col_title">-->
+<!--                      <img src="assets/img/Bed.png" alt="" />-->
+<!--                      Комнат-->
+<!--                    </h3>-->
+<!--                    <div class="counter">-->
+<!--                      <div class="counter_count" data-counter="rooms">2</div>-->
+<!--                      <div class="counter_btns">-->
+<!--                        <button-->
+<!--                          class="counter_btn"-->
+<!--                          type="button"-->
+<!--                          data-action="decrement"-->
+<!--                          data-counter="rooms"-->
+<!--                        >-->
+<!--                          - -->
+<!--                        </button>-->
+<!--                        <button-->
+<!--                          class="counter_btn"-->
+<!--                          type="button"-->
+<!--                          data-action="increment"-->
+<!--                          data-counter="rooms"-->
+<!--                        >-->
+<!--                          +-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col">-->
+<!--                <h3 class="col_title">Особенности</h3>-->
+<!--                <ul class="checklist">-->
+<!--                  <li class="checklist_item">-->
+<!--                    <label for="check1">-->
+<!--                      <input id="check1" type="checkbox" />-->
+<!--                      <img src="{%static ''%}assets/img/Bathtub.png" alt="" />-->
+<!--                      <span>Ванна</span>-->
+<!--                    </label>-->
+<!--                  </li>-->
+<!--                  <li class="checklist_item">-->
+<!--                    <label for="check2">-->
+<!--                      <input id="check2" type="checkbox" />-->
+<!--                      <img src="{%static 'assets/img/List Of Parts.png'%}" alt="" />-->
+<!--                      <span>Океан</span>-->
+<!--                    </label>-->
+<!--                  </li>-->
+<!--                  <li class="checklist_item">-->
+<!--                    <label for="check3">-->
+<!--                      <input id="check3" type="checkbox" />-->
+<!--                      <img src="{%static 'assets/img/Bed.png'%}" alt="" />-->
+<!--                      <span>Бассейн</span>-->
+<!--                    </label>-->
+<!--                  </li>-->
+<!--                  <li class="checklist_item">-->
+<!--                    <label for="check4">-->
+<!--                      <input id="check4" type="checkbox" />-->
+<!--                      <img src="{%static 'assets/img/Gear.png'%}" alt="" />-->
+<!--                      <span>Доп. активности</span>-->
+<!--                    </label>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div class="content-layer">
-      <div class="content">
-        <div class="title">
-          <h2>Популярно в этом сезоне</h2>
-          <div class="button">66</div>
-        </div>
+<!--    <div class="content-layer">-->
+<!--      <div class="content">-->
+<!--        <div class="title">-->
+<!--          <h2>Популярно в этом сезоне</h2>-->
+<!--          <div class="button">66</div>-->
+<!--        </div>-->
 
-        <div class="item_content">
+<!--        <div class="item_content">-->
 
-          {%for object in top_season%}
-
-
-           <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <a href="{{object.get_absolute_url}}">
-                  <div class="item_info">
-                    <h2>{{object.name}}</h2>
-                    <p>{{object.city}}</p>
-                  </div>
-                  </a>
-                </div>
-                <img src="{{object.photo.url}}" alt="" />
-              </div>
-            </div>
-
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от {{object.price}} р. \ сут.
-              </div>
-            </div>
-          </div>
+<!--          {%for object in top_season%}-->
 
 
+<!--           <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <a href="{{object.get_absolute_url}}">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>{{object.name}}</h2>-->
+<!--                    <p>{{object.city}}</p>-->
+<!--                  </div>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <img src="{{object.photo.url}}" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от {{object.price}} р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
 
 
-          {%endfor%}
 
 
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />
-              </div>
-            </div>
+<!--          {%endfor%}-->
 
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
 
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />
-              </div>
-            </div>
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />
-              </div>
-            </div>
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="title">
-          <h2>Популярно в этом сезоне</h2>
-          <div class="button">66</div>
-        </div>
-        <div class="item_content">
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="assets/img/slider_img.png" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="assets/img/Bathtub.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/Bed.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/User Account.png" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="assets/img/slider_img.png" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="assets/img/Bathtub.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/Bed.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/User Account.png" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="title">
-          <h2>Популярно в этом сезоне</h2>
-          <div class="button">66</div>
-        </div>
-        <div class="item_content">
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="assets/img/slider_img.png" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="assets/img/Bathtub.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/Bed.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/User Account.png" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="assets/img/slider_img.png" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="assets/img/Bathtub.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/Bed.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/User Account.png" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-          <div class="item_layer">
-            <div class="item">
-              <div class="item_slider">
-                <div class="item_slider_layer">
-                  <div class="item_info">
-                    <h2>Мариот Отель</h2>
-                    <p>Россия, Москва</p>
-                  </div>
-                </div>
-                <img src="assets/img/slider_img.png" alt="" />
-              </div>
-            </div>
-            <div class="item_nav">
-              <div class="item_info_content">
-                <div class="item_info_small">
-                  <img src="assets/img/Bathtub.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/Bed.png" alt="" />1
-                </div>
-                <div class="item_info_small">
-                  <img src="assets/img/User Account.png" alt="" />1
-                </div>
-              </div>
-              <div class="price">
-                <p>7 969 р. \ сут</p>
-                от 5 969 р. \ сут.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="footer_layer">
-        <div class="footer">
-          <div class="footer_left">
-            <h2>Logotype</h2>
-            <p>
-              Лидер онлайн-недвижимости России** по количеству посещений сайта
-              site.ru пользователями сети Интернет по данным LiveInternet в
-              разделе «Недвижимость» по состоянию на 12 марта 2023 г.
-            </p>
-            <div class="footer_contact"></div>
-          </div>
-          <div class="footer_right">
-            <ul>
-              <li class="footer_title"><a href="">О компании</a></li>
-              <li><a href="">Обратная связь</a></li>
-              <li><a href="">Форма сотрудничества</a></li>
-              <li><a href="">Партнеры</a></li>
-            </ul>
-            <ul>
-              <li class="footer_title"><a href="">Арендаторам</a></li>
-              <li><a href="">Политика конфеденциальности</a></li>
-              <li><a href="">Пользовательское соглашение</a></li>
-              <li><a href="">F.A.Q.</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer_copyright">
-          <div class="footer_copyright_layer">
-            © Company Name, 2023 <a href="">Конфеденциальность</a
-            ><a href="">Карта сайта</a>
-          </div>
-          <div class="footer_social">
-            <a href=""><img src="assets/img/VK com.png" alt="" /></a>
-            <a href=""><img src="assets/img/WhatsApp.png" alt="" /></a>
-            <a href=""><img src="assets/img/Instagram.png" alt="" /></a>
-            <a href=""><img src="assets/img/Telegram.png" alt="" /></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <script>
-      // top_img collapse menu
-      const btn = document.querySelector("button.top_filter_more");
-      const expand = document.querySelector(".top_filter_expand");
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("active");
-        if (expand.style.maxHeight) {
-          expand.style.maxHeight = null;
-        } else {
-          expand.style.maxHeight = expand.scrollHeight + "px";
-        }
-      });
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
 
-      //   GUESTS COUNTER
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="content">-->
+<!--        <div class="title">-->
+<!--          <h2>Популярно в этом сезоне</h2>-->
+<!--          <div class="button">66</div>-->
+<!--        </div>-->
+<!--        <div class="item_content">-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="{%static 'assets/img/slider_img.png'%}" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bathtub.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/Bed.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="{%static 'assets/img/User Account.png'%}" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="assets/img/slider_img.png" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bathtub.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bed.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/User Account.png" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="assets/img/slider_img.png" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bathtub.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bed.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/User Account.png" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="content">-->
+<!--        <div class="title">-->
+<!--          <h2>Популярно в этом сезоне</h2>-->
+<!--          <div class="button">66</div>-->
+<!--        </div>-->
+<!--        <div class="item_content">-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="assets/img/slider_img.png" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bathtub.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bed.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/User Account.png" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="assets/img/slider_img.png" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bathtub.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bed.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/User Account.png" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="item_layer">-->
+<!--            <div class="item">-->
+<!--              <div class="item_slider">-->
+<!--                <div class="item_slider_layer">-->
+<!--                  <div class="item_info">-->
+<!--                    <h2>Мариот Отель</h2>-->
+<!--                    <p>Россия, Москва</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <img src="assets/img/slider_img.png" alt="" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="item_nav">-->
+<!--              <div class="item_info_content">-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bathtub.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/Bed.png" alt="" />1-->
+<!--                </div>-->
+<!--                <div class="item_info_small">-->
+<!--                  <img src="assets/img/User Account.png" alt="" />1-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="price">-->
+<!--                <p>7 969 р. \ сут</p>-->
+<!--                от 5 969 р. \ сут.-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <footer>-->
+<!--      <div class="footer_layer">-->
+<!--        <div class="footer">-->
+<!--          <div class="footer_left">-->
+<!--            <h2>Logotype</h2>-->
+<!--            <p>-->
+<!--              Лидер онлайн-недвижимости России** по количеству посещений сайта-->
+<!--              site.ru пользователями сети Интернет по данным LiveInternet в-->
+<!--              разделе «Недвижимость» по состоянию на 12 марта 2023 г.-->
+<!--            </p>-->
+<!--            <div class="footer_contact"></div>-->
+<!--          </div>-->
+<!--          <div class="footer_right">-->
+<!--            <ul>-->
+<!--              <li class="footer_title"><a href="">О компании</a></li>-->
+<!--              <li><a href="">Обратная связь</a></li>-->
+<!--              <li><a href="">Форма сотрудничества</a></li>-->
+<!--              <li><a href="">Партнеры</a></li>-->
+<!--            </ul>-->
+<!--            <ul>-->
+<!--              <li class="footer_title"><a href="">Арендаторам</a></li>-->
+<!--              <li><a href="">Политика конфеденциальности</a></li>-->
+<!--              <li><a href="">Пользовательское соглашение</a></li>-->
+<!--              <li><a href="">F.A.Q.</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="footer_copyright">-->
+<!--          <div class="footer_copyright_layer">-->
+<!--            © Company Name, 2023 <a href="">Конфеденциальность</a-->
+<!--            ><a href="">Карта сайта</a>-->
+<!--          </div>-->
+<!--          <div class="footer_social">-->
+<!--            <a href=""><img src="assets/img/VK com.png" alt="" /></a>-->
+<!--            <a href=""><img src="assets/img/WhatsApp.png" alt="" /></a>-->
+<!--            <a href=""><img src="assets/img/Instagram.png" alt="" /></a>-->
+<!--            <a href=""><img src="assets/img/Telegram.png" alt="" /></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </footer>-->
+<!--    <script>-->
+<!--      // top_img collapse menu-->
+<!--      const btn = document.querySelector("button.top_filter_more");-->
+<!--      const expand = document.querySelector(".top_filter_expand");-->
 
-      let guests = 1;
+<!--      btn.addEventListener("click", () => {-->
+<!--        btn.classList.toggle("active");-->
+<!--        if (expand.style.maxHeight) {-->
+<!--          expand.style.maxHeight = null;-->
+<!--        } else {-->
+<!--          expand.style.maxHeight = expand.scrollHeight + "px";-->
+<!--        }-->
+<!--      });-->
 
-      const guestCounters = document.querySelectorAll(
-        '[data-counter="guests"]:not(button)'
-      );
+<!--      //   GUESTS COUNTER-->
 
-      const guestButtons = document.querySelectorAll(
-        'button[data-counter="guests"]'
-      );
+<!--      let guests = 1;-->
 
-      for (let i = 0; i < guestButtons.length; i++) {
-        guestButtons[i].addEventListener("click", (e) => {
-          const action = e.target.dataset.action;
-          if (action === "decrement") {
-            if (guests > 0) {
-              guests--;
-            }
-          } else if (action === "increment") {
-            guests++;
-          }
-          updateGuests();
-        });
-      }
+<!--      const guestCounters = document.querySelectorAll(-->
+<!--        '[data-counter="guests"]:not(button)'-->
+<!--      );-->
 
-      function updateGuests() {
-        for (let i = 0; i < guestCounters.length; i++) {
-          guestCounters[i].innerHTML = guests;
-        }
-      }
+<!--      const guestButtons = document.querySelectorAll(-->
+<!--        'button[data-counter="guests"]'-->
+<!--      );-->
 
-      //   ROOMS COUNTER
-      let rooms = 1;
+<!--      for (let i = 0; i < guestButtons.length; i++) {-->
+<!--        guestButtons[i].addEventListener("click", (e) => {-->
+<!--          const action = e.target.dataset.action;-->
+<!--          if (action === "decrement") {-->
+<!--            if (guests > 0) {-->
+<!--              guests&#45;&#45;;-->
+<!--            }-->
+<!--          } else if (action === "increment") {-->
+<!--            guests++;-->
+<!--          }-->
+<!--          updateGuests();-->
+<!--        });-->
+<!--      }-->
 
-      const roomsCounters = document.querySelectorAll(
-        '[data-counter="rooms"]:not(button)'
-      );
+<!--      function updateGuests() {-->
+<!--        for (let i = 0; i < guestCounters.length; i++) {-->
+<!--          guestCounters[i].innerHTML = guests;-->
+<!--        }-->
+<!--      }-->
 
-      const roomsButtons = document.querySelectorAll(
-        'button[data-counter="rooms"]'
-      );
+<!--      //   ROOMS COUNTER-->
+<!--      let rooms = 1;-->
 
-      for (let i = 0; i < roomsButtons.length; i++) {
-        roomsButtons[i].addEventListener("click", (e) => {
-          const action = e.target.dataset.action;
-          if (action === "decrement") {
-            if (rooms > 1) {
-              rooms--;
-            }
-          } else if (action === "increment") {
-            rooms++;
-          }
-          updateRooms();
-        });
-      }
+<!--      const roomsCounters = document.querySelectorAll(-->
+<!--        '[data-counter="rooms"]:not(button)'-->
+<!--      );-->
 
-      function updateRooms() {
-        for (let i = 0; i < roomsCounters.length; i++) {
-          roomsCounters[i].innerHTML = rooms;
-        }
-      }
-    </script>
-  </body>
-</html>
+<!--      const roomsButtons = document.querySelectorAll(-->
+<!--        'button[data-counter="rooms"]'-->
+<!--      );-->
+
+<!--      for (let i = 0; i < roomsButtons.length; i++) {-->
+<!--        roomsButtons[i].addEventListener("click", (e) => {-->
+<!--          const action = e.target.dataset.action;-->
+<!--          if (action === "decrement") {-->
+<!--            if (rooms > 1) {-->
+<!--              rooms&#45;&#45;;-->
+<!--            }-->
+<!--          } else if (action === "increment") {-->
+<!--            rooms++;-->
+<!--          }-->
+<!--          updateRooms();-->
+<!--        });-->
+<!--      }-->
+
+<!--      function updateRooms() {-->
+<!--        for (let i = 0; i < roomsCounters.length; i++) {-->
+<!--          roomsCounters[i].innerHTML = rooms;-->
+<!--        }-->
+<!--      }-->
+<!--    </script>-->
+<!--  </body>-->
+<!--</html>-->

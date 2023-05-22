@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from users.forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
-from users.models import CustomUser
+# from users.models import CustomUser
 
 
 # Create your views here.
@@ -47,25 +47,25 @@ def user_info(request, user_id):
     }
     return render(request, 'users/user.html', context)
 
+#
+# def user_profile(request, user_id):
+#     context = {
+#         'title_page': 'Настройки профиля',
+#         'user': CustomUser.objects.get(id=user_id),
+#         'back_button': True,
+#     }
+#     return render(request, 'users/profile.html', context)
 
-def user_profile(request, user_id):
-    context = {
-        'title_page': 'Настройки профиля',
-        'user': CustomUser.objects.get(id=user_id),
-        'back_button': True,
-    }
-    return render(request, 'users/profile.html', context)
-
-
-@login_required
-def edit_profile(request):
-    if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = CustomUserChangeForm(instance=request.user)
-
-    context = {'form': form, 'back_button': True,}
-    return render(request, 'profile/edit_profile.html', context)
+#
+# @login_required
+# def edit_profile(request):
+#     if request.method == 'POST':
+#         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')
+#     else:
+#         form = CustomUserChangeForm(instance=request.user)
+#
+#     context = {'form': form, 'back_button': True,}
+#     return render(request, 'profile/edit_profile.html', context)

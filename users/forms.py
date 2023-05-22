@@ -24,11 +24,11 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    email = forms.EmailField(required=True, label='Электронная почта')
-    first_name = forms.CharField(required=True, label='Имя')
-    last_name = forms.CharField(required=True, label='Фамилия')
-    patronymic = forms.CharField(required=False, label='Отчество')
-    phone = forms.CharField(required=False, label='Телефон')
+    email = forms.EmailField(required=True, label='Электронная почта',widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(required=True, label='Имя',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(required=True, label='Фамилия',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    patronymic = forms.CharField(required=False, label='Отчество',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone = forms.CharField(required=False, label='Телефон',widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = CustomUser
