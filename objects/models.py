@@ -115,7 +115,8 @@ class Reservation(models.Model):
 
     status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Статус оплаты')
     status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Статус документов')
-    status_order = models.BooleanField(default=False, verbose_name='Закрыта')
+    status_order = models.BooleanField(default=False, verbose_name='Обработана')
+    status_closed = models.BooleanField(default=False, verbose_name='Закрыта')
 
     def __str__(self):
         return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"

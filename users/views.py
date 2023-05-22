@@ -43,6 +43,7 @@ def user_info(request, user_id):
     context = {
         'title_page': 'Настройки профиля',
         'form': form,
+        'back_button': True,
     }
     return render(request, 'users/user.html', context)
 
@@ -51,6 +52,7 @@ def user_profile(request, user_id):
     context = {
         'title_page': 'Настройки профиля',
         'user': CustomUser.objects.get(id=user_id),
+        'back_button': True,
     }
     return render(request, 'users/profile.html', context)
 
@@ -65,5 +67,5 @@ def edit_profile(request):
     else:
         form = CustomUserChangeForm(instance=request.user)
 
-    context = {'form': form}
+    context = {'form': form, 'back_button': True,}
     return render(request, 'profile/edit_profile.html', context)

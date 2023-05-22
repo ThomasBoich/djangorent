@@ -21,6 +21,7 @@ def all_objects(request):
             'objects': objects,
             'count_title': Object.objects.all().count(),
             'active': 'active',
+            'back_button': False,
         }
         return render(request, 'objects/index.html', context=context)
     else:
@@ -105,6 +106,7 @@ def reservation(request, reservation_id):
         'order': Reservation.objects.filter(id=reservation_id),
         'messages': messages,
         'managers': CustomUser.objects.all(),
+        'back_button': True,
         #'chat': Chat.objects.get(id=reservation_id)
     }
     return render(request, 'objects/reservation.html', context)

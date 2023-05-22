@@ -231,10 +231,14 @@
         <!-- Page header -->
         <div class="page-header d-print-none">
           <div class="container-xl">
-            <button onclick="history.go(-1)">Назад</button>
+
             {% block page_title %}
             <div class="row g-2 align-items-center">
-              <div class="col">
+              <div class="page_title_content">
+                {%if back_button %}
+                  <button onclick="history.go(-1)"><img src="{%static 'assets/img/back_arrow.svg'%}" alt=""></button>
+                {%endif%}
+                              <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
                   Навигация
@@ -243,7 +247,10 @@
                   {{title_page}}
                 </h2>
               </div>
+              </div>
+
             </div>
+
             {% endblock %}
           </div>
         </div>

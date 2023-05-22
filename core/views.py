@@ -1,18 +1,42 @@
 from django.contrib.auth import logout
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views import View
 
-from objects.models import Object
+from objects.models import Object, Reservation
+from tasks.models import Task
+from users.models import CustomUser
 
 
 # Create your views here.
 def dash_info(request):
+    today = timezone.now().date()
+
     if request.user.is_authenticated:
         objects = Object.objects.all()
+        tasks = Task.objects.all()
+        orders = Reservation.objects.all()
+        users = CustomUser.objects.all()
         template = 'dash/index.html'
-        context = {'title_page': 'Рабочий стол', 'count_objects': objects.count(), 'all_clients': 0, 'new_clients_today': 0,
-                   'all_tasks': 0, 'tasks_in_progress': 0, 'all_orders': 0, 'orders_in_progress': 0, 'raw_orders': 0, 'finish_orders': 0,}
+        context = {
+            'title_page': 'Рабочий стол',
+            'count_objects': objects.count(),
+            'all_clients': users.filter(type='CL').count(),
+            'new_clients_today': users.filter(date_joined=today).count(),
+            'all_tasks': tasks.count(),
+            'tasks_in_progress': tasks.filter(status=False).count(),
+            'my_tasks_in_progress': tasks.filter(Q(executor=request.user), Q(status=False)).count(),
+            'all_orders': orders.count(),
+            'orders_in_progress': orders.filter(Q(status_order=False), Q(manager=True), Q(status_closed=False)).count(),
+            'raw_orders': orders.filter(Q(status_order=False), Q(manager=None), Q(status_closed=False)).count(),
+            'finish_orders': orders.filter(status_order=True, status_closed=False).count(),
+            'closed_orders': orders.filter(status_closed=True).count(),
+            'back_button': False,
+            'tasks': tasks.order_by('-date_created')[:5],
+            'reservations': orders.order_by('-created_at')[:5],
+        }
         return render(request, template, context)
         # return render(request, 'objects/index.html', context=context)
     else:

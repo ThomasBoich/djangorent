@@ -2183,3 +2183,5 @@ clear:both;
     background-color: #ffff99;
   }
 }
+.page_title_content{
+display:flex;align-items: center;}.page_title_content button{margin: 0px 20px 0px 0px;border:none;background: inherit;}
