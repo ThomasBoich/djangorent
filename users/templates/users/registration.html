@@ -63,29 +63,29 @@
         {%csrf_token%}
 
         <div class="card-body" style="overflow: hidden;overflow-y: auto;height: 79vh;">
-          <h2 class="card-title text-center mb-4">РЕГИСТРАЦИЯ</h2>
+          <h2 class="card-title text-center mb-4">REGISTRATION</h2>
 
           <div class="mb-3">
-            <label class="form-label">Электронная почта</label>
+            <label class="form-label">Email</label>
             {{form.email}}
           </div>
           {{form.username.errors}}
 
           <div class="mb-3">
-            <label class="form-label">Фамилия</label>
+            <label class="form-label">Surname</label>
             {{form.last_name}}
           </div>
           {{form.last_name.errors}}
 
           <div class="mb-3">
-            <label class="form-label">Имя</label>
+            <label class="form-label">Name</label>
             {{form.first_name}}
           </div>
           {{form.first_name.errors}}
 
 
           <div class="mb-3">
-            <label class="form-label">Отчество</label>
+            <label class="form-label">Patronymic</label>
             {{form.patronymic}}
           </div>
           {{form.patronymic_name.errors}}
@@ -95,7 +95,7 @@
             {{form.email.errors}}
             <div class="mb-2">
               <label class="form-label">
-                Пароль
+                Password
 
               </label>
               <div class="input-group input-group-flat">
@@ -108,7 +108,7 @@
             {{form.password1.errors}}
             <div class="mb-2">
               <label class="form-label">
-                Повторите пароль
+                Repeat password
 
               </label>
               <div class="input-group input-group-flat">
@@ -122,19 +122,19 @@
             <div class="mb-2" style="display:flex; ">
               <input id='remember-me-checkbox' type="checkbox" class="form-check-input"
                 style='padding:0; height:1rem; width:1rem' />
-              <label for='remember-me-checkbox' class="form-check">Запомнить меня на этом устройстве</label>
+              <label for='remember-me-checkbox' class="form-check">Remember me on this device</label>
 
             </div>
             <div class="form-footer">
               <!--              <button type="submit" class="btn btn-primary w-100">Войти</button>-->
-              <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+              <button type="submit" class="btn btn-primary w-100">Register</button>
             </div>
           </div>
 
       </form>
       <div class="text-center text-muted mt-3">
 
-        Зарегистрированы?<a href="{%url 'login'%}" tabindex="-1">Войти</a>
+        Зарегистрированы?<a href="{%url 'login'%}" tabindex="-1">To come in</a>
       </div>
     </div>
   </div>

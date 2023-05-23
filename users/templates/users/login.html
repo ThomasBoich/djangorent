@@ -30,15 +30,15 @@
         <!--    {{form.as_p}}-->
 
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">АВТОРИЗАЦИЯ</h2>
+          <h2 class="card-title text-center mb-4">AUTHORIZATION</h2>
           <div class="mb-3">
-            <label class="form-label">Электронная почта</label>
+            <label class="form-label">Email</label>
             <!--              <input type="text" class="form-control" placeholder="Введите логин">-->
             {{form.username}}
           </div>
           <div class="mb-2">
             <label class="form-label">
-              Пароль
+              Password
               <!--                <span class="form-label-description">-->
               <!--                  <a href="./forgot-password.html">Забыли пароль?</a>-->
               <!--                </span>-->
@@ -64,7 +64,7 @@
           <div class="mb-2">
             <label class="form-check">
               <input type="checkbox" class="form-check-input" />
-              <span class="form-check-label">Запомнить меня на этом устройстве</span>
+              <span class="form-check-label">Remember me on this device</span>
             </label>
           </div>
           <div class="form-footer">
@@ -79,7 +79,7 @@
 
       </form>
       <div class="text-center text-muted mt-3">
-        Не зарегистрированы? <a href="{%url 'registration'%}" tabindex="-1">Регистрация</a>
+        Not registered? <a href="{%url 'registration'%}" tabindex="-1">Registration</a>
       </div>
     </div>
   </div>
