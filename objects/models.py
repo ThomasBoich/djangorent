@@ -7,11 +7,11 @@ from users.models import CustomUser
 
 # Create your models here.
 class Object(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Название')
+    name = models.CharField(max_length=255, verbose_name='Name')
     #photo = models.FileField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
-    photo = models.ImageField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
-    features = models.ManyToManyField('Features', blank=True, related_name='hotels', related_query_name='hotel', verbose_name='Опции')
-    text = models.TextField(default='', verbose_name='Текст')  # null = True, blank = True,
+    photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
+    features = models.ManyToManyField('Features', blank=True, related_name='hotels', related_query_name='hotel', verbose_name='Options')
+    text = models.TextField(default='', verbose_name='Text')  # null = True, blank = True,
     slug = AutoSlugField(populate_from='name', blank=True, null=True)
     description = models.TextField(blank=True)
     address = models.CharField(max_length=255, default='')
@@ -26,8 +26,8 @@ class Object(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Объект'
-        verbose_name_plural = 'Объекты'
+        verbose_name = 'Object'
+        verbose_name_plural = 'Objects'
         ordering = ['name']
 
     def get_absolute_url(self):
@@ -35,62 +35,62 @@ class Object(models.Model):
 
 
 class Features(models.Model):
-    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="Название")
-    icon = models.ImageField(blank=True, null=True, verbose_name="Иконка", upload_to="hotels/features/icons/")
+    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
+    icon = models.ImageField(blank=True, null=True, verbose_name="Icon", upload_to="hotels/features/icons/")
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Оппция'
-        verbose_name_plural = 'Опции'
+        verbose_name = 'Option'
+        verbose_name_plural = 'Options'
         ordering = ['title']
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название страны')
-    city = models.ManyToManyField('City', verbose_name='Города', blank=True, null=True)
+    name = models.CharField(max_length=100, verbose_name='Country name')
+    city = models.ManyToManyField('City', verbose_name='Countries', blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Страна'
-        verbose_name_plural = 'Страны'
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'
 
     def __str__(self):
         return self.name
 
 
 class City(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название города')
+    name = models.CharField(max_length=100, verbose_name='City name')
 
     class Meta:
-        verbose_name = 'Город'
-        verbose_name_plural = 'Города'
+        verbose_name = 'City'
+        verbose_name_plural = 'Cities'
 
     def __str__(self):
         return self.name
 
 
 class Reservation(models.Model):
-    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations', blank=True)
-    manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Ответственный', on_delete=models.CASCADE, default='')
-    check_in = models.DateField(default='', verbose_name='Дата заселения', blank=True)
-    check_out = models.DateField(default='', verbose_name='Дата выезда', blank=True)
-    guest_last_name = models.CharField(default='', max_length=255, verbose_name='Фамилия', blank=True)
-    guest_first_name = models.CharField(default='', max_length=255, verbose_name='Имя', blank=True)
-    guest_patronymic = models.CharField(default='', max_length=255, verbose_name='Отчество', blank=True)
-    guest_email = models.EmailField(default='', verbose_name='Емейл', blank=True)
-    guest_phone = models.CharField(default='', max_length=20, verbose_name='Телефон', blank=True)
+    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Object Reservation', related_name='reservations', blank=True)
+    manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Manager', on_delete=models.CASCADE, default='')
+    check_in = models.DateField(default='', verbose_name='check_in', blank=True)
+    check_out = models.DateField(default='', verbose_name='check_out', blank=True)
+    guest_last_name = models.CharField(default='', max_length=255, verbose_name='guest_last_nam', blank=True)
+    guest_first_name = models.CharField(default='', max_length=255, verbose_name='guest_first_name', blank=True)
+    guest_patronymic = models.CharField(default='', max_length=255, verbose_name='guest_patronymic', blank=True)
+    guest_email = models.EmailField(default='', verbose_name='guest_email', blank=True)
+    guest_phone = models.CharField(default='', max_length=20, verbose_name='guest_phone', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    document = models.FileField(upload_to='Reservation/Documents/%Y/%m/%d/', verbose_name='Договор', blank=True, null=True)
+    document = models.FileField(upload_to='Reservation/Documents/%Y/%m/%d/', verbose_name='document', blank=True, null=True)
     deleted = models.BooleanField(default=False, blank=True)
 
     RESERVATION_ORDER = 'RO'
     RESERVATION_CONSULTATION = 'RC'
 
     RESERVATION_TYPE = [
-        (RESERVATION_ORDER, 'Бронирование'),
-        (RESERVATION_CONSULTATION, 'Консультирование')
+        (RESERVATION_ORDER, 'Reservation'),
+        (RESERVATION_CONSULTATION, 'Consultation')
     ]
 
     type = models.CharField(choices=RESERVATION_TYPE, default='', max_length=255, blank=True)
@@ -100,30 +100,30 @@ class Reservation(models.Model):
     NOT_PAID = 'NP'
 
     TYPE_STATUS_PAY = [
-        (PAID, 'Оплачен'),
-        (PAID_IN_PART, 'Оплачен частично'),
-        (NOT_PAID, 'Не оплачен')
+        (PAID, 'Paid'),
+        (PAID_IN_PART, 'Paid in part'),
+        (NOT_PAID, 'Not paid')
     ]
 
     SENT = 'ST'
     NOT_SENT = 'NS'
 
     TYPE_STATUS_DOCUMENTS = [
-        (SENT, 'Отправлены'),
-        (NOT_SENT, 'Не отправлены')
+        (SENT, 'Sent'),
+        (NOT_SENT, 'Non sent')
     ]
 
-    status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Статус оплаты', blank=True)
-    status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Статус документов', blank=True)
-    status_order = models.BooleanField(default=False, verbose_name='Обработана', blank=True)
-    status_closed = models.BooleanField(default=False, verbose_name='Закрыта', blank=True)
+    status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Payment State', blank=True)
+    status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Document Status', blank=True)
+    status_order = models.BooleanField(default=False, verbose_name='Success', blank=True)
+    status_closed = models.BooleanField(default=False, verbose_name='Closed', blank=True)
 
     def __str__(self):
         return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"
 
     class Meta:
-        verbose_name = 'Бронирование'
-        verbose_name_plural = 'Бронирования'
+        verbose_name = 'Reservation'
+        verbose_name_plural = 'Reservations'
 
     def get_absolute_url(self):
         return reverse('reservation', args={self.id})

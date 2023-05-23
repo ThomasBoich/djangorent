@@ -8,7 +8,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
-                      <div class="subheader">Заявок</div>
+                      <div class="subheader">Reservations</div>
                       <div class="ms-auto lh-1">
                         <div class="dropdown">
 <!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
@@ -23,7 +23,7 @@
                     </div>
                     <div class="h1 mb-3">{{all_orders}}</div>
                     <div class="d-flex mb-2">
-                      <div>Конверсия</div>
+                      <div>Conversion</div>
                       <div class="ms-auto">
                         <span class="text-green d-inline-flex align-items-center lh-1">
                           7%
@@ -51,7 +51,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
-                      <div class="subheader">Всего задач \ Активных</div>
+                      <div class="subheader">Total Tasks \ Active</div>
                       <div class="ms-auto lh-1">
                         <div class="dropdown">
 <!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
@@ -88,7 +88,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
-                      <div class="subheader">Всего клиентов \ Новых</div>
+                      <div class="subheader">Total clients \ New</div>
                       <div class="ms-auto lh-1">
                         <div class="dropdown">
 <!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
@@ -124,7 +124,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
-                      <div class="subheader">Всего объектов</div>
+                      <div class="subheader">Total objects</div>
                       <div class="ms-auto lh-1">
                         <div class="dropdown">
 <!--                          <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true"-->
@@ -173,7 +173,7 @@
                               {{orders_in_progress}}
                             </div>
                             <div class="text-muted">
-                              Заявок в работе
+                              Reservations in progress
                             </div>
                           </div>
                         </div>
@@ -194,7 +194,7 @@
                               {{raw_orders}}
                             </div>
                             <div class="text-muted">
-                              Необработанные заявки
+                              Unprocessed applications
                             </div>
                           </div>
                         </div>
@@ -215,7 +215,7 @@
                               {{finish_orders}}
                             </div>
                             <div class="text-muted">
-                              Успешно закрытие заявки
+                             Successfully closing the application
                             </div>
                           </div>
                         </div>
@@ -236,7 +236,7 @@
                               {{closed_orders}}
                             </div>
                             <div class="text-muted">
-                              Закрытые заявки
+                              Closed applications
                             </div>
                           </div>
                         </div>
@@ -250,7 +250,7 @@
               <div class="col-md-12 col-lg-6">
                 <div class="card"style="height:57vh;">
                   <div class="card-header">
-                    <h3 class="card-title">Мои активные задачи {{my_tasks_in_progress}}</h3>
+                    <h3 class="card-title">My active tasksи {{my_tasks_in_progress}}</h3>
                   </div>
                   <div class="table-responsive">
                     <table class="table card-table table-vcenter">
@@ -313,14 +313,14 @@
                     </table>
                   </div>
                   <div class="card-footer d-flex align-items-center">
-                    <a href="{%url 'tasks'%}">Все задачи: {{all_tasks}}</a>
+                    <a href="{%url 'tasks'%}">All tasks: {{all_tasks}}</a>
                   </div>
                 </div>
               </div>
               <div class="col-md-12 col-lg-6">
                 <div class="card"style="height:57vh;">
                   <div class="card-header">
-                    <h3 class="card-title">Активные заявки 2</h3>
+                    <h3 class="card-title">Active applications 2</h3>
                   </div>
                   <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap datatable">
@@ -337,9 +337,9 @@
                               <path d="M6 15l6 -6l6 6" />
                             </svg>
                           </th>
-                          <th>Имя</th>
-                          <th>Телефон</th>
-                          <th>Электронная почта</th>
+                          <th>Name</th>
+                          <th>Telephone</th>
+                          <th>Email</th>
                           <th></th>
                         </tr>
                       </thead>
@@ -360,13 +360,13 @@
                           <td class="text-end">
                             <span class="dropdown">
                               <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
-                                data-bs-toggle="dropdown">Действия</button>
+                                data-bs-toggle="dropdown">Actions</button>
                               <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="{{reservation.get_absolute_url}}">
-                                  Подброности
+                                  Info
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                  Удалить
+                                  Delete
                                 </a>
                               </div>
                             </span>
@@ -377,7 +377,7 @@
                     </table>
                   </div>
                   <div class="card-footer d-flex align-items-center">
-                    <a href="{%url 'reservations'%}">Все заявки: {{all_orders}}</a>
+                    <a href="{%url 'reservations'%}">All applications: {{all_orders}}</a>
                   </div>
                 </div>
               </div>

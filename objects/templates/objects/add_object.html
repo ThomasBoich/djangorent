@@ -8,9 +8,9 @@
                 Навигация
             </div>
             <h2 class="page-title">
-                Добавить объект
+                Add object
                 <a href="{%url 'objects'%}" class="btn btn-success w-20">
-                    Назад
+                    Back
                 </a>
             </h2>
         </div>
@@ -21,11 +21,11 @@
 {%block content%}
 
 <div class="add_objects_page">
-    <h1>Загрузка объекта</h1>
+    <h1>Loading an object</h1>
     <form id="object-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Отправить</button>
+        <button type="submit">Send</button>
     </form>
 </div>
 

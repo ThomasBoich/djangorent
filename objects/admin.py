@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 from .forms import addObjectForm
 # Register your models here.
-from .models import Object, Features, Reservation
+from .models import Object, Features, Reservation, Country, City
 
 
 class ObjectAdmin(admin.ModelAdmin):
@@ -29,6 +29,13 @@ class FeaturesAdmin(admin.ModelAdmin):
     list_display = ('title',)
     search_fields = ('title',)
 
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ('guest_last_name', 'guest_first_name', 'object', 'check_in', 'check_out')
@@ -36,6 +43,7 @@ class ReservationAdmin(admin.ModelAdmin):
     search_fields = ('guest_last_name', 'guest_first_name', 'guest_email', 'guest_phone')
 
 admin.site.register(Reservation, ReservationAdmin)
-
 admin.site.register(Object, ObjectAdmin)
 admin.site.register(Features, FeaturesAdmin)
+admin.site.register(Country, CountryAdmin)
+admin.site.register(City, CityAdmin)

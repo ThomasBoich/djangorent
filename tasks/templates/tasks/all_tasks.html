@@ -12,7 +12,7 @@
                             <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab"
                                 aria-selected="true" role="tab">
 
-                                Мои задачи {{my_tasks_count}}
+                                My tasks {{my_tasks_count}}
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -20,7 +20,7 @@
                                 aria-selected="false" role="tab" tabindex="-1">
 
 
-                                Все задачи {{count_tasks}}
+                                All tasks {{count_tasks}}
                             </a>
                         </li>
                     </ul>
@@ -32,7 +32,7 @@
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Активные задачи {{my_tasks_count}}</h3>
+                                        <h3 class="card-title">Active Tasks {{my_tasks_count}}</h3>
                                     </div>
                                     <div class="table-responsive"style="height:70vh;">
                                         <table
@@ -59,9 +59,9 @@
                                                             <path d="M6 15l6 -6l6 6"></path>
                                                         </svg>
                                                     </th>
-                                                    <th>Исполнитель</th>
-                                                    <th>Название задачи</th>
-                                                    <th>Текст задачи</th>
+                                                    <th>Executor</th>
+                                                    <th>Task name</th>
+                                                    <th>Task text</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -89,21 +89,21 @@
                                                             <button
                                                                 class="btn dropdown-toggle align-text-top"
                                                                 data-bs-boundary="viewport"
-                                                                data-bs-toggle="dropdown">Действия</button>
+                                                                data-bs-toggle="dropdown">Actions</button>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-end">
                                                                 <a class="dropdown-item"
                                                                     href="{{task.get_absolute_url}}">
-                                                                    Открыть
+                                                                    Open
                                                                 </a>
                                                                 <a class="dropdown-item"
                                                                     href="#">
-                                                                    Выполнено
+                                                                    Done
                                                                 </a>
                                                                 {%if request.user.type == 'AD'%}
                                                                 <a class="dropdown-item"
                                                                     href="#">
-                                                                    Удалить
+                                                                    Delete
                                                                 </a>
                                                                 {%endif%}
                                                             </div>
@@ -124,7 +124,7 @@
                             <div class="col-md-12 col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Активные задачи {{count_tasks}}</h3>
+                                        <h3 class="card-title">Active Tasks {{count_tasks}}</h3>
                                     </div>
                                     <div class="table-responsive"style="height:70vh;">
                                         <table
@@ -151,9 +151,9 @@
                                                             <path d="M6 15l6 -6l6 6"></path>
                                                         </svg>
                                                     </th>
-                                                    <th>Исполнитель</th>
-                                                    <th>Название задачи</th>
-                                                    <th>Текст задачи</th>
+                                                    <th>Executor</th>
+                                                    <th>Task name</th>
+                                                    <th>Task text</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -187,21 +187,21 @@
                                                             <button
                                                                 class="btn dropdown-toggle align-text-top"
                                                                 data-bs-boundary="viewport"
-                                                                data-bs-toggle="dropdown">Действия</button>
+                                                                data-bs-toggle="dropdown">Actions</button>
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-end">
                                                                 <a class="dropdown-item"
                                                                     href="#">
-                                                                    Открыть
+                                                                    Open
                                                                 </a>
                                                                 <a class="dropdown-item"
                                                                     href="#">
-                                                                    Выполнено
+                                                                    Done
                                                                 </a>
                                                                 {%if request.user.type == 'AD'%}
                                                                 <a class="dropdown-item"
                                                                     href="#">
-                                                                    Удалить
+                                                                    Delete
                                                                 </a>
                                                                 {%endif%}
                                                             </div>

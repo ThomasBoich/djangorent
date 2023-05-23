@@ -17,7 +17,7 @@ def all_objects(request):
     if request.user.is_authenticated == True:
         objects = Object.objects.all()
         context = {
-            'title_page': 'Объекты',
+            'title_page': 'Objects',
             'objects': objects,
             'count_title': Object.objects.all().count(),
             'active': 'active',
@@ -37,7 +37,7 @@ def add_object(request):
             return redirect('objects')
         else:
             form = addObjectForm()
-            context = {'form': form, 'active': 'active','title_page': 'Добавление объекта',}
+            context = {'form': form, 'active': 'active','title_page': 'Adding an object',}
             return render(request, 'objects/add_object.html', context)
     else:
         return redirect('/')
@@ -56,7 +56,7 @@ def object_detail(request, slug):
 def reservation_list(request):
     reservations = Reservation.objects.filter(deleted=False)
     context = {
-        'title_page': f'Заявки {reservations.count()}',
+        'title_page': f'Reservations {reservations.count()}',
         'reservations': reservations,
         'reservation_consultation_count': reservations.filter(type='RC').count(),
         'reservation_consultation': reservations.filter(type='RC'),
@@ -67,23 +67,23 @@ def reservation_list(request):
     return render(request, 'objects/reservation_list.html', context)
 
 
-def edit_reservation(request, reservation_id):
-    reservation = get_object_or_404(Reservation, id=reservation_id)
-
-    if request.method == 'POST':
-        edit_form = ReservationEditForm(request.POST, instance=reservation)
-        if edit_form.is_valid():
-            edit_form.save()
-            return redirect('reservation_detail', reservation_id=reservation.id)
-    else:
-        edit_form = ReservationEditForm(instance=reservation)
-
-    context = {
-        'edit_form': edit_form,
-        'reservation': reservation,
-    }
-
-    return render(request, 'edit_reservation.html', context)
+# def edit_reservation(request, reservation_id):
+#     reservation = get_object_or_404(Reservation, id=reservation_id)
+#
+#     if request.method == 'POST':
+#         edit_form = ReservationEditForm(request.POST, instance=reservation)
+#         if edit_form.is_valid():
+#             edit_form.save()
+#             return redirect('reservation_detail', reservation_id=reservation.id)
+#     else:
+#         edit_form = ReservationEditForm(instance=reservation)
+#
+#     context = {
+#         'edit_form': edit_form,
+#         'reservation': reservation,
+#     }
+#
+#     return render(request, 'edit_reservation.html', context)
 
 
 @csrf_exempt
@@ -103,7 +103,7 @@ def reservation(request, reservation_id):
             # messages.error(request, 'Пожалуйста, введите текст сообщения.')
             pass
 
-    elif request.method == 'POST':
+    if request.method == 'POST':
         manager_id = request.POST.get('manager')
         manager = CustomUser.objects.get(pk=manager_id)
         reservation.manager = manager
@@ -118,7 +118,7 @@ def reservation(request, reservation_id):
         edit_form = ReservationEditForm(instance=reservation)
 
     context = {
-        'title_page': f'Заявка №{reservation_id} | {reservation.guest_first_name} {reservation.guest_last_name} {reservation.guest_patronymic}',
+        'title_page': f'Reservation №{reservation_id} | {reservation.guest_first_name} {reservation.guest_last_name} {reservation.guest_patronymic}',
         'reservation': reservation,
         'order': Reservation.objects.filter(id=reservation_id),
         'messages': messages,

@@ -41,7 +41,7 @@ def user_info(request, user_id):
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {
-        'title_page': 'Настройки профиля',
+        'title_page': 'Profile settings',
         'form': form,
         'back_button': True,
     }

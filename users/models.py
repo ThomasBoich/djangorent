@@ -10,16 +10,16 @@ from django.db.models.signals import post_save
 from .managers import CustomUserManager
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=254, unique=True, verbose_name='Электронная почта')
-    first_name = models.CharField(u"Имя", max_length=100, blank=True, null=True)
-    last_name = models.CharField(u"Фамилия", max_length=100, blank=True, null=True)
-    patronymic = models.CharField(u"Отчество", max_length=100, blank=True, null=True)
-    user_profile_id = models.IntegerField(blank=True, verbose_name='ID пользователя', null=True)
-    phone = models.CharField(max_length=24, blank=True, null=True, verbose_name='Телефон')
+    email = models.EmailField(max_length=254, unique=True, verbose_name='Email adress')
+    first_name = models.CharField(u"First Name", max_length=100, blank=True, null=True)
+    last_name = models.CharField(u"Last Name", max_length=100, blank=True, null=True)
+    patronymic = models.CharField(u"Patronymic", max_length=100, blank=True, null=True)
+    user_profile_id = models.IntegerField(blank=True, verbose_name='ID User', null=True)
+    phone = models.CharField(max_length=24, blank=True, null=True, verbose_name='Phone')
     photo = models.ImageField(upload_to='midia/users/%Y/%m/%d/', blank=True, default='../static/assets/img/default_avatar.png',
-                              verbose_name='Аватар')
-    is_active = models.BooleanField(default=True, verbose_name='Активирован')
-    is_admin = models.BooleanField(default=False, verbose_name='Администратор')
+                              verbose_name='Avatar')
+    is_active = models.BooleanField(default=True, verbose_name='Activate')
+    is_admin = models.BooleanField(default=False, verbose_name='Administrator')
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_superuser = models.BooleanField(_('super user'), default=False)
     date_joined = models.DateTimeField(u'date joined', blank=True, null=True, default=timezone.now)
@@ -31,14 +31,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     CLMANAGER = 'OO'
 
     TYPE_ROLE = [
-        (ADMINISTRATOR, 'Администратор'),
-        (MANAGER, 'Менеджер'),
-        (CLIENT, 'Клиент'),
-        (CLMANAGER, 'Клиент менеджер')
+        (ADMINISTRATOR, 'Administrator'),
+        (MANAGER, 'Manager'),
+        (CLIENT, 'Client'),
+        (CLMANAGER, 'Client Manager')
     ]
 
-    type = models.CharField(max_length=6, choices=TYPE_ROLE, default=CLIENT, verbose_name='Тип пользователя')
-    ban = models.BooleanField(default=False, verbose_name='Уволен')
+    type = models.CharField(max_length=6, choices=TYPE_ROLE, default=CLIENT, verbose_name='Type User')
+    ban = models.BooleanField(default=False, verbose_name='Baned')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -49,8 +49,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return f'{self.last_name} {self.first_name}  {self.patronymic}'
 
     class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
     def get_absolute_url(self):
         return reverse('user_info', kwargs={'user_id': self.id})
@@ -64,8 +64,8 @@ class Profile(models.Model):
         return f" {self.user.first_name} {self.user.last_name}"
 
     class Meta:
-        verbose_name = 'Профиль пользователя'
-        verbose_name_plural = 'Профили пользователей'
+        verbose_name = 'User profile'
+        verbose_name_plural = 'Users profiles'
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={'pk': self.pk})

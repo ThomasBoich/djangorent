@@ -11,7 +11,7 @@ def all_tasks(request):
     tasks = Task.objects.all()
     context = {
         'active': 'active',
-        'title_page': f'Задачи {tasks.count()}',
+        'title_page': f'Tasks {tasks.count()}',
         'all_tasks': tasks,
         'count_tasks': tasks.count(),
         'my_tasks': tasks.filter(executor=request.user),

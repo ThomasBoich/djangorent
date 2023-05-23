@@ -21,7 +21,7 @@ def dash_info(request):
         users = CustomUser.objects.all()
         template = 'dash/index.html'
         context = {
-            'title_page': 'Рабочий стол',
+            'title_page': 'Dashboard',
             'count_objects': objects.count(),
             'all_clients': users.filter(type='CL').count(),
             'new_clients_today': users.filter(date_joined=today).count(),
