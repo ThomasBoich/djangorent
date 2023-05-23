@@ -71,19 +71,19 @@ class City(models.Model):
 
 
 class Reservation(models.Model):
-    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations')
+    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект бронирования', related_name='reservations', blank=True)
     manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Ответственный', on_delete=models.CASCADE, default='')
-    check_in = models.DateField(default='', verbose_name='Дата заселения')
-    check_out = models.DateField(default='', verbose_name='Дата выезда')
-    guest_last_name = models.CharField(default='', max_length=255, verbose_name='Фамилия')
-    guest_first_name = models.CharField(default='', max_length=255, verbose_name='Имя')
-    guest_patronymic = models.CharField(default='', max_length=255, verbose_name='Отчество')
-    guest_email = models.EmailField(default='', verbose_name='Емейл')
-    guest_phone = models.CharField(default='', max_length=20, verbose_name='Телефон')
+    check_in = models.DateField(default='', verbose_name='Дата заселения', blank=True)
+    check_out = models.DateField(default='', verbose_name='Дата выезда', blank=True)
+    guest_last_name = models.CharField(default='', max_length=255, verbose_name='Фамилия', blank=True)
+    guest_first_name = models.CharField(default='', max_length=255, verbose_name='Имя', blank=True)
+    guest_patronymic = models.CharField(default='', max_length=255, verbose_name='Отчество', blank=True)
+    guest_email = models.EmailField(default='', verbose_name='Емейл', blank=True)
+    guest_phone = models.CharField(default='', max_length=20, verbose_name='Телефон', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     document = models.FileField(upload_to='Reservation/Documents/%Y/%m/%d/', verbose_name='Договор', blank=True, null=True)
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False, blank=True)
 
     RESERVATION_ORDER = 'RO'
     RESERVATION_CONSULTATION = 'RC'
@@ -93,7 +93,7 @@ class Reservation(models.Model):
         (RESERVATION_CONSULTATION, 'Консультирование')
     ]
 
-    type = models.CharField(choices=RESERVATION_TYPE, default='', max_length=255)
+    type = models.CharField(choices=RESERVATION_TYPE, default='', max_length=255, blank=True)
 
     PAID = 'PD'
     PAID_IN_PART = 'PP'
@@ -113,10 +113,10 @@ class Reservation(models.Model):
         (NOT_SENT, 'Не отправлены')
     ]
 
-    status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Статус оплаты')
-    status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Статус документов')
-    status_order = models.BooleanField(default=False, verbose_name='Обработана')
-    status_closed = models.BooleanField(default=False, verbose_name='Закрыта')
+    status_pay = models.CharField(max_length=255, choices=TYPE_STATUS_PAY, default=NOT_PAID, verbose_name='Статус оплаты', blank=True)
+    status_documents = models.CharField(max_length=255, choices=TYPE_STATUS_DOCUMENTS, default=NOT_SENT, verbose_name='Статус документов', blank=True)
+    status_order = models.BooleanField(default=False, verbose_name='Обработана', blank=True)
+    status_closed = models.BooleanField(default=False, verbose_name='Закрыта', blank=True)
 
     def __str__(self):
         return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"

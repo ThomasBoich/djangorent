@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 from chats.models import Chat
-from objects.forms import addObjectForm
+from objects.forms import addObjectForm, ReservationEditForm
 from objects.models import Object, Reservation
 from users.forms import UserUpdateForm
 from users.models import CustomUser
@@ -65,6 +65,27 @@ def reservation_list(request):
 
     }
     return render(request, 'objects/reservation_list.html', context)
+
+
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+
+    if request.method == 'POST':
+        edit_form = ReservationEditForm(request.POST, instance=reservation)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('reservation_detail', reservation_id=reservation.id)
+    else:
+        edit_form = ReservationEditForm(instance=reservation)
+
+    context = {
+        'edit_form': edit_form,
+        'reservation': reservation,
+    }
+
+    return render(request, 'edit_reservation.html', context)
+
+
 @csrf_exempt
 def reservation(request, reservation_id):
     # reservation = Reservation.objects.get(id=reservation_id)
@@ -82,23 +103,19 @@ def reservation(request, reservation_id):
             # messages.error(request, 'Пожалуйста, введите текст сообщения.')
             pass
 
-    # if request.method == 'POST':
-    #     user_form = UserUpdateForm(request.POST, instance=request.user)
-    #     password_form = PasswordChangeForm(request.user, request.POST)
-    #     if user_form.is_valid() and password_form.is_valid():
-    #         user_form.save()
-    #         password_form.save()
-    #         messages.success(request, 'Профиль успешно обновлен')
-    #         return redirect('profile')
-    # else:
-    #     user_form = UserUpdateForm(instance=request.user)
-    #     password_form = PasswordChangeForm(request.user)
-    # return render(request, 'update_profile.html', {'user_form': user_form, 'password_form': password_form})
-    if request.method == 'POST':
+    elif request.method == 'POST':
         manager_id = request.POST.get('manager')
         manager = CustomUser.objects.get(pk=manager_id)
         reservation.manager = manager
         reservation.save()
+
+    if request.method == 'POST':
+        edit_form = ReservationEditForm(request.POST, instance=reservation)
+        if edit_form.is_valid():
+            edit_form = edit_form.save(commit=False)
+            return redirect('reservation', reservation_id=reservation.id)
+    else:
+        edit_form = ReservationEditForm(instance=reservation)
 
     context = {
         'title_page': f'Заявка №{reservation_id} | {reservation.guest_first_name} {reservation.guest_last_name} {reservation.guest_patronymic}',
@@ -107,6 +124,7 @@ def reservation(request, reservation_id):
         'messages': messages,
         'managers': CustomUser.objects.all(),
         'back_button': True,
+        'edit_form': edit_form,
         #'chat': Chat.objects.get(id=reservation_id)
     }
     return render(request, 'objects/reservation.html', context)

@@ -191,27 +191,11 @@
                                             </script>
 
                                             <div class="task-form">
-                                                <h4>Информация о клиенте</h4>
-                                                <div class="forms-group">
-                                                    <input type="text" placeholder="ИМЯ" data-aos="fade-right"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="ФАМИЛИЯ" data-aos="fade-down"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="ОТЧЕСТВО" data-aos="fade-left"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="ТЕЛЕФОН" data-aos="fade-right"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="ЕМЕЙЛ" data-aos="fade-down"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="ОТЧЕСТВО" data-aos="fade-left"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="СЕРИЯ ПАСПОРТА"
-                                                        data-aos="fade-right" data-aos-duration="1000">
-                                                    <input type="text" data-aos="fade-down" placeholder="НОМЕР ПАСПОРТА"
-                                                        data-aos-duration="1000">
-                                                    <input type="text" placeholder="КОД ПОДРАЗДЕЛЕНИЯ"
-                                                        data-aos="fade-right" data-aos-duration="1000">
-                                                </div>
+                                                <form action="{%url 'ReservationEditView' reservation.id%}" method="post">
+                                                    {%csrf_token%}
+                                                    {{edit_form.guest_first_name}}
+                                                    <button type="submit">Изменить</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
