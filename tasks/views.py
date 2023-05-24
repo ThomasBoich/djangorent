@@ -36,3 +36,14 @@ def task(request, task_id):
 
     context = {'task': task,'back_button': True, 'form': form, 'title_page': f'{task.title}'}
     return render(request, 'tasks/task.html', context)
+
+def task_done(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if task.status == True:
+        task.status = False
+        task.save()
+        return redirect('task', task_id=task_id)
+    else:
+        task.status = True
+        task.save()
+        return redirect('task', task_id=task_id)

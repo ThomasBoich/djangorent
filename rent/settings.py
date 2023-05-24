@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-7gvbiz#@qji4y9pugb=62^=j%rq7)-^snn&z7*fkipwy=#v!o@
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['luxurygoavilla.com']
+ALLOWED_HOSTS = ['*', 'luxurygoavilla.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

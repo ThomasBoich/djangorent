@@ -1,4 +1,69 @@
 {%extends 'dash.html'%}
 {%block content%}
+<div class="card card-lg">
 
+
+    <div class="card">
+              <div class="row g-0">
+                <div class="col-3 d-none d-md-block border-end">
+                  <div class="card-body">
+                    <h4 class="subheader" style="margin-bottom: 20px;">Task information</h4>
+                    <div class="list-group list-group-transparent task_information">
+                      <span>
+                        <p>Owner</p>
+                        <div class="owner_avatar">
+                        <div class="avatar avatar-xs rounded" style="background-image: url('{{task.owner.photo.url}}');height:25px;width:25px;margin: 0px 6px 0px 0px;"></div>
+                        {{task.owner}}
+                        </div>
+                      </span>
+                      <span>
+                        <p>Executor</p>
+                        <div class="owner_avatar">
+                        <div class="avatar avatar-xs rounded" style="background-image: url('{{task.executor.photo.url}}');height:25px;width:25px;margin: 0px 6px 0px 0px;"></div>
+                        {{task.executor}}
+                        </div>
+                      </span>
+                      <span><p><svg style="margin: 0px 6px 0px 0px;" xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 19v-2a3 3 0 0 0 -6 0v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-14h4v3h3v-3h4v3h3v-3h4v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path><path d="M3 11l18 0"></path></svg> Object</p>— {{task.object}}</span>
+                      <span><p><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                  <svg style="margin: 0px 6px 0px 0px;" xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M16 3l0 4"></path><path d="M8 3l0 4"></path><path d="M4 11l16 0"></path><path d="M11 15l1 0"></path><path d="M12 15l0 3"></path></svg> Created date</p>— {{task.date_created}}</span>
+                      <span><p><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                  <svg style="margin: 0px 6px 0px 0px;" xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M16 3l0 4"></path><path d="M8 3l0 4"></path><path d="M4 11l16 0"></path><path d="M11 15l1 0"></path><path d="M12 15l0 3"></path></svg> Start date</p>— {{task.date_start}}</span>
+                      <span><p><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                  <svg style="margin: 0px 6px 0px 0px;" xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M16 3l0 4"></path><path d="M8 3l0 4"></path><path d="M4 11l16 0"></path><path d="M11 15l1 0"></path><path d="M12 15l0 3"></path></svg> Date of completion</p>
+
+                       — {{task.date_finish}}</span>
+
+                      <span><p><svg style="margin: 0px 6px 0px 0px;" xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 6l16 0"></path><path d="M8 12l8 0"></path><path d="M6 18l12 0"></path></svg> status</p>— {{task.status}}</span>
+                    </div>
+                      {%if task.status == True%}
+                                              <div class="mt-3">
+                          <a href="{%url 'task_done' task.id%}" class="btn btn-danger" target="_blank" rel="noopener">Resume execution</a>
+                        </div>
+
+                      {%else%}
+                        <div class="mt-3">
+                          <a href="{%url 'task_done' task.id%}" class="btn btn-primary" target="_blank" rel="noopener">Done</a>
+                        </div>
+                      {%endif%}
+
+                  </div>
+                </div>
+                <div class="col d-flex flex-column">
+
+              <div class="card-body ">
+                <div class="row g-4">
+                  <div class="col-12 markdown">
+                    <h1>{{task.title}}</h1>
+                    <p>{{task.text}}</p>
+                  </div>
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            </div>
 {%endblock%}

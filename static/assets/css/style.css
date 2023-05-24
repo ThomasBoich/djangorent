@@ -2185,3 +2185,7 @@ clear:both;
 }
 .page_title_content{
 display:flex;align-items: center;}.page_title_content button{margin: 0px 20px 0px 0px;border:none;background: inherit;}
+.task_information{}
+.task_information span{width: 90%;margin: auto auto 20px;padding: 0;line-height: 0.7;}
+.task_information p{font-weight: 700;line-height: 0.7;display: flex;align-items: center;}
+.owner_avatar{display: flex;align-items: center;}
