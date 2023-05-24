@@ -16,7 +16,7 @@ def all_tasks(request):
         'all_tasks': tasks,
         'count_tasks': tasks.count(),
         'my_tasks': tasks.filter(Q(executor=request.user), Q(status=False)),
-        'my_tasks_count': tasks.filter(executor=request.user).count(),
+        'my_tasks_count': tasks.filter(Q(executor=request.user), Q(status=False)).count(),
         'back_button': False,
     }
     return render(request, 'tasks/all_tasks.html', context)
