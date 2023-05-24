@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 from .forms import TaskCommentForm
 from tasks.models import Task
+from objects.models import Object, Reservation
 
 
 # Create your views here.
@@ -35,7 +36,7 @@ def task(request, task_id):
     else:
         form = TaskCommentForm()
 
-    context = {'task': task,'back_button': True, 'form': form, 'title_page': f'{task.title}'}
+    context = {'task': task,'back_button': True, 'form': form, 'title_page': f'{task.title}', 'objects': Object.objects.all(), 'reservation': Reservation.objects.all(),}
     return render(request, 'tasks/task.html', context)
 
 def task_done(request, task_id):

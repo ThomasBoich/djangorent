@@ -11,6 +11,7 @@ from objects.forms import addObjectForm, ReservationEditForm
 from objects.models import Object, Reservation
 from users.forms import UserUpdateForm
 from users.models import CustomUser
+from tasks.models import Task
 
 
 def all_objects(request):
@@ -126,6 +127,7 @@ def reservation(request, reservation_id):
         'back_button': True,
         'edit_form': edit_form,
         #'chat': Chat.objects.get(id=reservation_id)
+        'count_tasks': Task.objects.all().count(),
     }
     return render(request, 'objects/reservation.html', context)
 
@@ -152,3 +154,56 @@ def select_manager(request, reservation_id):
         return JsonResponse({'Менеджер успешно изменен': True})
     else:
         return JsonResponse({'success': False, 'message': 'Метод должен быть POST'})
+
+@login_required
+def task_reservation(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if request.method == 'POST':
+        form = TaskCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.task = task
+            comment.save()
+            return redirect('task', task_id=task_id)
+    else:
+        form = TaskCommentForm()
+
+    context = {'task': task,'back_button': True, 'form': form, 'title_page': f'{task.title}'}
+    return render(request, 'tasks/task_reservation.html', context)
+
+
+@login_required
+def tasks_reservation(request, reservation_id):
+    # reservation = Reservation.objects.get(id=reservation_id)
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    managers = CustomUser.objects.all()
+    tasks = Task.objects.all()
+    
+
+    if request.method == 'POST':
+        manager_id = request.POST.get('manager')
+        manager = CustomUser.objects.get(pk=manager_id)
+        reservation.manager = manager
+        reservation.save()
+
+    if request.method == 'POST':
+        edit_form = ReservationEditForm(request.POST, instance=reservation)
+        if edit_form.is_valid():
+            edit_form = edit_form.save(commit=False)
+            return redirect('reservation', reservation_id=reservation.id)
+    else:
+        edit_form = ReservationEditForm(instance=reservation)
+
+    context = {
+
+        'back_button': True,
+        'title_page': f'Reservation №{reservation_id} | {reservation.guest_first_name} {reservation.guest_last_name} {reservation.guest_patronymic}',
+        'reservation': reservation,
+        'order': Reservation.objects.filter(id=reservation_id),
+        'managers': CustomUser.objects.all(),
+        'back_button': True,
+        'tasks': tasks,
+        'count_tasks': tasks.count(),
+    }
+    return render(request, 'objects/tasks_reservation.html', context)

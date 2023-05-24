@@ -13,7 +13,7 @@ class Task(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateTimeField(verbose_name="Date start")
     date_finish = models.DateTimeField(verbose_name="Date finish")
-    owner = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name="Owner", default=1)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Owner", default=1)
     executor = models.ForeignKey(CustomUser, related_name="executer_task", verbose_name="Executor", on_delete=models.CASCADE, blank=True, null=True,)
     object = models.ForeignKey(Object, related_name='task_object', verbose_name='Object', on_delete=models.CASCADE, blank=True, null=True)
     status = models.BooleanField(default=False, verbose_name='Success')

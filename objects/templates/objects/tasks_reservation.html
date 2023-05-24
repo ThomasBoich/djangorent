@@ -1,0 +1,355 @@
+{%extends 'dash.html'%}{%load static%}
+{%block content%}
+<div class="row">
+    <div class="col-lg-6">
+        <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
+            <div class="task-header">
+                <h2>Ответственный:</h2>
+                <select class="selected" required id="select_manager">
+                    <option value="">Не выбран</option>
+                    {%if reservation.manager%}
+                    <option value="{{reservation.manager.id}}" selected>
+                        {{reservation.manager.first_name}} {{reservation.manager.last_name}}
+                    </option>
+                    {%endif%}
+                    {%for manager in managers%}
+                    {%if manager != reservation.manager%}
+                    <option value="{{manager.id}}">
+                        <img src="{{manager.photo.url}}" alt="select-image">{{manager.first_name}} {{manager.last_name}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+                <!--                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+
+
+                <script>
+                    $(document).ready(function () {
+                        $('#select_manager').change(function () {
+                            var selectValue = $(this).val();
+                            if (selectValue === '') {
+                                selectValue = null;
+                            }
+                            $.ajax({
+                                type: 'POST',
+                                url: '{% url 'select_manager' reservation.id %}',
+                                data: { 'select_manager': selectValue },
+                                success: function (response) {
+                                    console.log('Менеджер обновлен!');
+                                },
+                                error: function (response) {
+                                    console.log('Error!');
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </div>
+            <div class="task-menu-wrapper" style="overflow: hidden;overflow-y: auto;">
+                <ul class="task-menu">
+                    <li class=""><a href="{% url 'reservation' reservation.id %}">Чат</a></li>
+                    <li class="menu-active"><a href="{% url 'tasks_reservation' reservation.id %}">Задачи
+                            {{count_tasks}}</a></li>
+                </ul>
+
+                <div class="reservation-tasks-list">
+                    <div id="faq-1" class="accordion" role="tablist" aria-multiselectable="true">
+
+                        {%for task in tasks%}
+                        <div class="accordion-item">
+                            <div class="accordion-header" role="tab">
+                                <button class="accordion-button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq-{{task.id}}}-{{task.id}}}">
+
+                                    <div class="task_item_reservation">
+                                        <a href="{{task.get_absolute_url}}" class="text-reset"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-align-box-bottom-center" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                                </path>
+                                                <path d="M9 15v2"></path>
+                                                <path d="M12 11v6"></path>
+                                                <path d="M15 13v4"></path>
+                                            </svg> {{task.title|truncatewords:5}}</a>
+                                        <span>
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                                                <path d="M16 3l0 4" />
+                                                <path d="M8 3l0 4" />
+                                                <path d="M4 11l16 0" />
+                                                <path d="M11 15l1 0" />
+                                                <path d="M12 15l0 3" />
+                                            </svg> {{task.date_created}}
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="faq-{{task.id}}}-{{task.id}}}" class="accordion-collapse collapse" role="tabpanel"
+                                data-bs-parent="#faq-{{task.id}}}">
+                                <div class="accordion-body pt-0">
+                                    <div style="text-align: left;">
+                                        <p style="font-size:14px;">
+                                            {{task.text}}
+                                        </p>
+                                    </div>
+                                    <div class="col-12 d-none d-md-block border-end" style='text-align:left;'>
+                                        <div class="card-body">
+                                            <div
+                                                class="list-group list-group-transparent task_information reservation_task_class">
+                                                <span>
+                                                    <p>Owner</p>
+                                                    <div class="owner_avatar">
+                                                        <div class="avatar avatar-xs rounded"
+                                                            style="background-image: url('{{task.owner.photo.url}}');height:25px;width:25px;margin: 0px 6px 0px 0px;">
+                                                        </div>
+                                                        {{task.owner}}
+                                                    </div>
+                                                </span>
+                                                <span>
+                                                    <p>Executor</p>
+                                                    <div class="owner_avatar">
+                                                        <div class="avatar avatar-xs rounded"
+                                                            style="background-image: url('{{task.executor.photo.url}}');height:25px;width:25px;margin: 0px 6px 0px 0px;">
+                                                        </div>
+                                                        {{task.executor}}
+                                                    </div>
+                                                </span>
+                                                <span>
+                                                    <p><svg style="margin: 0px 6px 0px 0px;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path
+                                                                d="M15 19v-2a3 3 0 0 0 -6 0v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-14h4v3h3v-3h4v3h3v-3h4v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z">
+                                                            </path>
+                                                            <path d="M3 11l18 0"></path>
+                                                        </svg> Object</p>— {{task.object}}
+                                                </span>
+                                                <span>
+                                                    <p>
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                        <svg style="margin: 0px 6px 0px 0px;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path
+                                                                d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z">
+                                                            </path>
+                                                            <path d="M16 3l0 4"></path>
+                                                            <path d="M8 3l0 4"></path>
+                                                            <path d="M4 11l16 0"></path>
+                                                            <path d="M11 15l1 0"></path>
+                                                            <path d="M12 15l0 3"></path>
+                                                        </svg> Created date
+                                                    </p>— {{task.date_created}}
+                                                </span>
+                                                <span>
+                                                    <p>
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                        <svg style="margin: 0px 6px 0px 0px;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path
+                                                                d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z">
+                                                            </path>
+                                                            <path d="M16 3l0 4"></path>
+                                                            <path d="M8 3l0 4"></path>
+                                                            <path d="M4 11l16 0"></path>
+                                                            <path d="M11 15l1 0"></path>
+                                                            <path d="M12 15l0 3"></path>
+                                                        </svg> Start date
+                                                    </p>— {{task.date_start}}
+                                                </span>
+                                                <span>
+                                                    <p>
+                                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                        <svg style="margin: 0px 6px 0px 0px;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path
+                                                                d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z">
+                                                            </path>
+                                                            <path d="M16 3l0 4"></path>
+                                                            <path d="M8 3l0 4"></path>
+                                                            <path d="M4 11l16 0"></path>
+                                                            <path d="M11 15l1 0"></path>
+                                                            <path d="M12 15l0 3"></path>
+                                                        </svg> Date of completion
+                                                    </p>
+
+                                                    — {{task.date_finish}}
+                                                </span>
+
+                                                <span>
+                                                    <p><svg style="margin: 0px 6px 0px 0px;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M4 6l16 0"></path>
+                                                            <path d="M8 12l8 0"></path>
+                                                            <path d="M6 18l12 0"></path>
+                                                        </svg> status</p>— {{task.status}}
+                                                </span>
+                                            </div>
+                                            {%if task.status == True%}
+                                            <div class="mt-3">
+                                                <a href="{%url 'task_done' task.id%}" class="btn btn-danger"
+                                                    target="_blank" rel="noopener">Resume execution</a>
+                                            </div>
+
+                                            {%else%}
+                                            <div class="mt-3">
+                                                <a href="{%url 'task_done' task.id%}" class="btn btn-primary"
+                                                    target="_blank" rel="noopener">Done</a>
+                                            </div>
+                                            {%endif%}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div data-aos="fade-down" data-aos-duration="800" class="task-wrapper task-height">
+            <div class="task-header-wrapper">
+                <h2>Заявка <span class="text-header-span">№{{reservation.id}}</span></h2>
+                <h4>дата создания: {{reservation.created_at}}</h4>
+            </div>
+            <div class="task-menu-wrapper">
+                <div class="task-border"></div>
+                <div class="task-btn-wrappers">
+                    <h4>Статус заказа</h4>
+                    <div class="task-btn-flex">
+                        <button class="task-btns">
+                            <span>СТАТУС ОПЛАТЫ</span>
+                            <span class="btn-flexes">
+                                <span>Частично оплачен</span>
+                                <img src="./assets/img/down-icon.png" alt="down-icon">
+                            </span>
+                        </button>
+                        <button class="task-btns white-btn">
+                            <span>СТАТУС ОПЛАТЫ</span>
+                            <span class="btn-flexes">
+                                <span>Частично оплачен</span>
+                            </span>
+                        </button>
+                        <button class="task-btns white-btn">
+                            <span>СТАТУС ОПЛАТЫ</span>
+                            <span class="btn-flexes">
+                                <span>Частично оплачен</span>
+                            </span>
+                        </button>
+                        <button class="task-btns green-btn">
+                            <span>СТАТУС ОПЛАТЫ</span>
+                            <span class="btn-flexes">
+                                <span>Частично оплачен</span>
+                                <img src="./assets/img/down-icon.png" alt="down-icon">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="main-task">
+                    <h4>Детали заказа</h4>
+                    <div class="task-bar"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table card-table table-vcenter text-nowrap datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                                aria-label="Select all invoices"></th>
+                                        <th class="w-1">No.
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
+                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M6 15l6 -6l6 6"></path>
+                                            </svg>
+                                        </th>
+                                        <th>Нуменклатура</th>
+                                        <th>Даты</th>
+                                        <th>Цена руб.</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {%for object in order%}
+
+                                    <tr>
+                                        <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                                aria-label="Select invoice">
+                                        </td>
+                                        <td>
+                                            <span class="text-muted">{{object.id}}</span>
+                                        </td>
+                                        <td>
+                                            <div class="hotel-flex">
+                                                <img src="{{object.object.photo.url}}" alt="hotel">
+                                                <h4>{{object.object.name}}</h4>
+                                            </div>
+                                        <td>
+                                            <div class="hotel-flex">
+                                                <h4>{{object.check_in}} - {{object.check_out}}</h4>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{object.object.price}}
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        var block = document.getElementById("block");
+                        block.scrollTop = block.scrollHeight;
+                    </script>
+
+                    <div class="task-form">
+                        <form action="" method="post">
+                            <!--                                                    {%csrf_token%}-->
+                            <!--                                                    {{edit_form.guest_first_name}}-->
+                            <!--                                                    <button type="submit">Изменить</button>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

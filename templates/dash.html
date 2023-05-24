@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{%static 'assets/css/style.css'%}">
 
   <style>
-   /*@import url('https://rsms.me/inter/inter.css');*/
+    /*@import url('https://rsms.me/inter/inter.css');*/
 
     :root {
       --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
@@ -196,12 +196,12 @@
 
 
       <div class="nav_links">
-<!--        <div class="nav_ active">-->
-<!--          <a href="{% url 'objects' %}">-->
-<!--            <img class="first" src="{%static 'assets/img/Website Analytics.png'%}" alt="first">-->
-<!--            <img class="last" src="{%static 'assets/img/Website Analytics (1).png'%}" alt="last">-->
-<!--          </a>-->
-<!--        </div>-->
+        <!--        <div class="nav_ active">-->
+        <!--          <a href="{% url 'objects' %}">-->
+        <!--            <img class="first" src="{%static 'assets/img/Website Analytics.png'%}" alt="first">-->
+        <!--            <img class="last" src="{%static 'assets/img/Website Analytics (1).png'%}" alt="last">-->
+        <!--          </a>-->
+        <!--        </div>-->
         <div class="nav_">
           <a href="{%url 'reservations'%}">
             <img class="first" src="{%static 'assets/img/Submit Document.png'%}" alt="first">
@@ -213,16 +213,16 @@
             <img class="first" src="{%static 'assets/img/List Of Parts.png'%}" alt="first">
             <img class="last" src="{%static 'assets/img/List Of Parts (2).png'%}" alt="last"></a>
         </div>
-<!--        <div class="nav_"><a href="users.html">-->
-<!--            <img class="first" src="{%static 'assets/img/Select Users.png'%}" alt="first">-->
-<!--            <img class="last" src="{%static 'assets/img/Select Users (1).png'%}" alt="last"></a>-->
-<!--        </div>-->
+        <!--        <div class="nav_"><a href="users.html">-->
+        <!--            <img class="first" src="{%static 'assets/img/Select Users.png'%}" alt="first">-->
+        <!--            <img class="last" src="{%static 'assets/img/Select Users (1).png'%}" alt="last"></a>-->
+        <!--        </div>-->
         <div class="nav_"><a href="{%url 'objects'%}">
             <img class="first" src="{%static 'assets/img/Condo.png'%}" alt="">
             <img class="last" src="{%static 'assets/img/Condo (1).png'%}" alt=""></a></div>
-<!--        <div class="nav_"><a href="./settings.html">-->
-<!--            <img class="first" src="{%static 'assets/img/Gear.png'%}" alt="">-->
-<!--            <img class="last" src="{%static 'assets/img/Settings (1).png'%}" alt=""></a></div>-->
+        <!--        <div class="nav_"><a href="./settings.html">-->
+        <!--            <img class="first" src="{%static 'assets/img/Gear.png'%}" alt="">-->
+        <!--            <img class="last" src="{%static 'assets/img/Settings (1).png'%}" alt=""></a></div>-->
       </div>
 
 
@@ -236,17 +236,19 @@
             <div class="row g-2 align-items-center">
               <div class="page_title_content">
                 {%if back_button %}
-                  <button onclick="history.go(-1)"><img src="{%static 'assets/img/back_arrow.svg'%}" alt=""></button>
+                <a href="{% url 'tasks' %}">
+                  <button><img src="{%static 'assets/img/back_arrow.svg'%}" alt=""></button>
+                </a>
                 {%endif%}
-                              <div class="col">
-                <!-- Page pre-title -->
-                <div class="page-pretitle">
-                  Навигация
+                <div class="col">
+                  <!-- Page pre-title -->
+                  <div class="page-pretitle">
+                    Навигация
+                  </div>
+                  <h2 class="page-title">
+                    {{title_page}}
+                  </h2>
                 </div>
-                <h2 class="page-title">
-                  {{title_page}}
-                </h2>
-              </div>
               </div>
 
             </div>

@@ -5,19 +5,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="padding: 12px 0px 0px 0px;">
-                    <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs"
-                        role="tablist"
+                    <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs" role="tablist"
                         style="justify-content:center;background: #FFFFFF;padding: 12px 0px 0px 0px;">
                         <li class="nav-item" role="presentation">
-                            <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab"
-                                aria-selected="true" role="tab">
+                            <a href="#tabs-home-9" class="nav-link active" data-bs-toggle="tab" aria-selected="true"
+                                role="tab">
 
                                 My tasks {{my_tasks_count}}
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="#tabs-profile-9" class="nav-link" data-bs-toggle="tab"
-                                aria-selected="false" role="tab" tabindex="-1">
+                            <a href="#tabs-profile-9" class="nav-link" data-bs-toggle="tab" aria-selected="false"
+                                role="tab" tabindex="-1">
 
 
                                 All tasks {{count_tasks}}
@@ -34,27 +33,20 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Active Tasks {{my_tasks_count}}</h3>
                                     </div>
-                                    <div class="table-responsive"style="height:70vh;">
-                                        <table
-                                            class="table card-table table-vcenter text-nowrap datatable style_table">
+                                    <div class="table-responsive" style="height:70vh;">
+                                        <table class="table card-table table-vcenter text-nowrap datatable style_table">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-1"><input
-                                                            class="form-check-input m-0 align-middle"
-                                                            type="checkbox"
-                                                            aria-label="Select all invoices">
+                                                    <th class="w-1"><input class="form-check-input m-0 align-middle"
+                                                            type="checkbox" aria-label="Select all invoices">
                                                     </th>
                                                     <th class="w-1">No.
                                                         <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="icon icon-sm icon-thick"
-                                                            width="24" height="24"
-                                                            viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none"
-                                                                d="M0 0h24v24H0z" fill="none">
+                                                            class="icon icon-sm icon-thick" width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
                                                             </path>
                                                             <path d="M6 15l6 -6l6 6"></path>
                                                         </svg>
@@ -66,43 +58,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {%for task in my_tasks %}
+                                                {%for task in my_tasks %}
                                                 <tr>
-                                                    <td><input
-                                                            class="form-check-input m-0 align-middle"
-                                                            type="checkbox"
+                                                    <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                                             aria-label="Select invoice"></td>
                                                     <td><span class="text-muted">{{task.id}}</span>
                                                     </td>
-                                                    <td><a href="{{task.executor.get_absolute_url}}"
-                                                            class="text-reset" tabindex="-1">
+                                                    <td><a href="{{task.executor.get_absolute_url}}" class="text-reset"
+                                                            tabindex="-1">
                                                             {{task.executor.first_name}}</a></td>
                                                     <td>
                                                         <a href="{{task.get_absolute_url}}">{{task.title}}</a>
                                                     </td>
                                                     <td>
-                                                        <a href="{{task.get_absolute_url}}">{{task.text|truncatewords:6}}</a>
+                                                        <a
+                                                            href="{{task.get_absolute_url}}">{{task.text|truncatewords:6}}</a>
                                                     </td>
 
                                                     <td class="text-end">
                                                         <span class="dropdown">
-                                                            <button
-                                                                class="btn dropdown-toggle align-text-top"
+                                                            <button class="btn dropdown-toggle align-text-top"
                                                                 data-bs-boundary="viewport"
                                                                 data-bs-toggle="dropdown">Actions</button>
-                                                            <div
-                                                                class="dropdown-menu dropdown-menu-end">
+                                                            <div class="dropdown-menu dropdown-menu-end">
                                                                 <a class="dropdown-item"
                                                                     href="{{task.get_absolute_url}}">
                                                                     Open
                                                                 </a>
-                                                                <a class="dropdown-item"
-                                                                    href="#">
+                                                                <a class="dropdown-item" href="#">
                                                                     Done
                                                                 </a>
                                                                 {%if request.user.type == 'AD'%}
-                                                                <a class="dropdown-item"
-                                                                    href="#">
+                                                                <a class="dropdown-item" href="#">
                                                                     Delete
                                                                 </a>
                                                                 {%endif%}
@@ -110,7 +97,7 @@
                                                         </span>
                                                     </td>
                                                 </tr>
-                                            {% endfor %}
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -126,27 +113,20 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Active Tasks {{count_tasks}}</h3>
                                     </div>
-                                    <div class="table-responsive"style="height:70vh;">
-                                        <table
-                                            class="table card-table table-vcenter text-nowrap datatable style_table">
+                                    <div class="table-responsive" style="height:70vh;">
+                                        <table class="table card-table table-vcenter text-nowrap datatable style_table">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-1"><input
-                                                            class="form-check-input m-0 align-middle"
-                                                            type="checkbox"
-                                                            aria-label="Select all invoices">
+                                                    <th class="w-1"><input class="form-check-input m-0 align-middle"
+                                                            type="checkbox" aria-label="Select all invoices">
                                                     </th>
                                                     <th class="w-1">No.
                                                         <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="icon icon-sm icon-thick"
-                                                            width="24" height="24"
-                                                            viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none"
-                                                                d="M0 0h24v24H0z" fill="none">
+                                                            class="icon icon-sm icon-thick" width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
                                                             </path>
                                                             <path d="M6 15l6 -6l6 6"></path>
                                                         </svg>
@@ -158,24 +138,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {%for task in all_tasks %}
+                                                {%for task in all_tasks %}
 
-                                                                                                                                                                                                <tr>
+                                                <tr>
                                                     <td>
-                                                        <input
-                                                            class="form-check-input m-0 align-middle"
-                                                            type="checkbox"
+                                                        <input class="form-check-input m-0 align-middle" type="checkbox"
                                                             aria-label="Select invoice">
                                                     </td>
                                                     <td>
                                                         <span class="text-muted">{{task.id}}</span>
                                                     </td>
                                                     <td>
-                                                        <a href="./applications.html"
-                                                            class="text-reset" tabindex="-1">{{task.executor.first_name}}
-                                                    </td><td>
+                                                        <a href="{{task.executor.get_absolute_url}}" class="text-reset"
+                                                            tabindex="-1">{{task.executor.first_name}}</a>
+                                                    </td>
+                                                    <td>
 
-                                                        {{task.title}}
+                                                        <a href="{% url 'task' task.id %}">{{task.title}}</a>
 
                                                     </td>
                                                     <td>
@@ -184,23 +163,20 @@
 
                                                     <td class="text-end">
                                                         <span class="dropdown">
-                                                            <button
-                                                                class="btn dropdown-toggle align-text-top"
+                                                            <button class="btn dropdown-toggle align-text-top"
                                                                 data-bs-boundary="viewport"
                                                                 data-bs-toggle="dropdown">Actions</button>
-                                                            <div
-                                                                class="dropdown-menu dropdown-menu-end">
+                                                            <div class="dropdown-menu dropdown-menu-end">
                                                                 <a class="dropdown-item"
-                                                                    href="#">
+                                                                    href="{{task.get_absolute_url}}">
                                                                     Open
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                    href="#">
+                                                                    href="{% url 'task_done' task.id %}">
                                                                     Done
                                                                 </a>
                                                                 {%if request.user.type == 'AD'%}
-                                                                <a class="dropdown-item"
-                                                                    href="#">
+                                                                <a class="dropdown-item" href="#">
                                                                     Delete
                                                                 </a>
                                                                 {%endif%}
@@ -208,7 +184,7 @@
                                                         </span>
                                                     </td>
                                                 </tr>
-                                            {%endfor%}
+                                                {%endfor%}
                                             </tbody>
                                         </table>
                                     </div>
