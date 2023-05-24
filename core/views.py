@@ -34,7 +34,7 @@ def dash_info(request):
             'finish_orders': orders.filter(status_order=True, status_closed=False).count(),
             'closed_orders': orders.filter(status_closed=True).count(),
             'back_button': False,
-            'tasks': tasks.order_by('-date_created')[:5],
+            'tasks': tasks.filter(status=False).order_by('-date_created')[:5],
             'reservations': orders.order_by('-created_at')[:5],
         }
         return render(request, template, context)
