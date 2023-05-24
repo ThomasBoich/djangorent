@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from .forms import TaskCommentForm
@@ -14,7 +15,7 @@ def all_tasks(request):
         'title_page': f'Tasks {tasks.count()}',
         'all_tasks': tasks,
         'count_tasks': tasks.count(),
-        'my_tasks': tasks.filter(executor=request.user),
+        'my_tasks': tasks.filter(Q(executor=request.user), Q(status=False)),
         'my_tasks_count': tasks.filter(executor=request.user).count(),
         'back_button': False,
     }
