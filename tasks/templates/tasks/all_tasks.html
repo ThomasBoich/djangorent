@@ -81,7 +81,7 @@
                                                         <a href="{{task.get_absolute_url}}">{{task.title}}</a>
                                                     </td>
                                                     <td>
-                                                        <a href="{{task.get_absolute_url}}">{{task.text}}</a>
+                                                        <a href="{{task.get_absolute_url}}">{{task.text|truncatewords:6}}</a>
                                                     </td>
 
                                                     <td class="text-end">
