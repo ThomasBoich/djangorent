@@ -34,10 +34,10 @@ class AppRegistration(CreateView):
 def user_info(request, user_id):
     user = request.user
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+        form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('user_info', user_id=user.id)
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {

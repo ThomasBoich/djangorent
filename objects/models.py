@@ -7,35 +7,46 @@ from users.models import CustomUser
 
 # Create your models here.
 class Object(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Name')
+    name_ru = models.CharField(max_length=255, verbose_name='Ru Name', blank=True, null=True)
+    name_en = models.CharField(max_length=255, verbose_name='En Name', blank=True, null=True)
     #photo = models.FileField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
     photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
-    features = models.ManyToManyField('Features', blank=True, related_name='hotels', related_query_name='hotel', verbose_name='Options')
-    text = models.TextField(default='', verbose_name='Text')  # null = True, blank = True,
-    slug = AutoSlugField(populate_from='name', blank=True, null=True)
-    description = models.TextField(blank=True)
+    features_ru = models.ManyToManyField('Features', blank=True, related_name='hotels_ru', related_query_name='hotel_ru', verbose_name='Ru Options')
+    features_en = models.ManyToManyField('Features', blank=True, related_name='hotels_en', related_query_name='hotel_en', verbose_name='En Options')
+    text_ru = models.TextField(default='', verbose_name='Ru Text')  # null = True, blank = True,
+    text_en = models.TextField(default='', verbose_name='En Text')  # null = True, blank = True,
+    slug = AutoSlugField(populate_from='name_en', blank=True, null=True)
+    description_ru = models.TextField(blank=True)
+    description_en = models.TextField(blank=True)
     address = models.CharField(max_length=255, default='')
-    city = models.ForeignKey('City', default='', on_delete=models.CASCADE, blank=True, null=True)
-    country = models.ForeignKey('Country', default='', on_delete=models.CASCADE, blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    coordinates = models.CharField(max_length=255, default='')
+    bad_ccordinates = models.CharField(max_length=255, default='')
+    city_ru = models.ForeignKey('City', related_name='city_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
+    city_en = models.ForeignKey('City', related_name='city_en', default='', on_delete=models.CASCADE, blank=True, null=True)
+    country_ru = models.ForeignKey('Country', related_name='country_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
+    country_en = models.ForeignKey('Country', related_name='country_en', default='', on_delete=models.CASCADE, blank=True, null=True)
+    price_ru = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    price_en = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     rating = models.IntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    
     def __str__(self):
-        return self.name
+        return self.name_en
 
     class Meta:
         verbose_name = 'Object'
         verbose_name_plural = 'Objects'
-        ordering = ['name']
+        ordering = ['name_en']
 
     def get_absolute_url(self):
         return reverse('object_detail', args=[self.slug])
 
 
 class Features(models.Model):
-    title = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
+    title_ru = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
+    title_en = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
     icon = models.ImageField(blank=True, null=True, verbose_name="Icon", upload_to="hotels/features/icons/")
 
     def __str__(self):
@@ -44,30 +55,34 @@ class Features(models.Model):
     class Meta:
         verbose_name = 'Option'
         verbose_name_plural = 'Options'
-        ordering = ['title']
+        ordering = ['title_en']
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Country name')
-    city = models.ManyToManyField('City', verbose_name='Countries', blank=True, null=True)
+    name_ru = models.CharField(max_length=100, verbose_name='Ru Country name', blank=True, null=True)
+    name_en = models.CharField(max_length=100, verbose_name='En Country name', blank=True, null=True)
+    city_ru = models.ManyToManyField('City', related_name='county_city_ru', verbose_name='Ru Countries', blank=True, null=True)
+    city_en = models.ManyToManyField('City', related_name='county_city_en', verbose_name='En Countries', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
 
     def __str__(self):
-        return self.name
+        return self.name_en
 
 
 class City(models.Model):
-    name = models.CharField(max_length=100, verbose_name='City name')
+    name_ru = models.CharField(max_length=100, verbose_name='Ru City name',blank=True, null=True)
+    name_en = models.CharField(max_length=100, verbose_name='En City name',blank=True, null=True)
 
     class Meta:
         verbose_name = 'City'
         verbose_name_plural = 'Cities'
 
     def __str__(self):
-        return self.name
+        return self.name_en
+
 
 
 class Reservation(models.Model):
@@ -119,7 +134,7 @@ class Reservation(models.Model):
     status_closed = models.BooleanField(default=False, verbose_name='Closed', blank=True)
 
     def __str__(self):
-        return f"{self.guest_last_name} - {self.object.name} ({self.check_in} to {self.check_out})"
+        return f"{self.guest_last_name} - {self.object.name_en} ({self.check_in} to {self.check_out})"
 
     class Meta:
         verbose_name = 'Reservation'

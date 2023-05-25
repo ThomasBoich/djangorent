@@ -95,7 +95,8 @@
                                     </div>
                                 </button>
                             </div>
-                            <div id="faq-{{task.id}}}-{{task.id}}}" class="accordion-collapse collapse" role="tabpanel"
+                            <div id="faq-{{task.id}}}-{{task.id}}}"
+                                class="accordion-collapse collapse taskid-{{task.id}}" role="tabpanel"
                                 data-bs-parent="#faq-{{task.id}}}">
                                 <div class="accordion-body pt-0">
                                     <div style="text-align: left;">
@@ -216,15 +217,43 @@
                                             </div>
                                             {%if task.status == True%}
                                             <div class="mt-3">
-                                                <a href="{%url 'task_done' task.id%}" class="btn btn-danger"
-                                                    target="_blank" rel="noopener">Resume execution</a>
+                                                <!-- <a href="{%url 'task_reservation_done' task.id reservation.id%}"
+                                                    class="btn btn-danger" target="_blank" rel="noopener">Resume
+                                                    execution</a> -->
+                                                <button type="button" class="btn btn-primary" id="task-done-btn">Resume
+                                                    execution</button>
                                             </div>
 
                                             {%else%}
-                                            <div class="mt-3">
-                                                <a href="{%url 'task_done' task.id%}" class="btn btn-primary"
-                                                    target="_blank" rel="noopener">Done</a>
-                                            </div>
+                                            <button type="button" class="btn btn-primary"
+                                                id="task-done-btn">Done</button>
+
+                                            <script>
+                                                // Получаем ссылку на кнопку
+                                                const taskDoneBtn = document.getElementById('task-done-btn');
+
+                                                // Добавляем обработчик события на клик по кнопке
+                                                taskDoneBtn.addEventListener('click', () => {
+                                                    // Отправляем AJAX-запрос
+                                                    const xhr = new XMLHttpRequest();
+                                                    xhr.open('GET', `{% url 'task_reservation_done' task.id reservation.id %}`);
+                                                    xhr.onload = () => {
+                                                        if (xhr.status === 200) {
+                                                            // Обрабатываем успешный ответ
+                                                            alert('Задача выполнена!');
+
+                                                            // Удаляем элемент списка задач
+                                                            const taskElement = document.getElementsByClassName('taskid-' + task.id);
+                                                            taskElement.parentNode.removeChild(taskElement);
+                                                        } else {
+                                                            // Обрабатываем ошибку
+                                                            alert('Ошибка выполнения задачи!');
+                                                        }
+                                                    };
+                                                    xhr.send();
+                                                });
+                                            </script>
+
                                             {%endif%}
 
                                         </div>

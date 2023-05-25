@@ -5,9 +5,9 @@ from .models import CustomUser, Profile
 
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Электронная почта')
-    first_name = forms.CharField(required=True, label='Имя')
-    last_name = forms.CharField(required=True, label='Фамилия')
+    email = forms.EmailField(required=False, label='Электронная почта')
+    first_name = forms.CharField(required=False, label='Имя')
+    last_name = forms.CharField(required=False, label='Фамилия')
     patronymic = forms.CharField(required=False, label='Отчество')
     phone = forms.CharField(required=False, label='Телефон')
 
@@ -24,16 +24,16 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    email = forms.EmailField(required=True, label='Электронная почта',widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(required=True, label='Имя',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(required=True, label='Фамилия',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=False, label='Электронная почта',widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(required=False, label='Имя',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(required=False, label='Фамилия',widget=forms.TextInput(attrs={'class': 'form-control'}))
     patronymic = forms.CharField(required=False, label='Отчество',widget=forms.TextInput(attrs={'class': 'form-control'}))
     phone = forms.CharField(required=False, label='Телефон',widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = CustomUser
         fields = ('email', 'first_name', 'last_name', 'patronymic', 'phone', 'photo', 'type')
-
+        exclude = ('password','type')
     def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
         self.fields['photo'].required = False

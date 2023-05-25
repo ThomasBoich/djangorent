@@ -8,9 +8,17 @@ from .models import Object, Features, Reservation, Country, City
 
 class ObjectAdmin(admin.ModelAdmin):
     form = addObjectForm
-    list_display = ('name', 'photo_img', 'slug')
-    search_fields = ('name',)
-    prepopulated_fields = {'slug': ('name',)}
+    fields = (
+        'name_ru', 'name_en',
+        'photo','features_ru',
+        'features_en','text_ru',
+        'text_en','description_ru',
+        'description_en','address','coordinates','bad_ccordinates',
+        'city_ru','city_en','country_ru','country_en',
+        'price_ru','price_en','rating')
+    list_display = ('name_en', 'photo_img', 'slug')
+    search_fields = ('name_en',)
+    prepopulated_fields = {'slug': ('name_en',)}
 
     # def save_model(self, request, obj, form, change):
     #     if not obj.pk:
@@ -26,16 +34,16 @@ class ObjectAdmin(admin.ModelAdmin):
     photo_img.short_description = 'Photo'
 
 class FeaturesAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-    search_fields = ('title',)
+    list_display = ('title_en',)
+    search_fields = ('title_en',)
 
 class CountryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+    list_display = ('name_en',)
+    search_fields = ('name_en',)
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+    list_display = ('name_en',)
+    search_fields = ('name_en',)
 
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ('guest_last_name', 'guest_first_name', 'object', 'check_in', 'check_out')

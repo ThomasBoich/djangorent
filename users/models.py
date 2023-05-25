@@ -10,18 +10,18 @@ from django.db.models.signals import post_save
 from .managers import CustomUserManager
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=254, unique=True, verbose_name='Email adress')
+    email = models.EmailField(max_length=254, unique=True, verbose_name='Email adress', blank=True, null=True)
     first_name = models.CharField(u"First Name", max_length=100, blank=True, null=True)
     last_name = models.CharField(u"Last Name", max_length=100, blank=True, null=True)
     patronymic = models.CharField(u"Patronymic", max_length=100, blank=True, null=True)
     user_profile_id = models.IntegerField(blank=True, verbose_name='ID User', null=True)
     phone = models.CharField(max_length=24, blank=True, null=True, verbose_name='Phone')
-    photo = models.ImageField(upload_to='midia/users/%Y/%m/%d/', blank=True, default='../static/assets/img/default_avatar.png',
+    photo = models.ImageField(upload_to='midia/users/%Y/%m/%d/', blank=True, null=True, default='../static/assets/img/default_avatar.png',
                               verbose_name='Avatar')
-    is_active = models.BooleanField(default=True, verbose_name='Activate')
-    is_admin = models.BooleanField(default=False, verbose_name='Administrator')
-    is_staff = models.BooleanField(_('staff status'), default=False)
-    is_superuser = models.BooleanField(_('super user'), default=False)
+    is_active = models.BooleanField(default=True, verbose_name='Activate', blank=True, null=True)
+    is_admin = models.BooleanField(default=False, verbose_name='Administrator', blank=True, null=True)
+    is_staff = models.BooleanField(_('staff status'), default=False, blank=True, null=True)
+    is_superuser = models.BooleanField(_('super user'), default=False, blank=True, null=True)
     date_joined = models.DateTimeField(u'date joined', blank=True, null=True, default=timezone.now)
     last_login = models.DateTimeField(u'last login', blank=True, null=True)
 

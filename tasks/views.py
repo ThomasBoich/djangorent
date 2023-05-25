@@ -49,3 +49,15 @@ def task_done(request, task_id):
         task.status = True
         task.save()
         return redirect('task', task_id=task_id)
+
+def task_reservation_done(request, task_id, reservation_id):
+    task = Task.objects.get(id=task_id)
+    reservation = Reservation.objects.get(id=reservation_id)
+    if task.status == True:
+        task.status = False
+        task.save()
+        return redirect('tasks_reservation', reservation_id=reservation_id)
+    else:
+        task.status = True
+        task.save()
+        return redirect('tasks_reservation', reservation_id=reservation_id)

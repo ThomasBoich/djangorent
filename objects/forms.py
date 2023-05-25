@@ -9,7 +9,7 @@ class addObjectForm(forms.ModelForm):
 
     class Meta:
         model = Object
-        fields = ['name', 'photo', 'features', 'text', 'description', 'address', 'city', 'country', 'price', 'rating']
+        fields = ['name_ru', 'photo', 'features_ru', 'text_ru', 'description_ru', 'address', 'city_ru', 'country_ru', 'price_ru', 'name_en', 'photo', 'features_en', 'text_en', 'description_en','city_en', 'country_en', 'price_en', 'rating']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -17,7 +17,7 @@ class addObjectForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-        slug = slugify(unidecode(instance.name))
+        slug = slugify(unidecode(instance.name_en))
         instance.slug = slug
         if commit:
             instance.save()

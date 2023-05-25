@@ -5,14 +5,12 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-
 from chats.models import Chat
 from objects.forms import addObjectForm, ReservationEditForm
 from objects.models import Object, Reservation
 from users.forms import UserUpdateForm
 from users.models import CustomUser
 from tasks.models import Task
-
 
 def all_objects(request):
     if request.user.is_authenticated == True:
@@ -127,7 +125,7 @@ def reservation(request, reservation_id):
         'back_button': True,
         'edit_form': edit_form,
         #'chat': Chat.objects.get(id=reservation_id)
-        'count_tasks': Task.objects.all().count(),
+        'count_tasks': Task.objects.filter(status=False).count(),
     }
     return render(request, 'objects/reservation.html', context)
 
@@ -178,7 +176,7 @@ def tasks_reservation(request, reservation_id):
     # reservation = Reservation.objects.get(id=reservation_id)
     reservation = get_object_or_404(Reservation, id=reservation_id)
     managers = CustomUser.objects.all()
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(status=False)
     
 
     if request.method == 'POST':

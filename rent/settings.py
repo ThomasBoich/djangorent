@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'index',
     'chats',
     'channels',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
