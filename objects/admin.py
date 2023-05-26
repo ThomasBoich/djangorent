@@ -1,9 +1,13 @@
+from admin_actions.admin import ActionsModelAdmin
+#from multiupload.admin import MultiUploadAdminMixin MultiUploadAdminMixin,
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
 from .forms import addObjectForm
 # Register your models here.
-from .models import Object, Features, Reservation, Country, City
+from .models import Object, Features, Reservation, Country, City, ObjectPhoto
+
+class ImageInline(admin.StackedInline):
+    model = ObjectPhoto
 
 
 class ObjectAdmin(admin.ModelAdmin):
@@ -16,10 +20,11 @@ class ObjectAdmin(admin.ModelAdmin):
         'description_en','address','coordinates','bad_ccordinates',
         'city_ru','city_en','country_ru','country_en',
         'price_ru','price_en','rating')
-    list_display = ('name_en', 'photo_img', 'slug')
+    list_display = ('name_en', 'slug')
     search_fields = ('name_en',)
     prepopulated_fields = {'slug': ('name_en',)}
-
+    inlines = [ImageInline]
+    # multiupload_form = ObjectPhotoForm
     # def save_model(self, request, obj, form, change):
     #     if not obj.pk:
     #         obj.sender = request.user
@@ -50,6 +55,7 @@ class ReservationAdmin(admin.ModelAdmin):
     list_filter = ('object', 'check_in', 'check_out')
     search_fields = ('guest_last_name', 'guest_first_name', 'guest_email', 'guest_phone')
 
+admin.site.register(ObjectPhoto)
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Object, ObjectAdmin)
 admin.site.register(Features, FeaturesAdmin)

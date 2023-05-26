@@ -24,6 +24,9 @@ INSTALLED_APPS = [
     'chats',
     'channels',
     'modeltranslation',
+    'django_extensions',
+    'admin_actions',
+    'multiupload',
 ]
 
 MIDDLEWARE = [

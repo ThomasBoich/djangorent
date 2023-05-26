@@ -1,20 +1,20 @@
 {%extends 'dash.html'%}
 
 {%block page_title%}
-    <div class="row g-2 align-items-center">
-        <div class="col">
-            <!-- Page pre-title -->
-            <div class="page-pretitle">
-                Навигация
-            </div>
-            <h2 class="page-title">
-                Add object
-                <a href="{%url 'objects'%}" class="btn btn-success w-20">
-                    Back
-                </a>
-            </h2>
+<div class="row g-2 align-items-center">
+    <div class="col">
+        <!-- Page pre-title -->
+        <div class="page-pretitle">
+            Навигация
         </div>
+        <h2 class="page-title">
+            Add object
+            <a href="{%url 'objects'%}" class="btn btn-success w-20">
+                Back
+            </a>
+        </h2>
     </div>
+</div>
 
 {%endblock%}
 
@@ -25,7 +25,7 @@
     <form id="object-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Send</button>
+        <button type="submit" class="btn btn-success w-20">Add object</button>
     </form>
 </div>
 

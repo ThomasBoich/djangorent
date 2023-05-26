@@ -10,23 +10,24 @@ class Object(models.Model):
     name_ru = models.CharField(max_length=255, verbose_name='Ru Name', blank=True, null=True)
     name_en = models.CharField(max_length=255, verbose_name='En Name', blank=True, null=True)
     #photo = models.FileField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
-    photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
+    #photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
+    photo = models.ManyToManyField('ObjectPhoto', verbose_name='Photos', related_name='Photos', blank=True)
     features_ru = models.ManyToManyField('Features', blank=True, related_name='hotels_ru', related_query_name='hotel_ru', verbose_name='Ru Options')
     features_en = models.ManyToManyField('Features', blank=True, related_name='hotels_en', related_query_name='hotel_en', verbose_name='En Options')
-    text_ru = models.TextField(default='', verbose_name='Ru Text')  # null = True, blank = True,
-    text_en = models.TextField(default='', verbose_name='En Text')  # null = True, blank = True,
+    text_ru = models.TextField(default='', verbose_name='Ru Text', null = True, blank = True,)  #
+    text_en = models.TextField(default='', verbose_name='En Text', null = True, blank = True)  # ,
     slug = AutoSlugField(populate_from='name_en', blank=True, null=True)
     description_ru = models.TextField(blank=True)
     description_en = models.TextField(blank=True)
-    address = models.CharField(max_length=255, default='')
-    coordinates = models.CharField(max_length=255, default='')
-    bad_ccordinates = models.CharField(max_length=255, default='')
+    address = models.CharField(max_length=255, default='', blank=True, null=True)
+    coordinates = models.CharField(max_length=255, default='', blank=True, null=True)
+    bad_ccordinates = models.CharField(max_length=255, default='', blank=True, null=True)
     city_ru = models.ForeignKey('City', related_name='city_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
     city_en = models.ForeignKey('City', related_name='city_en', default='', on_delete=models.CASCADE, blank=True, null=True)
     country_ru = models.ForeignKey('Country', related_name='country_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
     country_en = models.ForeignKey('Country', related_name='country_en', default='', on_delete=models.CASCADE, blank=True, null=True)
-    price_ru = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    price_en = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    price_ru = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    price_en = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     rating = models.IntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -42,6 +43,13 @@ class Object(models.Model):
 
     def get_absolute_url(self):
         return reverse('object_detail', args=[self.slug])
+
+
+class ObjectPhoto(models.Model):
+    object = models.ForeignKey('Object', on_delete=models.CASCADE, related_name='pp', blank=True, null=True)
+    photo = models.ImageField(upload_to='object_photos/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Features(models.Model):

@@ -1,15 +1,32 @@
 from django import forms
+from multiupload.fields import MultiImageField
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.text import slugify
-from .models import Object, Reservation
+from .models import Object, Reservation, ObjectPhoto
 from unidecode import unidecode
+
+
+# class ObjectPhotoForm(forms.ModelForm):
+#     photo = MultiImageField(max_file_size=1024*1024*5, required=False)
+#
+#     class Meta:
+#         model = ObjectPhoto
+#         fields = ('photo',)
 
 
 class addObjectForm(forms.ModelForm):
 
     class Meta:
         model = Object
-        fields = ['name_ru', 'photo', 'features_ru', 'text_ru', 'description_ru', 'address', 'city_ru', 'country_ru', 'price_ru', 'name_en', 'photo', 'features_en', 'text_en', 'description_en','city_en', 'country_en', 'price_en', 'rating']
+        fields = [
+        'name_ru', 'name_en',
+        'photo','features_ru',
+        'features_en','text_ru',
+        'text_en','description_ru',
+        'description_en','address','coordinates','bad_ccordinates',
+        'city_ru','city_en','country_ru','country_en',
+        'price_ru','price_en','rating'
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
