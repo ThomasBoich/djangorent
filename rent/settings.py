@@ -60,7 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rent.wsgi.application'
 
-if DEBUG == True:
+if DEBUG == False:
 
     DATABASES = {
         'default': {
