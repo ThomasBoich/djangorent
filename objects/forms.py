@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django import forms
 from multiupload.fields import MultiImageField
 from django.contrib.auth.forms import UserChangeForm
@@ -6,27 +8,34 @@ from .models import Object, Reservation, ObjectPhoto
 from unidecode import unidecode
 
 
-# class ObjectPhotoForm(forms.ModelForm):
-#     photo = MultiImageField(max_file_size=1024*1024*5, required=False)
-#
-#     class Meta:
-#         model = ObjectPhoto
-#         fields = ('photo',)
+class ObjectPhotoForm(forms.ModelForm):
+    photo = MultiImageField(max_file_size=1024*1024*5, required=False)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.photo:
+            filename = Path(self.instance.photo.name).name
+            self.fields['photo'].label = filename
 
+    class Meta:
+        model = ObjectPhoto
+        fields = ['photo']
+        labels = {'photo': 'Object Photo', 'name': 'Object Photo',}
 
 class addObjectForm(forms.ModelForm):
+    photo = MultiImageField(max_file_size=1024 * 1024 * 5, required=False)
 
     class Meta:
         model = Object
         fields = [
-        'name_ru', 'name_en',
-        'photo','features_ru',
+        'name_ru', 'name_en', 'top_photo',
+        'features_ru',
         'features_en','text_ru',
         'text_en','description_ru',
-        'description_en','address','coordinates','bad_ccordinates',
+        'description_en','address','coordinates_x','coordinates_y','bad_coordinates_x','bad_coordinates_y',
         'city_ru','city_en','country_ru','country_en',
         'price_ru','price_en','rating'
         ]
+        labels = {'name': 'name_en', 'description': 'Description', 'location': 'Location', 'price': 'Price'}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,7 +43,7 @@ class addObjectForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-        slug = slugify(unidecode(instance.name_en))
+        slug = slugify(unidecode(str(instance.name_en)))
         instance.slug = slug
         if commit:
             instance.save()

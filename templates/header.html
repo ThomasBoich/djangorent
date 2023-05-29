@@ -1,0 +1,36 @@
+<!DOCTYPE html>{%load static%}
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'assets/css/style.css'%}" />
+        <link
+      rel="stylesheet"
+      href="{%static '/assets/libs/simple-adaptive-slider/simple-adaptive-slider.css'%}"
+    />
+    <!-- Подключаем JS слайдера -->
+    <script
+      defer
+      src="{%static 'assets/libs/simple-adaptive-slider/simple-adaptive-slider.min.js'%}"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // инициализация слайдера
+        new ItcSimpleSlider(".itcss", {
+          loop: true,
+          //   autoplay: true,
+          swipe: true,
+        });
+
+        // var slider = new SimpleAdaptiveSlider(".slider", {
+        //   loop: false,
+        //   autoplay: false,
+        //   interval: 5000,
+        //   swipe: true,
+        // });
+      });
+    </script>
+  </head>
+  <body style="background-color: #FFFFFF;">

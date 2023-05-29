@@ -1,88 +1,18 @@
-<!DOCTYPE html>{%load static%}
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{%static 'assets/css/style.css'%}" />
-    <!-- Подключаем CSS слайдера -->
-    <link
-      rel="stylesheet"
-      href="{%static '/assets/libs/simple-adaptive-slider/simple-adaptive-slider.css'%}"
-    />
-    <!-- Подключаем JS слайдера -->
-    <script
-      defer
-      src="{%static 'assets/libs/simple-adaptive-slider/simple-adaptive-slider.min.js'%}"
-    ></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // инициализация слайдера
-        new ItcSimpleSlider(".itcss", {
-          loop: true,
-          //   autoplay: true,
-          swipe: true,
-        });
-
-        // var slider = new SimpleAdaptiveSlider(".slider", {
-        //   loop: false,
-        //   autoplay: false,
-        //   interval: 5000,
-        //   swipe: true,
-        // });
-      });
-    </script>
-  </head>
-
-  <body>
-    <header>
-      <div class="nav_layer">
-        <div class="nav">
-          <div class="nav_items">
-            <div class="logotype">
-              <a href="/"><img src="{%static 'assets/img/logotype.png'%}" alt="" /></a>
-            </div>
-            <div class="navigation">
-              <ul class="navigation_navigation">
-                <li><a href="/">Главная</a></li>
-                <li><a href="">Контакты</a></li>
-                <li><a href="">Парнерам</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="nav_item">
-            <div class="navigation">
-              <ul>
-                <li>
-                  <a href=""
-                    >Рус <img src="assets/img/Expand Arrow.png" alt=""
-                  /></a>
-                </li>
-                <li>
-                  <a href=""
-                    ><img src="assets/img/Favorite.png" alt="" /> Избранное</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+{%load static%}
+{%include 'header.html'%}
+{%include 'menu.html' %}
 
     <div class="top_image_layer">
       <!-- <img src="assets/img/topimg.png" alt="" /> -->
       <!-- <div class="top_image"></div> -->
       <div class="itcss">
         <div class="itcss__wrapper">
+
           <div class="itcss__items">
             <div class="itcss__item">
-              <img src="{%static 'assets/img/topimg.png'%}" alt="" />
+              <img src="{{object.top_photo.url}}" alt="" />
             </div>
-            <div class="itcss__item">
-              <img src="{%static 'assets/img/topimg.png'%}" alt="" />
-            </div>
+
           </div>
         </div>
         <button
@@ -96,17 +26,62 @@
           data-slide="next"
         ></button>
       </div>
+
     </div>
+    {% for photo in object.photo.all %}
+        <img src="{{ photo.photo.url }}" alt="Object photo">
+    {% empty %}
+        <p>No photos available.</p>
+    {% endfor %}
     <div class="content-layer">
       <div class="content hotel">
-        <div class="hotel_info">
-          <div class="hotel_title">
-            <h1>{{object.name_en}}</h1>
-            <p><img src="assets/img/Star.png" alt="" />4.90</p>
+                <form class="hotel_order">
+          <div class="hotel_order_content">
+            <div class="hotel_order_details">
+              <label for="startDate" data-input="date">
+                <span>прибытие</span>
+                <input id="startDate" type="date" value="2023-05-28" />
+              </label>
+              <label for="endDate" data-input="date">
+                <span>выезд</span>
+                <input id="endDate" type="date" value="2023-05-28" />
+              </label>
+              <div data-input="select">
+                <span>Для кого</span>
+                <select>
+                  <option value="test_ok">7 гостей</option>
+                  <option value="test_2">8 гостей</option>
+                  <option value="test_3">9 гостей</option>
+                </select>
+              </div>
+            </div>
+            <div class="hotel_order_result">
+              <div>
+                <span>Срок аренды:</span>
+                <h4>1 день</h4>
+              </div>
+              <div>
+                <span>Итого:</span>
+                <h4>140 000 р.</h4>
+              </div>
+            </div>
           </div>
+          <button>Забронировать</button>
+        </form>
+
+
+        <div class="hotel_info">
+          {{photos.photo.all}}
+          <div class="hotel_title">
+
+            <h1>{{object.name_en}}</h1>
+            <p><img src="assets/img/Star.png" alt="" />{{object.rating}}</p>
+          </div>
+
+
           <div class="hotel_layer">
             <p>
-            {{object.text_en}}
+              {{object.text_en}}
             </p>
 
             <div class="hotel_facilities">
@@ -261,66 +236,37 @@
           </div>
           <div class="hotel_search">
             <h2>Место на карте</h2>
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?um=constructor%3A98c43ec03b0163a28910b592516e7f1ae2cdaea885791cf1a5d489d47ae5adae&amp;source=constructor"
-              width="100%"
-              height="415"
-              frameborder="0"
-            ></iframe>
+<iframe
+    src="https://yandex.ru/map-widget/v1/?um=constructor%3A98c43ec03b0163a28910b592516e7f1ae2cdaea885791cf1a5d489d47ae5adae&amp;source=constructor&ll={{ bad_coordinates_x }},{{ bad_coordinates_y }}&z=14"
+    width="100%"
+    height="415"
+    frameborder="0"
+></iframe>
           </div>
         </div>
-        <form class="hotel_order">
-          <h2>Бронирование</h2>
-          <div class="hotel_order_content">
-            <div class="hotel_order_details">
-              <label for="startDate" data-input="date">
-                <span>прибытие</span>
-                <input id="startDate" type="date" value="2023-05-28" />
-              </label>
-              <label for="endDate" data-input="date">
-                <span>выезд</span>
-                <input id="endDate" type="date" value="2023-05-28" />
-              </label>
-              <div data-input="select">
-                <span>Для кого</span>
-                <select>
-                  <option value="test_ok">7 гостей</option>
-                  <option value="test_2">8 гостей</option>
-                  <option value="test_3">9 гостей</option>
-                </select>
-              </div>
-            </div>
-            <div class="hotel_order_result">
-              <div>
-                <span>Срок аренды:</span>
-                <h4>1 день</h4>
-              </div>
-              <div>
-                <span>Итого:</span>
-                <h4>140 000 р.</h4>
-              </div>
-            </div>
-          </div>
-          <button>Забронировать</button>
-        </form>
+
       </div>
     </div>
-    <div class="content">
+    <div class="content catalog" style="margin: auto auto 60px;">
       <div class="title">
         <h2>Популярно в этом сезоне</h2>
-        <div class="button">66</div>
       </div>
       <div class="item_content">
-        <div class="item_layer">
+
+
+
+        {%for object in top_season%}
+                <div class="item_layer">
           <div class="item">
             <div class="item_slider">
+              <a href="{%url 'hotel' object.id%}">
               <div class="item_slider_layer">
                 <div class="item_info">
-                  <h2>Мариот Отель</h2>
-                  <p>Россия, Москва</p>
+                  <h2>{{object.name_en}}</h2>
                 </div>
+                 <img src="{{object.top_photo.url}}" alt="" />
               </div>
-              <img src="assets/img/slider_img.png" alt="" />
+</a>
             </div>
           </div>
           <div class="item_nav">
@@ -336,113 +282,14 @@
               </div>
             </div>
             <div class="price">
-              <p>7 969 р. \ сут</p>
-              от 5 969 р. \ сут.
+              {{object.price_en}} $. \ day
             </div>
           </div>
         </div>
-        <div class="item_layer">
-          <div class="item">
-            <div class="item_slider">
-              <div class="item_slider_layer">
-                <div class="item_info">
-                  <h2>Мариот Отель</h2>
-                  <p>Россия, Москва</p>
-                </div>
-              </div>
-              <img src="assets/img/slider_img.png" alt="" />
-            </div>
-          </div>
-          <div class="item_nav">
-            <div class="item_info_content">
-              <div class="item_info_small">
-                <img src="assets/img/Bathtub.png" alt="" />1
-              </div>
-              <div class="item_info_small">
-                <img src="assets/img/Bed.png" alt="" />1
-              </div>
-              <div class="item_info_small">
-                <img src="assets/img/User Account.png" alt="" />1
-              </div>
-            </div>
-            <div class="price">
-              <p>7 969 р. \ сут</p>
-              от 5 969 р. \ сут.
-            </div>
-          </div>
-        </div>
-        <div class="item_layer">
-          <div class="item">
-            <div class="item_slider">
-              <div class="item_slider_layer">
-                <div class="item_info">
-                  <h2>Мариот Отель</h2>
-                  <p>Россия, Москва</p>
-                </div>
-              </div>
-              <img src="assets/img/slider_img.png" alt="" />
-            </div>
-          </div>
-          <div class="item_nav">
-            <div class="item_info_content">
-              <div class="item_info_small">
-                <img src="assets/img/Bathtub.png" alt="" />1
-              </div>
-              <div class="item_info_small">
-                <img src="assets/img/Bed.png" alt="" />1
-              </div>
-              <div class="item_info_small">
-                <img src="assets/img/User Account.png" alt="" />1
-              </div>
-            </div>
-            <div class="price">
-              <p>7 969 р. \ сут</p>
-              от 5 969 р. \ сут.
-            </div>
-          </div>
-        </div>
+        {%empty%}
+        {%endfor%}
       </div>
     </div>
-    <footer>
-      <div class="footer_layer">
-        <div class="footer">
-          <div class="footer_left">
-            <h2>Logotype</h2>
-            <p>
-              Лидер онлайн-недвижимости России** по количеству посещений сайта
-              site.ru пользователями сети Интернет по данным LiveInternet в
-              разделе «Недвижимость» по состоянию на 12 марта 2023 г.
-            </p>
-            <div class="footer_contact"></div>
-          </div>
-          <div class="footer_right">
-            <ul>
-              <li class="footer_title"><a href="">О компании</a></li>
-              <li><a href="">Обратная связь</a></li>
-              <li><a href="">Форма сотрудничества</a></li>
-              <li><a href="">Партнеры</a></li>
-            </ul>
-            <ul>
-              <li class="footer_title"><a href="">Арендаторам</a></li>
-              <li><a href="">Политика конфеденциальности</a></li>
-              <li><a href="">Пользовательское соглашение</a></li>
-              <li><a href="">F.A.Q.</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer_copyright">
-          <div class="footer_copyright_layer">
-            © Company Name, 2023 <a href="">Конфеденциальность</a
-            ><a href="">Карта сайта</a>
-          </div>
-          <div class="footer_social">
-            <a href=""><img src="assets/img/VK com.png" alt="" /></a>
-            <a href=""><img src="assets/img/WhatsApp.png" alt="" /></a>
-            <a href=""><img src="assets/img/Instagram.png" alt="" /></a>
-            <a href=""><img src="assets/img/Telegram.png" alt="" /></a>
-          </div>
-        </div>
-      </div>
-    </footer>
+{%include 'footer.html'%}
   </body>
 </html>

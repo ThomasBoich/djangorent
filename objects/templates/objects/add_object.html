@@ -25,6 +25,10 @@
     <form id="object-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+            <p>
+        <label>Фотографии:</label>
+        {{ image_form.photo }}
+    </p>
         <button type="submit" class="btn btn-success w-20">Add object</button>
     </form>
 </div>

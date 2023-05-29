@@ -1,6 +1,9 @@
 {%load static%}
 {%include 'header.html'%}
+
   {%include 'menu.html'%}
+
+
     <div class="top_image_layer"style="background: url({%static 'assets/img/goavillatopomage.png'%});">
       <img src="" alt="" />
             <div class="top_img_filter">
@@ -32,9 +35,11 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
               </select>
+
             </span>
           </div>
           <button class="top_filter_search">Найти</button>
+
         </form>
       </div>
       <div class="top_image"></div>
@@ -47,14 +52,14 @@
           <h2>CATALOG</h2>
         </div>
 
-        <div class="item_content">
+        <div class="item_content catalog">
 
           {%for object in top_season%}
 
 
            <div class="item_layer">
             <div class="item">
-                  <a href="{% url 'hotel' object.id %}">
+                <a href="{% url 'hotel' object.id %}">
               <div class="item_slider"style="background: url('{{object.top_photo.url}}'); background-size: cover;">
                 <div class="item_slider_layer">
 
@@ -63,8 +68,8 @@
                   </div>
 
                 </div>
-<!--                <img src="{{object.top_photo.url}}" alt="" />-->
                    </a>
+<!--                <img src="{{object.top_photo.url}}" alt="" />-->
               </div>
             </div>
 
@@ -89,12 +94,11 @@
           {%endfor%}
         </div>
       </div>
+
     </div>
 
-  <div style="margin: 0 auto;width: fit-content;color: #000000;text-decoration: none;margin: 60px auto 60px;padding: 35px 0px 60px 0px;"><a style="text-decoration: none;color:#000000;border: 1px solid #00000020;padding: 20px;" href="{%url 'catalog'%}">All catalog ></a></div>
-
-
 {%include 'faq.html'%}
+
 {%include 'footer.html'%}
   </body>
 </html>

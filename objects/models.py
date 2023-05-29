@@ -11,6 +11,7 @@ class Object(models.Model):
     name_en = models.CharField(max_length=255, verbose_name='En Name', blank=True, null=True)
     #photo = models.FileField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
     #photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
+    top_photo = models.ImageField(upload_to='objects/photo/%Y/%m/%d/', blank=True, null=True)
     photo = models.ManyToManyField('ObjectPhoto', verbose_name='Photos', related_name='Photos', blank=True)
     features_ru = models.ManyToManyField('Features', blank=True, related_name='hotels_ru', related_query_name='hotel_ru', verbose_name='Ru Options')
     features_en = models.ManyToManyField('Features', blank=True, related_name='hotels_en', related_query_name='hotel_en', verbose_name='En Options')
@@ -20,8 +21,10 @@ class Object(models.Model):
     description_ru = models.TextField(blank=True)
     description_en = models.TextField(blank=True)
     address = models.CharField(max_length=255, default='', blank=True, null=True)
-    coordinates = models.CharField(max_length=255, default='', blank=True, null=True)
-    bad_ccordinates = models.CharField(max_length=255, default='', blank=True, null=True)
+    coordinates_x = models.CharField(max_length=255, default='', blank=True, null=True)
+    coordinates_y = models.CharField(max_length=255, default='', blank=True, null=True)
+    bad_coordinates_x = models.CharField(max_length=255, default='', blank=True, null=True)
+    bad_coordinates_y = models.CharField(max_length=255, default='', blank=True, null=True)
     city_ru = models.ForeignKey('City', related_name='city_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
     city_en = models.ForeignKey('City', related_name='city_en', default='', on_delete=models.CASCADE, blank=True, null=True)
     country_ru = models.ForeignKey('Country', related_name='country_ru', default='', on_delete=models.CASCADE, blank=True, null=True)
@@ -32,7 +35,7 @@ class Object(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    
+
     def __str__(self):
         return self.name_en
 
@@ -44,10 +47,13 @@ class Object(models.Model):
     def get_absolute_url(self):
         return reverse('object_detail', args=[self.slug])
 
+    def get_photos(self):
+        return ", ".join([str(p) for p in self.photo.all()])
+
 
 class ObjectPhoto(models.Model):
     object = models.ForeignKey('Object', on_delete=models.CASCADE, related_name='pp', blank=True, null=True)
-    photo = models.ImageField(upload_to='object_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='objects/object_photos/%Y/%m/%d/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

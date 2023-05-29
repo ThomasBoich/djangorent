@@ -6,11 +6,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from chats.models import Chat
-from objects.forms import addObjectForm, ReservationEditForm
-from objects.models import Object, Reservation
+from objects.forms import addObjectForm, ReservationEditForm, ObjectPhotoForm
+from objects.models import Object, Reservation, ObjectPhoto
 from users.forms import UserUpdateForm
 from users.models import CustomUser
 from tasks.models import Task
+from pathlib import Path
 
 def all_objects(request):
     if request.user.is_authenticated == True:
@@ -28,18 +29,49 @@ def all_objects(request):
 
 def add_object(request):
     if request.user.is_authenticated == True:
-        form = ''
         form = addObjectForm(request.POST, request.FILES)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.save()
-            return redirect('objects')
-        else:
-            form = addObjectForm()
-            context = {'form': form, 'active': 'active','title_page': 'Adding an object',}
-            return render(request, 'objects/add_object.html', context)
+        image_form = ObjectPhotoForm(request.POST, request.FILES)
+
+        if request.user.is_authenticated == True:
+            form = addObjectForm(request.POST, request.FILES)
+            image_form = ObjectPhotoForm(request.POST, request.FILES)
+
+            if request.method == 'POST':
+                if form.is_valid() and image_form.is_valid():
+                    object = form.save(commit=False)
+                    object.save()
+                    for photo in request.FILES.getlist('photo'):
+                        if hasattr(photo, 'name'):
+                            filename = Path(photo.name).name
+                        else:
+                            filename = photo.file.name
+                        obj_photo = ObjectPhoto.objects.create(photo=photo)
+                        object.photo.add(obj_photo)
+                return redirect('objects')
+            else:
+                form = addObjectForm()
+                image_form = ObjectPhotoForm()
+                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object', 'image_form': image_form}
+                return render(request, 'objects/add_object.html', context)
+
+
     else:
         return redirect('/')
+    #
+    #
+    #     if request.method == 'POST':
+    #         form = ''
+    #         form = addObjectForm(request.POST, request.FILES)
+    #         if form.is_valid():
+    #             obj = form.save(commit=False)
+    #             obj.save()
+    #             return redirect('objects')
+    #     else:
+    #         form = addObjectForm()
+    #         context = {'form': form, 'active': 'active','title_page': 'Adding an object',}
+    #         return render(request, 'objects/add_object.html', context)
+    # else:
+    #     return redirect('/')
 
 
 def object_detail(request, slug):
