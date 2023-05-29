@@ -58,6 +58,7 @@ class Features(models.Model):
     title_ru = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
     title_en = models.CharField(max_length=255, blank=True, null=True, verbose_name="Title")
     icon = models.ImageField(blank=True, null=True, verbose_name="Icon", upload_to="hotels/features/icons/")
+    category = models.ForeignKey('FeaturesCategory', blank=True, null=True, verbose_name='Category', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -66,6 +67,18 @@ class Features(models.Model):
         verbose_name = 'Option'
         verbose_name_plural = 'Options'
         ordering = ['title_en']
+
+
+class FeaturesCategory(models.Model):
+    name_ru = models.CharField(max_length=100, verbose_name='name_ru')
+    name_en = models.CharField(max_length=100, verbose_name='name_en')
+
+    def __str__(self):
+        return self.name_en
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 
 class Country(models.Model):

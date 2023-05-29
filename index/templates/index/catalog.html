@@ -12,6 +12,7 @@
             <option value="" selected>All locations</option>
             {%for city in cities%}
             <option value="{{city.city.id}}">{{city.name_en}}</option>
+            {%empty%}
             {%endfor%}
         </select>
             </label>
@@ -83,6 +84,7 @@
               </div>
             </div>
           </div>
+          {%empty%}
           {%endfor%}
         </div>
       </div>

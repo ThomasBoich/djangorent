@@ -5,7 +5,8 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from .forms import addObjectForm
 # Register your models here.
-from .models import Object, Features, Reservation, Country, City, ObjectPhoto
+from .models import Object, Features, Reservation, Country, City, ObjectPhoto, FeaturesCategory
+
 
 class ImageInline(admin.StackedInline):
     model = ObjectPhoto
@@ -59,9 +60,13 @@ class ReservationAdmin(admin.ModelAdmin):
     list_filter = ('object', 'check_in', 'check_out')
     search_fields = ('guest_last_name', 'guest_first_name', 'guest_email', 'guest_phone')
 
+class FeaturesCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name_ru', 'name_en')
+
 admin.site.register(ObjectPhoto)
 admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Object, ObjectAdmin)
 admin.site.register(Features, FeaturesAdmin)
 admin.site.register(Country, CountryAdmin)
 admin.site.register(City, CityAdmin)
+admin.site.register(FeaturesCategory, FeaturesCategoryAdmin)
