@@ -11,7 +11,13 @@ from users.models import CustomUser
 
 
 # Create your views here.
+
 def dash_info(request):
+
+    ''''
+        Главная страница црм
+    '''
+
     today = timezone.now().date()
 
     if request.user.is_authenticated:
@@ -38,7 +44,6 @@ def dash_info(request):
             'reservations': orders.order_by('-created_at')[:5],
         }
         return render(request, template, context)
-        # return render(request, 'objects/index.html', context=context)
     else:
         return redirect("login")
 

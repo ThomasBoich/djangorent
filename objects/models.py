@@ -1,16 +1,12 @@
 from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
-
 from users.models import CustomUser
 
 
-# Create your models here.
 class Object(models.Model):
     name_ru = models.CharField(max_length=255, verbose_name='Ru Name', blank=True, null=True)
     name_en = models.CharField(max_length=255, verbose_name='En Name', blank=True, null=True)
-    #photo = models.FileField(upload_to='objects/photo/', verbose_name='Фото', blank=True, null=True)
-    #photo = models.ImageField(upload_to='objects/photo/', verbose_name='Photo', blank=True, null=True)
     top_photo = models.ImageField(upload_to='objects/photo/%Y/%m/%d/', blank=True, null=True)
     photo = models.ManyToManyField('ObjectPhoto', verbose_name='Photos', related_name='Photos', blank=True)
     features_ru = models.ManyToManyField('Features', blank=True, related_name='hotels_ru', related_query_name='hotel_ru', verbose_name='Ru Options')
@@ -98,7 +94,7 @@ class City(models.Model):
         return self.name_en
 
 
-
+## БРОНИРОВАНИЯ
 class Reservation(models.Model):
     object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Object Reservation', related_name='reservations', blank=True)
     manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Manager', on_delete=models.CASCADE, default='')

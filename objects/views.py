@@ -8,12 +8,17 @@ from django.views.decorators.csrf import csrf_exempt
 from chats.models import Chat
 from objects.forms import addObjectForm, ReservationEditForm, ObjectPhotoForm
 from objects.models import Object, Reservation, ObjectPhoto
+from tasks.forms import TaskCommentForm
 from users.forms import UserUpdateForm
 from users.models import CustomUser
 from tasks.models import Task
 from pathlib import Path
 
+
 def all_objects(request):
+    ''''
+        Страница всех объектов
+    '''
     if request.user.is_authenticated == True:
         objects = Object.objects.all()
         context = {
@@ -28,6 +33,9 @@ def all_objects(request):
         return redirect('/')
 
 def add_object(request):
+    ''''
+        Страница добавления объектов
+    '''
     if request.user.is_authenticated == True:
         form = addObjectForm(request.POST, request.FILES)
         image_form = ObjectPhotoForm(request.POST, request.FILES)
@@ -74,17 +82,20 @@ def add_object(request):
     #     return redirect('/')
 
 
-def object_detail(request, slug):
-    template = 'objects/object.html'
-    context = {
-        'object': Object.objects.get(slug=slug),
-    }
-    return render(request, template, context)
+# def object_detail(request, slug):
+#     template = 'objects/object.html'
+#     context = {
+#         'object': Object.objects.get(slug=slug),
+#     }
+#     return render(request, template, context)
 
 
 #RESERVATIONS
 @login_required
 def reservation_list(request):
+    ''''
+        Список всех бронирований
+    '''
     reservations = Reservation.objects.filter(deleted=False)
     context = {
         'title_page': f'Reservations {reservations.count()}',
@@ -119,10 +130,13 @@ def reservation_list(request):
 
 @csrf_exempt
 def reservation(request, reservation_id):
-    # reservation = Reservation.objects.get(id=reservation_id)
+    '''
+        Страница бронирования
+    '''
+
     reservation = get_object_or_404(Reservation, id=reservation_id)
     messages = reservation.chat.all()
-    managers = CustomUser.objects.all()
+
     if request.method == 'POST':
         message_text = request.POST.get('message')
         if message_text:
@@ -161,8 +175,14 @@ def reservation(request, reservation_id):
     }
     return render(request, 'objects/reservation.html', context)
 
+
 @csrf_exempt
 def select_manager(request, reservation_id):
+
+    '''
+        Функция добавления менеджера без перезагрузки
+    '''
+
     reservation = Reservation.objects.get(id=reservation_id)
 
     if request.method == 'POST':
@@ -187,6 +207,9 @@ def select_manager(request, reservation_id):
 
 @login_required
 def task_reservation(request, task_id):
+    '''
+       Задача внутри бронирования
+    '''
     task = Task.objects.get(id=task_id)
     if request.method == 'POST':
         form = TaskCommentForm(request.POST)
@@ -205,6 +228,9 @@ def task_reservation(request, task_id):
 
 @login_required
 def tasks_reservation(request, reservation_id):
+    '''
+        Задачи внутри бронирования
+    '''
     # reservation = Reservation.objects.get(id=reservation_id)
     reservation = get_object_or_404(Reservation, id=reservation_id)
     managers = CustomUser.objects.all()
