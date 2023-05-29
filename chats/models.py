@@ -11,7 +11,7 @@ from users.models import CustomUser
 # Create your models here.
 
 class Chat(models.Model):
-    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, related_name='chat')
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, related_name='chatss')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
