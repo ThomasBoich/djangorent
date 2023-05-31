@@ -21,4 +21,5 @@ urlpatterns = [
     path('task_done/<task_id>/', task_done, name='task_done'),
     path('reservation/tasks/<reservation_id>', tasks_reservation, name='tasks_reservation'),
     path('reservation/tasks/<int:task_id>/<int:reservation_id>/', task_reservation_done, name='task_reservation_done'),
+    path('add_object/', add_object, name='add_object'),
 ]

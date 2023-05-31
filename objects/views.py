@@ -22,11 +22,11 @@ def all_objects(request):
     if request.user.is_authenticated == True:
         objects = Object.objects.all()
         context = {
-            'title_page': 'Objects',
+            'title_page': f'Объекты {objects.count()}',
             'objects': objects,
             'count_title': Object.objects.all().count(),
             'active': 'active',
-            'back_button': False,
+            'back_button': True,
         }
         return render(request, 'objects/index.html', context=context)
     else:
