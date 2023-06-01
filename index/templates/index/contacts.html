@@ -1,0 +1,29 @@
+{%load static%}
+{%include 'header.html'%}
+{%include 'menu.html'%}
+    <div class="content-layer">
+      <div class="content">
+        <div class="title">
+          <h2>CONTACTS</h2>
+        </div>
+          <div class="contacts_layer">
+              <div class="contacts_form">
+                  <h2>Свяжитесь с нами</h2>
+                  <p>Пожалуйста, не стесняйтесь обращаться к нам через одну из приведенных ниже форм или по телефону. Часы работы нашего офиса меняются в зависимости от сезона, но вы всегда сможете связаться с нами с понедельника по пятницу, с 10:00 до 18:00</p>
+                  <form action="" method="post">
+                      <h2>По вопросам бронирования</h2>
+                      <p>Отправьте нам сообщение.</p>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                      <button type="submit">Отправить</button>
+                  </form>
+              </div>
+              <img src="{%static 'assets/img/contactsimg.png'%}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+{%include 'footer.html'%}
+  </body>
+</html>

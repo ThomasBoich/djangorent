@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from index.forms import ContactForm
+from index.models import Contact
 from objects.models import Object, City
 
 
@@ -33,3 +35,53 @@ def hotel(request, object_id):
         'object': obj,
     }
     return render(request, template, context)
+
+def about(request):
+    template = 'index/about.html'
+    context = {
+        'title': 'About',
+    }
+    return render(request, template, context)
+
+def contacts(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Обработка данных формы
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            # Создание объекта модели Contact и сохранение его в базе данных
+            contact = Contact(name=name, phone=phone, email=email, message=message)
+            contact.save()
+            # Перенаправлениедля предотвращения повторной отправки формы
+            return redirect('contacts')
+    else:
+        form = ContactForm()
+
+    template = 'index/contacts.html'
+    context = {
+        'title': 'Contcts','form': form,
+    }
+    return render(request, template, context)
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Обработка данных формы
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            # Создание объекта модели Contact и сохранение его в базе данных
+            contact = Contact(name=name, phone=phone, email=email, message=message)
+            contact.save()
+            # Перенаправлениедля предотвращения повторной отправки формы
+            return redirect('success')
+    else:
+        form = ContactForm()
+
+    context = {'form': form}
+    return render(request, 'contact.html', context)
