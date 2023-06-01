@@ -36,35 +36,34 @@ def add_object(request):
     ''''
         Страница добавления объектов
     '''
-    if request.user.is_authenticated == True:
-        form = addObjectForm(request.POST, request.FILES)
-        image_form = ObjectPhotoForm(request.POST, request.FILES)
-
+    if request.method == 'GET':
+        form = addObjectForm()
+        return render(request, 'objects/add_object.html', {'form':form})
+    
+    if request.method == 'POST':
         if request.user.is_authenticated == True:
-            form = addObjectForm(request.POST, request.FILES)
-            image_form = ObjectPhotoForm(request.POST, request.FILES)
-
-            if request.method == 'POST':
-                if form.is_valid() and image_form.is_valid():
-                    object = form.save(commit=False)
-                    object.save()
-                    for photo in request.FILES.getlist('photo'):
-                        if hasattr(photo, 'name'):
-                            filename = Path(photo.name).name
-                        else:
-                            filename = photo.file.name
-                        obj_photo = ObjectPhoto.objects.create(photo=photo)
-                        object.photo.add(obj_photo)
+            form = addObjectForm(request.POST)
+            photos = request.FILES.getlist('files[]')
+            if form.is_valid():
+                new_object = form.save(commit=False)
+                new_object.save()
+                for photo in photos:
+                    p = ObjectPhoto.objects.create(
+                        photo=photo
+                    )
+                    new_object.photos.add(p)
+            
+                    
+                    
                 return redirect('objects')
             else:
                 form = addObjectForm()
-                image_form = ObjectPhotoForm()
-                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object', 'image_form': image_form}
+                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object'}
                 return render(request, 'objects/add_object.html', context)
 
 
-    else:
-        return redirect('/')
+        else:
+            return redirect('/')
     #
     #
     #     if request.method == 'POST':

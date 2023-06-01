@@ -1,0 +1,8 @@
+
+virt-djrent/
+db.sqlite3
+*.pyc
+
+media/
+
+test.py
