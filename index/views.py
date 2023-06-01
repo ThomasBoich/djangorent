@@ -33,6 +33,7 @@ def hotel(request, object_id):
     context = {
         'top_season': all_objects[:3],
         'object': obj,
+        'objects': all_objects,
     }
     return render(request, template, context)
 

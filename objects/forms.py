@@ -22,7 +22,7 @@ class ObjectPhotoForm(forms.ModelForm):
         labels = {'photo': 'Object Photo', 'name': 'Object Photo',}
 
 class addObjectForm(forms.ModelForm):
-    photo = MultiImageField(max_file_size=1024 * 1024 * 5, required=False)
+    #photo = MultiImageField(max_file_size=1024 * 1024 * 5, required=False)
 
     class Meta:
         model = Object
@@ -35,7 +35,22 @@ class addObjectForm(forms.ModelForm):
         'city_ru','city_en','country_ru','country_en',
         'price_ru','price_en','rating'
         ]
-        labels = {'name': 'name_en', 'description': 'Description', 'location': 'Location', 'price': 'Price'}
+        labels = {'name': 'name_en', 'description': 'Description', 'location': 'Location', 'price': 'Price','features_ru': 'Опции на Русском', 'slug': 'Оставить пустым!'}
+        widgets = {
+            'name_ru': forms.TextInput(attrs={'placeholder': 'Введите название на русском'}),
+            'name_en': forms.TextInput(attrs={'placeholder': 'Enter the name in English'}),
+            'description_ru': forms.Textarea(attrs={'placeholder': 'Введите описание на русском'}),
+            'description_en': forms.Textarea(attrs={'placeholder': 'Enter the description in English'}),
+            'address': forms.TextInput(attrs={'placeholder': 'Enter the address'}),
+            'coordinates_x': forms.TextInput(attrs={'placeholder': 'Enter X coordinates'}),
+            'coordinates_y': forms.TextInput(attrs={'placeholder': 'Enter Y coordinates'}),
+            'bad_coordinates_x': forms.TextInput(attrs={'placeholder': 'Enter bad X coordinates'}),
+            'bad_coordinates_y': forms.TextInput(attrs={'placeholder': 'Enter bad Y coordinates'}),
+            'price_ru': forms.NumberInput(attrs={'placeholder': 'Enter the price in rubles'}),
+            'price_en': forms.NumberInput(attrs={'placeholder': 'Enter the price in dollars'}),
+        }
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

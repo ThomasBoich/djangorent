@@ -4,7 +4,10 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import UpdateView
+
 from chats.models import Chat
 from objects.forms import addObjectForm, ReservationEditForm, ObjectPhotoForm
 from objects.models import Object, Reservation, ObjectPhoto
@@ -32,39 +35,37 @@ def all_objects(request):
     else:
         return redirect('/')
 
+
 def add_object(request):
     ''''
         Страница добавления объектов
     '''
-    if request.user.is_authenticated == True:
-        form = addObjectForm(request.POST, request.FILES)
-        image_form = ObjectPhotoForm(request.POST, request.FILES)
+    if request.method == 'GET':
+        form = addObjectForm()
+        return render(request, 'objects/add_object.html', {'form': form})
 
+    if request.method == 'POST':
         if request.user.is_authenticated == True:
             form = addObjectForm(request.POST, request.FILES)
-            image_form = ObjectPhotoForm(request.POST, request.FILES)
+            photos = request.FILES.getlist('files[]')
+            if form.is_valid():
+                new_object = form.save(commit=False)
+                new_object.save()
+                for photo in photos:
+                    p = ObjectPhoto.objects.create(
+                        photo=photo
+                    )
+                    new_object.photos.add(p)
 
-            if request.method == 'POST':
-                if form.is_valid() and image_form.is_valid():
-                    object = form.save(commit=False)
-                    object.save()
-                    for photo in request.FILES.getlist('photo'):
-                        if hasattr(photo, 'name'):
-                            filename = Path(photo.name).name
-                        else:
-                            filename = photo.file.name
-                        obj_photo = ObjectPhoto.objects.create(photo=photo)
-                        object.photo.add(obj_photo)
                 return redirect('objects')
             else:
                 form = addObjectForm()
-                image_form = ObjectPhotoForm()
-                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object', 'image_form': image_form}
+                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object'}
                 return render(request, 'objects/add_object.html', context)
 
 
-    else:
-        return redirect('/')
+        else:
+            return redirect('/')
     #
     #
     #     if request.method == 'POST':
@@ -263,3 +264,12 @@ def tasks_reservation(request, reservation_id):
         'count_tasks': tasks.count(),
     }
     return render(request, 'objects/tasks_reservation.html', context)
+
+class EditNote(UpdateView):
+    model = Object
+    form_class = addObjectForm
+    template_name = 'objects/object.html'
+    pk_url_kwarg = 'object_id'
+
+    def get_success_url(self):
+        return reverse_lazy('objects')

@@ -16,124 +16,153 @@
 </div>
 {% endblock %}
 {%block content%}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="hotel_search">
-                                    <form action="">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="input-icon mb-3">
-                                                    <input type="text" value="" class="form-control"
-                                                        placeholder="Search…">
-                                                    <span class="input-icon-addon">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                                            <path d="M21 21l-6 -6"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2"><select class="form-select">
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select></div>
-                                            <div class="col-md-3">
-                                                <select class="form-select">
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <input type="text" class="form-control" name="example-text-input"
-                                                    placeholder="Price from">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <input type="text" class="form-control" name="example-text-input"
-                                                    placeholder="Price up to">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="submit" class="btn btn-primary">Find</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="card">
-                                        <div class="table-responsive">
-                                            <table
-                                                class="table card-table table-vcenter text-nowrap datatable style_table">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="w-1"><input class="form-check-input m-0 align-middle"
-                                                                type="checkbox" aria-label="Select all invoices">
-                                                        </th>
-                                                        <th class="w-1">No.
-                                                            <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon icon-sm icon-thick" width="24" height="24"
-                                                                viewBox="0 0 24 24" stroke-width="2"
-                                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                                </path>
-                                                                <path d="M6 15l6 -6l6 6"></path>
-                                                            </svg>
-                                                        </th>
-                                                        <th>Name</th>
-                                                        <th>Description</th>
-                                                        <th>Price</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {%for object in objects%}
-                                                        <tr>
-                                                        <td><input class="form-check-input m-0 align-middle"
-                                                                type="checkbox" aria-label="Select invoice"></td>
-                                                        <td><span class="text-muted">{{object.id}}</span>
-                                                        </td>
-                                                        <td><a href="#" class="text-reset" tabindex="-1">
-                                                                <img src="{{object.top_photo.url}}" alt="">{{object.name_en}}</a></td>
-                                                        <td>
-                                                           {{object.description}}
-                                                        </td>
-                                                        <td>
-                                                            {{object.price}}
-                                                        </td>
-                                                        <td class="text-end">
-                                                            <span class="dropdown">
-                                                                <button class="btn dropdown-toggle align-text-top"
-                                                                    data-bs-boundary="viewport"
-                                                                    data-bs-toggle="dropdown">Actions</button>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item" href="#">
-                                                                        Action
-                                                                    </a>
-                                                                    <a class="dropdown-item" href="#">
-                                                                        Another action
-                                                                    </a>
-                                                                </div>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                {%endfor%}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="card-footer d-flex align-items-center">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hotel_search">
+            <form action="">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="input-icon mb-3">
+                            <input type="text" value="" class="form-control" placeholder="Search…">
+                            <span class="input-icon-addon">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                    <path d="M21 21l-6 -6"></path>
+                                </svg>
+                            </span>
                         </div>
+                    </div>
+
+                    <div class="col-md-2"><select class="form-select">
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select></div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="text" class="form-control" name="example-text-input" placeholder="Price from">
+                    </div>
+                    <div class="col-md-1">
+                        <input type="text" class="form-control" name="example-text-input" placeholder="Price up to">
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary"style="    display: block;
+    width: 100%;
+    padding: 0.4375rem 0.75rem;
+    font-family: var(--tblr-font-sans-serif);
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.4285714286;
+    /* color: inherit; */
+    /* background-color: var(--tblr-bg-forms); */
+    background-clip: padding-box;
+    border: var(--tblr-border-width) solid var(--tblr-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--tblr-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">Find</button>
+
+                    </div>
+                        <div class="col-md-2">
+                            <a href="{%url 'add_object'%}"class="btn btn-success w-20"style="    display: block;
+    width: 100%;
+    padding: 0.4375rem 0.75rem;
+    font-family: var(--tblr-font-sans-serif);
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.4285714286;
+    /* color: inherit; */
+    /* background-color: var(--tblr-bg-forms); */
+    background-clip: padding-box;
+    border: var(--tblr-border-width) solid var(--tblr-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--tblr-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">
+Add object</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap datatable style_table">
+                        <thead>
+                            <tr>
+                                <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                        aria-label="Select all invoices">
+                                </th>
+                                <th class="w-1">No.
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                        </path>
+                                        <path d="M6 15l6 -6l6 6"></path>
+                                    </svg>
+                                </th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for object in objects%}
+                            <tr>
+                                <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                        aria-label="Select invoice"></td>
+                                <td><span class="text-muted">{{object.id}}</span>
+                                </td>
+                                <td><a href="{%url 'object_info' object.id%}" class="text-reset" tabindex="-1">
+                                        <img src="{{object.top_photo.url}}" alt="">
+                                    {{object.name_en}}</a>
+                                </td>
+                                <td>
+                                    {{object.description}}
+                                </td>
+                                <td>
+                                    {{object.price}}
+                                </td>
+                                <td class="text-end">
+                                    <span class="dropdown">
+                                        <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                            data-bs-toggle="dropdown">Actions</button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                Action
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                Another action
+                                            </a>
+                                        </div>
+                                    </span>
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex align-items-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}

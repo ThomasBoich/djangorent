@@ -5,10 +5,10 @@ from users.models import CustomUser
 
 
 class Object(models.Model):
-    name_ru = models.CharField(max_length=255, verbose_name='Ru Name', blank=True, null=True)
-    name_en = models.CharField(max_length=255, verbose_name='En Name', blank=True, null=True)
-    top_photo = models.ImageField(upload_to='objects/photo/%Y/%m/%d/', blank=True, null=True)
-    photo = models.ManyToManyField('ObjectPhoto', verbose_name='Photos', related_name='Photos', blank=True)
+    name_ru = models.CharField(max_length=255, verbose_name='Ru Name', null=True)
+    name_en = models.CharField(max_length=255, verbose_name='En Name', null=True)
+    top_photo = models.ImageField(upload_to='objects/photo/%Y/%m/%d/', null=True)
+    photos = models.ManyToManyField('ObjectPhoto', blank=True, verbose_name='Photos', related_name='Photos')
     features_ru = models.ManyToManyField('Features', blank=True, related_name='hotels_ru', related_query_name='hotel_ru', verbose_name='Ru Options')
     features_en = models.ManyToManyField('Features', blank=True, related_name='hotels_en', related_query_name='hotel_en', verbose_name='En Options')
     text_ru = models.TextField(default='', verbose_name='Ru Text', null = True, blank = True,)  #
@@ -33,7 +33,7 @@ class Object(models.Model):
 
 
     def __str__(self):
-        return self.name_en
+        return f'{self.name_en}'
 
     class Meta:
         verbose_name = 'Object'
@@ -47,8 +47,8 @@ class Object(models.Model):
         return ", ".join([str(p) for p in self.photo.all()])
 
 
+
 class ObjectPhoto(models.Model):
-    object = models.ForeignKey('Object', on_delete=models.CASCADE, related_name='pp', blank=True, null=True)
     photo = models.ImageField(upload_to='objects/object_photos/%Y/%m/%d/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -61,7 +61,7 @@ class Features(models.Model):
     category = models.ForeignKey('FeaturesCategory', blank=True, null=True, verbose_name='Category', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title_ru
+        return f'{self.title_ru}'
 
     class Meta:
         verbose_name = 'Option'
@@ -74,7 +74,7 @@ class FeaturesCategory(models.Model):
     name_en = models.CharField(max_length=100, verbose_name='name_en')
 
     def __str__(self):
-        return self.name_en
+        return f'{self.name_en}'
 
     class Meta:
         verbose_name = 'Category'
@@ -92,7 +92,7 @@ class Country(models.Model):
         verbose_name_plural = 'Countries'
 
     def __str__(self):
-        return self.name_en
+        return f'{self.name_en}'
 
 
 class City(models.Model):
@@ -104,7 +104,7 @@ class City(models.Model):
         verbose_name_plural = 'Cities'
 
     def __str__(self):
-        return self.name_en
+        return f'{self.name_en}'
 
 
 ## БРОНИРОВАНИЯ

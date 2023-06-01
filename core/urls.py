@@ -4,7 +4,7 @@ from django.urls import path
 from tasks.views import all_tasks, task, task_done, task_reservation_done
 from users.views import user_info#, user_profile
 from .views import dash_info, LogoutView
-from objects.views import all_objects, add_object, reservation_list, reservation, tasks_reservation
+from objects.views import all_objects, add_object, reservation_list, reservation, tasks_reservation, EditNote
 
 urlpatterns = [
 
@@ -21,5 +21,6 @@ urlpatterns = [
     path('task_done/<task_id>/', task_done, name='task_done'),
     path('reservation/tasks/<reservation_id>', tasks_reservation, name='tasks_reservation'),
     path('reservation/tasks/<int:task_id>/<int:reservation_id>/', task_reservation_done, name='task_reservation_done'),
-    path('add_object/', add_object, name='add_object'),
+    path('object/<int:object_id>/', EditNote.as_view(), name='object_info'),
+
 ]

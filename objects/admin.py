@@ -8,8 +8,8 @@ from .forms import addObjectForm
 from .models import Object, Features, Reservation, Country, City, ObjectPhoto, FeaturesCategory
 
 
-class ImageInline(admin.StackedInline):
-    model = ObjectPhoto
+# class ImageInline(admin.StackedInline):
+#     model = ObjectPhoto
 
 
 class ObjectAdmin(admin.ModelAdmin):
@@ -21,11 +21,12 @@ class ObjectAdmin(admin.ModelAdmin):
         'text_en','description_ru',
         'description_en','address','coordinates_x', 'coordinates_y','bad_coordinates_x','bad_coordinates_y',
         'city_ru','city_en','country_ru','country_en',
-        'price_ru','price_en','rating')
+        'price_ru','price_en','rating', 'photos')
     list_display = ('name_en', 'slug')
+    filter_horizontal = ('photos',)
     search_fields = ('name_en',)
     prepopulated_fields = {'slug': ('name_en',)}
-    inlines = [ImageInline]
+    # inlines = [ImageInline]
     readonly_fields = ['image_tag']
     def image_tag(self, obj):
         return format_html('<img src="{}" width="150" />'.format(obj.top_photo.url))

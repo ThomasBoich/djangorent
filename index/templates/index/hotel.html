@@ -13,10 +13,14 @@
       <div class="itcss">
         <div class="itcss__wrapper">
 
+
           <div class="itcss__items">
-            <div class="itcss__item">
-              <img src="{{object.top_photo.url}}" alt="" />
-            </div>
+                      {%for obj in object.photos.all%}
+                        <div class="itcss__item">
+                         <img src="{{obj.photo.url}}" alt="" />
+                        </div>
+                      {%endfor%}
+
 
           </div>
         </div>
@@ -421,7 +425,7 @@
                 <div class="item_info">
                   <h2>{{object.name_en}}</h2>
                 </div>
-                 <img src="{{object.top_photo.url}}" alt="" />
+                 <img src="" alt="" />
               </div>
 </a>
             </div>
