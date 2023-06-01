@@ -61,7 +61,7 @@ class Features(models.Model):
     category = models.ForeignKey('FeaturesCategory', blank=True, null=True, verbose_name='Category', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.title_ru
 
     class Meta:
         verbose_name = 'Option'
