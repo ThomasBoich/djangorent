@@ -136,7 +136,7 @@ def reservation(request, reservation_id):
     '''
 
     reservation = get_object_or_404(Reservation, id=reservation_id)
-    messages = reservation.chat.all()
+    messages = reservation.chatss.all()
 
     if request.method == 'POST':
         message_text = request.POST.get('message')
