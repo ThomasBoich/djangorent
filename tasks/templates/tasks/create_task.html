@@ -24,8 +24,11 @@
     <h1>Create new task</h1>
     <form id="object-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <style>
+            #id_date_start{max-width:200px;}#id_date_finish{max-width:200px;}#id_owner{max-width:300px;}#id_executor{max-width:300px;}#id_object{max-width:600px;}
+        </style>
         {{form.as_p}}
-        <button type="submit" class="btn btn-success w-20">Add object</button>
+        <button type="submit" class="btn btn-success w-20">Create task</button>
     </form>
 </div>
 
