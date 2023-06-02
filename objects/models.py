@@ -111,8 +111,8 @@ class City(models.Model):
 class Reservation(models.Model):
     object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Object Reservation', related_name='reservations', blank=True)
     manager = models.ForeignKey(CustomUser, blank=True, null=True, related_name='order_manager', verbose_name='Manager', on_delete=models.CASCADE, default='')
-    check_in = models.DateField(default='', verbose_name='check_in', blank=True)
-    check_out = models.DateField(default='', verbose_name='check_out', blank=True)
+    check_in = models.DateField(default='', verbose_name='check_in', blank=True, null=True)
+    check_out = models.DateField(default='', verbose_name='check_out', blank=True, null=True)
     guest_last_name = models.CharField(default='', max_length=255, verbose_name='guest_last_nam', blank=True)
     guest_first_name = models.CharField(default='', max_length=255, verbose_name='guest_first_name', blank=True)
     guest_patronymic = models.CharField(default='', max_length=255, verbose_name='guest_patronymic', blank=True)
@@ -122,6 +122,7 @@ class Reservation(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     document = models.FileField(upload_to='Reservation/Documents/%Y/%m/%d/', verbose_name='document', blank=True, null=True)
     deleted = models.BooleanField(default=False, blank=True)
+    message = models.TextField(blank=True, null=True)
 
     RESERVATION_ORDER = 'RO'
     RESERVATION_CONSULTATION = 'RC'

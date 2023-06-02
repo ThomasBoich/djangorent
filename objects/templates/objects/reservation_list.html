@@ -40,7 +40,7 @@
                                                             <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
                                                         </svg>
 
-                                                           Консультирование {{reservation_consultation_count}}
+                                                           Консультирование {{contacts_count}}
                                                     </a>
                                                 </li>
                                             </ul>
@@ -119,10 +119,10 @@
                                                                                             href="{{reservation.get_absolute_url}}">
                                                                                             Редактировать
                                                                                         </a>
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Удалить
-                                                                                        </a>
+<!--                                                                                        <a class="dropdown-item"-->
+<!--                                                                                            href="#">-->
+<!--                                                                                            Удалить-->
+<!--                                                                                        </a>-->
                                                                                     </div>
                                                                                 </span>
                                                                             </td>
@@ -141,7 +141,7 @@
                                                     <div class="col-md-12 col-lg-12">
                                                         <div class="card">
                                                             <div class="card-header">
-                                                                <h3 class="card-title">Активные заявки {{reservation_consultation_count}}</h3>
+                                                                <h3 class="card-title">Активные заявки {{contacts_count}}</h3>
                                                             </div>
                                                             <div class="table-responsive"style="height:70vh;">
                                                                 <table
@@ -175,27 +175,25 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    {%for reservation in reservation_consultation%}
+                                                                    {%for contact in contacts%}
 
                                                                                                                                             <tr>
                                                                             <td><input
                                                                                     class="form-check-input m-0 align-middle"
                                                                                     type="checkbox"
                                                                                     aria-label="Select invoice"></td>
-                                                                            <td><span class="text-muted">{{reservation.id}}</span>
+                                                                            <td><span class="text-muted">{{contact.id}}</span>
                                                                             </td>
-                                                                            <td><a href="{{reservation.get_absolute_url}}"
+                                                                            <td><a href="{% url 'contact_info' contact.id %}"
                                                                                     class="text-reset"
                                                                                     tabindex="-1"><img
                                                                                         src="assets/img/select-image.png"
-                                                                                        alt="">{{reservation.guest_last_name}} {{reservation.guest_first_name}} {{reservation.guest_patronymic}}</a></td>
+                                                                                        alt="">{{contact.name}}</a></td>
                                                                             <td>
-                                                                                <span
-                                                                                    class="flag flag-country-us"></span>
-                                                                                {{reservation.guest_phone}}
+                                                                                {{contact.phone}}
                                                                             </td>
                                                                             <td>
-                                                                                {{reservation.guest_email}}
+                                                                                {{contact.email}}
                                                                             </td>
 
                                                                             <td class="text-end">
@@ -207,13 +205,13 @@
                                                                                     <div
                                                                                         class="dropdown-menu dropdown-menu-end">
                                                                                         <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Редактировать
+                                                                                            href="{%url 'contact_info' contact.id %}">
+                                                                                            Смотреть
                                                                                         </a>
-                                                                                        <a class="dropdown-item"
-                                                                                            href="#">
-                                                                                            Изменить
-                                                                                        </a>
+<!--                                                                                        <a class="dropdown-item"-->
+<!--                                                                                            href="#">-->
+<!--                                                                                            удалить-->
+<!--                                                                                        </a>-->
                                                                                     </div>
                                                                                 </span>
                                                                             </td>

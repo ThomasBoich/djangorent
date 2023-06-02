@@ -7,6 +7,7 @@ class Contact(models.Model):
     email = models.EmailField(max_length=100)
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

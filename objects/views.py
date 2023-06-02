@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView
 
 from chats.models import Chat
+from index.models import Contact
 from objects.forms import addObjectForm, ReservationEditForm, ObjectPhotoForm
 from objects.models import Object, Reservation, ObjectPhoto
 from tasks.forms import TaskCommentForm
@@ -104,6 +105,8 @@ def reservation_list(request):
         'reservation_consultation': reservations.filter(type='RC'),
         'reservation_order_count': reservations.filter(type='RO').count(),
         'reservation_order': reservations.filter(type='RO'),
+        'contacts': Contact.objects.filter(status=False),
+        'contacts_count': Contact.objects.filter(status=False).count(),
 
     }
     return render(request, 'objects/reservation_list.html', context)
@@ -272,3 +275,11 @@ class EditNote(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('objects')
+
+def contact(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    context = {
+        'contact': contact,
+        'title_page': f'{contact.name}'
+    }
+    return render(request, 'objects/contact.html', context)

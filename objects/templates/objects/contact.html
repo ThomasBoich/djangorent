@@ -1,0 +1,13 @@
+{%extends 'dash.html'%}
+
+{%block content%}
+
+<div class="add_objects_page">
+  <h1>{{contact.name}}</h1>
+  <p>{{contact.timestamp}}</p>
+  <p>{{contact.message}}</p>
+  <a href="{%url 'contact_done' contact.id%}">Done</a>
+</div>
+
+
+{%endblock%}

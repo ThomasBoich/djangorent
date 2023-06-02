@@ -86,3 +86,11 @@ def contact(request):
 
     context = {'form': form}
     return render(request, 'contact.html', context)
+
+def contact_done(request, contact_id):
+
+        contact = Contact.objects.get(id=contact_id)
+        contact.status = True
+        contact.save()
+
+        return redirect('reservations')

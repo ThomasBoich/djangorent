@@ -1,10 +1,11 @@
 from django.contrib.auth import logout
 from django.urls import path
 
+from index.views import contact_done
 from tasks.views import all_tasks, task, task_done, task_reservation_done, new_task
 from users.views import user_info#, user_profile
 from .views import dash_info, LogoutView
-from objects.views import all_objects, add_object, reservation_list, reservation, tasks_reservation, EditNote
+from objects.views import all_objects, add_object, reservation_list, reservation, tasks_reservation, EditNote, contact
 
 urlpatterns = [
 
@@ -23,4 +24,6 @@ urlpatterns = [
     path('reservation/tasks/<reservation_id>', tasks_reservation, name='tasks_reservation'),
     path('reservation/tasks/<int:task_id>/<int:reservation_id>/', task_reservation_done, name='task_reservation_done'),
     path('object/<int:object_id>/', EditNote.as_view(), name='object_info'),
+    path('reservation/contact/<int:contact_id>/', contact, name='contact_info'),
+    path('contact_done/<int:contact_id>/', contact_done, name='contact_done'),
 ]
