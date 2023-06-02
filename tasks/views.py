@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
-from .forms import TaskCommentForm
+from .forms import TaskCommentForm, addTaskForm
 from tasks.models import Task
 from objects.models import Object, Reservation
 
@@ -61,3 +61,18 @@ def task_reservation_done(request, task_id, reservation_id):
         task.status = True
         task.save()
         return redirect('tasks_reservation', reservation_id=reservation_id)
+
+def new_task(request):
+    if request.user.is_authenticated == True:
+        if request.method == 'POST':
+                form = addTaskForm(request.POST, request.FILES)
+                if form.is_valid():
+                    new_task = form.save(commit=False)
+                    new_task.save()
+                    return redirect('tasks')
+        else:
+            form = addTaskForm()
+            context = {'form': form, 'active': 'active', 'title_page': 'Adding an task'}
+            return render(request, 'tasks/create_task.html', context)
+    else:
+        return redirect('/')

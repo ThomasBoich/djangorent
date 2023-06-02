@@ -8,13 +8,13 @@ from users.models import CustomUser
 # Create your models here.
 
 class Task(models.Model):
-    title = models.CharField(max_length=255, verbose_name="Task name")
-    text = models.TextField(verbose_name="Task text")
+    title = models.CharField(max_length=255, verbose_name="Task name", blank=True, null=True)
+    text = models.TextField(verbose_name="Task text", blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateTimeField(verbose_name="Date start")
-    date_finish = models.DateTimeField(verbose_name="Date finish")
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Owner", default=1)
-    executor = models.ForeignKey(CustomUser, related_name="executer_task", verbose_name="Executor", on_delete=models.CASCADE, blank=True, null=True,)
+    date_start = models.DateTimeField(verbose_name="Date start", blank=True, null=True)
+    date_finish = models.DateTimeField(verbose_name="Date finish", blank=True, null=True)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Owner", default=1, blank=True, null=True)
+    executor = models.ForeignKey(CustomUser, related_name="executer_task", verbose_name="Executor", on_delete=models.CASCADE, blank=True, null=True)
     object = models.ForeignKey(Object, related_name='task_object', verbose_name='Object', on_delete=models.CASCADE, blank=True, null=True)
     status = models.BooleanField(default=False, verbose_name='Success')
 

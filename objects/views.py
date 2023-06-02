@@ -40,32 +40,31 @@ def add_object(request):
     ''''
         Страница добавления объектов
     '''
-    if request.method == 'GET':
-        form = addObjectForm()
-        return render(request, 'objects/add_object.html', {'form': form})
+    if request.user.is_authenticated == True:
+        if request.method == 'GET':
+            form = addObjectForm()
+            return render(request, 'objects/add_object.html', {'form': form})
 
-    if request.method == 'POST':
-        if request.user.is_authenticated == True:
-            form = addObjectForm(request.POST, request.FILES)
-            photos = request.FILES.getlist('files[]')
-            if form.is_valid():
-                new_object = form.save(commit=False)
-                new_object.save()
-                for photo in photos:
-                    p = ObjectPhoto.objects.create(
-                        photo=photo
-                    )
-                    new_object.photos.add(p)
+        if request.method == 'POST':
 
-                return redirect('objects')
-            else:
-                form = addObjectForm()
-                context = {'form': form, 'active': 'active', 'title_page': 'Adding an object'}
-                return render(request, 'objects/add_object.html', context)
+                form = addObjectForm(request.POST, request.FILES)
+                photos = request.FILES.getlist('files[]')
+                if form.is_valid():
+                    new_object = form.save(commit=False)
+                    new_object.save()
+                    for photo in photos:
+                        p = ObjectPhoto.objects.create(
+                            photo=photo
+                        )
+                        new_object.photos.add(p)
 
-
+                    return redirect('objects')
         else:
-            return redirect('/')
+            form = addObjectForm()
+            context = {'form': form, 'active': 'active', 'title_page': 'Adding an object'}
+            return render(request, 'objects/add_object.html', context)
+    else:
+        return redirect('/')
     #
     #
     #     if request.method == 'POST':
